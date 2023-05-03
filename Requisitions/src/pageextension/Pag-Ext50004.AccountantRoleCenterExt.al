@@ -77,12 +77,6 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             Caption = 'Cash Vouchers';
                             RunObject = page "Cash Vouchers";
                         }
-                        action("Cheque Payment Vouchers")
-                        {
-                            ApplicationArea = All;
-                            Image = Check;
-                            RunObject = page "Cheque Payment Vouchers";
-                        }
                         action("Pending Vouchers Approval")
                         {
                             ApplicationArea = All;

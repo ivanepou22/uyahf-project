@@ -68,13 +68,6 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             Caption = 'Cash Vouchers';
                             RunObject = page "Cash Vouchers";
                         }
-                        action("Cheque Cash Vouchers")
-                        {
-                            ApplicationArea = All;
-                            Image = Check;
-                            RunObject = page "Cheque Payment Vouchers";
-                        }
-
                         action("Pending Vouchers Approval")
                         {
                             ApplicationArea = All;
