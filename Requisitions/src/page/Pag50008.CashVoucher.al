@@ -212,7 +212,7 @@ page 50008 "Cash Voucher"
             {
                 ApplicationArea = All;
                 Caption = 'Attachments';
-                SubPageLink = "Table ID" = CONST(50031),
+                SubPageLink = "Table ID" = CONST(50001),
                               "No." = FIELD("No.");
             }
             systempart(Control1900383207; Links)
