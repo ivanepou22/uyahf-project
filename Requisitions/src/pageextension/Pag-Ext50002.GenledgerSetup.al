@@ -67,6 +67,56 @@ pageextension 50002 "GenledgerSetup" extends "General Ledger Setup"
                 {
                 }
             }
+
+            group("Requisition Setup")
+            {
+
+                field("Store Requisition Nos"; Rec."Store Requisition Nos")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Store Requisition Nos field.';
+                }
+                field("Purchase Requisition Nos"; Rec."Purchase Requisition Nos")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Purchase Requisition Nos. field.';
+                }
+                field("Archive Purch. Requisition"; Rec."Archive Purch. Requisition")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Archive Purch. Requisition field.';
+                }
+                field("Archive Store Requisition"; Rec."Archive Store Requisition")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Archive Store Requisition field.';
+                }
+                field("Store Req Item Jnl Template"; Rec."Store Req Item Jnl Template")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Store Req Item Jnl Template field.';
+                }
+                field("Store Return Item Jnl Batch"; Rec."Store Return Item Jnl Batch")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Store Return Item Jnl Batch field.';
+                }
+                field("Store Req. Archive No. Series"; Rec."Store Req. Archive No. Series")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Store Req. Archive No. Series field.';
+                }
+                field("Store Return Archive No series"; Rec."Store Return Archive No series")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Store Return Archive No series field.';
+                }
+                field("Store Return Item Jnl Template"; Rec."Store Return Item Jnl Template")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Store Return Item Jnl Template field.';
+                }
+            }
         }
     }
 
