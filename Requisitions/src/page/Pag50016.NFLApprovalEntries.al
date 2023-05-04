@@ -23,19 +23,19 @@ page 50016 "NFL Approval Entries"
                     OptionCaption = 'Yes';
                     ToolTip = 'Overdue Entry';
                 }
-                field("Table ID"; "Table ID")
+                field("Table ID"; Rec."Table ID")
                 {
                 }
-                field("Limit Type"; "Limit Type")
+                field("Limit Type"; Rec."Limit Type")
                 {
                 }
-                field("Approval Type"; "Approval Type")
+                field("Approval Type"; Rec."Approval Type")
                 {
                 }
-                field("Document Type"; "Document Type")
+                field("Document Type"; Rec."Document Type")
                 {
                 }
-                field("Document No."; "Document No.")
+                field("Document No."; Rec."Document No.")
                 {
                 }
                 // field(Payee; Payee)
@@ -50,46 +50,46 @@ page 50016 "NFL Approval Entries"
                 // field("Payment Voucher Lines Total"; "Payment Voucher Lines Total")
                 // {
                 // }
-                field("Sequence No."; "Sequence No.")
+                field("Sequence No."; Rec."Sequence No.")
                 {
                 }
-                field("Approval Code"; "Approval Code")
+                field("Approval Code"; Rec."Approval Code")
                 {
                 }
-                field(Status; Status)
+                field(Status; Rec.Status)
                 {
                 }
-                field("Sender ID"; "Sender ID")
+                field("Sender ID"; Rec."Sender ID")
                 {
                 }
-                field("Salespers./Purch. Code"; "Salespers./Purch. Code")
+                field("Salespers./Purch. Code"; Rec."Salespers./Purch. Code")
                 {
                 }
-                field("Approver ID"; "Approver ID")
+                field("Approver ID"; Rec."Approver ID")
                 {
                 }
-                field("Currency Code"; "Currency Code")
+                field("Currency Code"; Rec."Currency Code")
                 {
                 }
-                field("Amount (LCY)"; "Amount (LCY)")
+                field("Amount (LCY)"; Rec."Amount (LCY)")
                 {
                 }
-                field("Available Credit Limit (LCY)"; "Available Credit Limit (LCY)")
+                field("Available Credit Limit (LCY)"; Rec."Available Credit Limit (LCY)")
                 {
                 }
-                field("Date-Time Sent for Approval"; "Date-Time Sent for Approval")
+                field("Date-Time Sent for Approval"; Rec."Date-Time Sent for Approval")
                 {
                 }
-                field("Last Date-Time Modified"; "Last Date-Time Modified")
+                field("Last Date-Time Modified"; Rec."Last Date-Time Modified")
                 {
                 }
-                field("Last Modified By ID"; "Last Modified By User ID")
+                field("Last Modified By ID"; Rec."Last Modified By User ID")
                 {
                 }
-                field(Comment; Comment)
+                field(Comment; Rec.Comment)
                 {
                 }
-                field("Due Date"; "Due Date")
+                field("Due Date"; Rec."Due Date")
                 {
                 }
                 // field(Escalated; Escalated)
@@ -136,12 +136,12 @@ page 50016 "NFL Approval Entries"
 
                     trigger OnAction();
                     var
-                        ApprovalComments: Page "NFL Approval Comments";
+                    // ApprovalComments: Page "NFL Approval Comments"; TODO:Review the comments on this page
                     // ApprovalEntry: Record "NFL Approval Entry";
                     begin
-                        ApprovalComments.Setfilters("Table ID", "Document Type", "Document No.", "Sequence No.");
-                        ApprovalComments.SetUpLine("Table ID", "Document Type", "Document No.", "Sequence No.");
-                        ApprovalComments.RUN;
+                        // ApprovalComments.Setfilters(Rec."Table ID", Rec."Document Type", Rec."Document No.", Rec."Sequence No.");
+                        // ApprovalComments.SetUpLine(Rec."Table ID", Rec."Document Type", Rec."Document No.", Rec."Sequence No.");
+                        // ApprovalComments.RUN;
                     end;
                 }
                 action("O&verdue Entries")
@@ -154,8 +154,8 @@ page 50016 "NFL Approval Entries"
 
                     trigger OnAction();
                     begin
-                        SETFILTER(Status, '%1|%2', Status::Created, Status::Open);
-                        SETFILTER("Due Date", '<%1', TODAY);
+                        Rec.SETFILTER(Status, '%1|%2', Rec.Status::Created, Rec.Status::Open);
+                        Rec.SETFILTER("Due Date", '<%1', TODAY);
                     end;
                 }
                 action("All Entries")
@@ -168,8 +168,8 @@ page 50016 "NFL Approval Entries"
 
                     trigger OnAction();
                     begin
-                        SETRANGE(Status);
-                        SETRANGE("Due Date");
+                        Rec.SETRANGE(Status);
+                        Rec.SETRANGE("Due Date");
                     end;
                 }
             }
@@ -306,18 +306,18 @@ page 50016 "NFL Approval Entries"
         Filterstring: Text[250];
     begin
         IF Usersetup.GET(USERID) THEN BEGIN
-            FILTERGROUP(2);
-            Filterstring := GETFILTERS;
-            FILTERGROUP(0);
+            Rec.FILTERGROUP(2);
+            Filterstring := Rec.GETFILTERS;
+            Rec.FILTERGROUP(0);
             IF STRLEN(Filterstring) = 0 THEN BEGIN
-                FILTERGROUP(2);
-                SETCURRENTKEY("Approver ID");
+                Rec.FILTERGROUP(2);
+                Rec.SETCURRENTKEY("Approver ID");
                 IF Overdue = Overdue::Yes THEN
-                    SETRANGE("Approver ID", Usersetup."User ID");
-                SETRANGE(Status, Status::Open);
-                FILTERGROUP(0);
+                    Rec.SETRANGE("Approver ID", Usersetup."User ID");
+                Rec.SETRANGE(Status, Rec.Status::Open);
+                Rec.FILTERGROUP(0);
             END ELSE
-                SETCURRENTKEY("Table ID", "Document Type", "Document No.");
+                Rec.SETCURRENTKEY("Table ID", Rec."Document Type", Rec."Document No.");
         END;
     end;
 
@@ -335,7 +335,7 @@ page 50016 "NFL Approval Entries"
         Text0010: Label 'You can only escalade open approval entries.';
         Text0020: Label '"The selected approval(s) have been escaladed. "';
         NFLReqnHeader: Record "NFL Requisition Header";
-        NFLApprovalComment: Record "NFL Approval Comment Line";
+    // NFLApprovalComment: Record "NFL Approval Comment Line";
 
     /// <summary>
     /// Description for Setfilters.
@@ -346,13 +346,13 @@ page 50016 "NFL Approval Entries"
     procedure Setfilters(TableId: Integer; DocumentType: Option "Store Requisition","Purchase Requisition",Payment,"Bank Reconciliation","Store Return"; DocumentNo: Code[20]);
     begin
         IF TableId <> 0 THEN BEGIN
-            FILTERGROUP(2);
-            SETCURRENTKEY("Table ID", "Document Type", "Document No.");
-            SETRANGE("Table ID", TableId);
-            SETRANGE("Document Type", DocumentType);
+            Rec.FILTERGROUP(2);
+            Rec.SETCURRENTKEY("Table ID", Rec."Document Type", Rec."Document No.");
+            Rec.SETRANGE("Table ID", TableId);
+            Rec.SETRANGE("Document Type", DocumentType);
             IF DocumentNo <> '' THEN
-                SETRANGE("Document No.", DocumentNo);
-            FILTERGROUP(0);
+                Rec.SETRANGE("Document No.", DocumentNo);
+            Rec.FILTERGROUP(0);
         END;
 
         ApproveVisible := FALSE;

@@ -51,7 +51,7 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             ApplicationArea = All;
                             Caption = 'NFL Requisition List Archives';
                             Image = Archive;
-                            RunObject = page "NFL Requisition List Archive";
+                            // RunObject = page "NFL Requisition List Archive";
                         }
                     }
 
@@ -112,7 +112,7 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             Caption = 'Archived Payment Vouchers';
                             ApplicationArea = All;
                             Image = Archive;
-                            RunObject = page "Archieved Payment Vouchers";
+                            // RunObject = page "Archieved Payment Vouchers";
                         }
                     }
                 }
@@ -123,7 +123,7 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                     {
                         Caption = 'NFL Setup';
                         ApplicationArea = All;
-                        RunObject = page "NFL Setup";
+                        // RunObject = page "NFL Setup";
                     }
                 }
             }

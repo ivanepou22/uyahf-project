@@ -46,31 +46,31 @@ report 50001 "Change Amount Comment"
 
     trigger OnPostReport();
     begin
-        IF DocumentType = DocumentType::"Purchase Requisition" THEN
-            NFLRequisitionCommentLine.SETRANGE("Document Type", DocumentType::"Purchase Requisition");
+        // IF DocumentType = DocumentType::"Purchase Requisition" THEN
+        //     NFLRequisitionCommentLine.SETRANGE("Document Type", DocumentType::"Purchase Requisition");
 
-        IF DocumentType = DocumentType::"Store Requisition" THEN
-            NFLRequisitionCommentLine.SETRANGE("Document Type", DocumentType::"Store Requisition");
+        // IF DocumentType = DocumentType::"Store Requisition" THEN
+        //     NFLRequisitionCommentLine.SETRANGE("Document Type", DocumentType::"Store Requisition");
 
-        NFLRequisitionCommentLine.SETRANGE("Document Type", DocumentType);
-        NFLRequisitionCommentLine.SETRANGE("No.", DocumentNo);
-        NFLRequisitionCommentLine.SETRANGE("Document Line No.", LineNumber);
-        IF NFLRequisitionCommentLine.FINDLAST THEN
-            LNo := NFLRequisitionCommentLine."Line No." + 10000
-        ELSE
-            LNo := 10000;
+        // NFLRequisitionCommentLine.SETRANGE("Document Type", DocumentType);
+        // NFLRequisitionCommentLine.SETRANGE("No.", DocumentNo);
+        // NFLRequisitionCommentLine.SETRANGE("Document Line No.", LineNumber);
+        // IF NFLRequisitionCommentLine.FINDLAST THEN
+        //     LNo := NFLRequisitionCommentLine."Line No." + 10000
+        // ELSE
+        //     LNo := 10000;
 
-        NFLRequisitionCommentLine."Document Type" := DocumentType;
-        NFLRequisitionCommentLine."No." := DocumentNo;
-        NFLRequisitionCommentLine."Line No." := LNo;
-        NFLRequisitionCommentLine."Document Line No." := LineNumber;
-        NFLRequisitionCommentLine.Date := WORKDATE;
-        NFLRequisitionCommentLine.Username := USERID;
-        NFLRequisitionCommentLine."System Created" := TRUE;
-        NFLRequisitionCommentLine.Comment := ChangeAmountComment;
-        NFLRequisitionCommentLine."Old Value" := OldValue;
-        NFLRequisitionCommentLine."New Value" := NewValue;
-        NFLRequisitionCommentLine.INSERT;
+        // NFLRequisitionCommentLine."Document Type" := DocumentType;
+        // NFLRequisitionCommentLine."No." := DocumentNo;
+        // NFLRequisitionCommentLine."Line No." := LNo;
+        // NFLRequisitionCommentLine."Document Line No." := LineNumber;
+        // NFLRequisitionCommentLine.Date := WORKDATE;
+        // NFLRequisitionCommentLine.Username := USERID;
+        // NFLRequisitionCommentLine."System Created" := TRUE;
+        // NFLRequisitionCommentLine.Comment := ChangeAmountComment;
+        // NFLRequisitionCommentLine."Old Value" := OldValue;
+        // NFLRequisitionCommentLine."New Value" := NewValue;
+        // NFLRequisitionCommentLine.INSERT;
     end;
 
     trigger OnPreReport();
@@ -81,7 +81,7 @@ report 50001 "Change Amount Comment"
 
     var
         NFLRequisitionHeader: Record "NFL Requisition Header";
-        NFLRequisitionCommentLine: Record "NFL Requisition Comment Line";
+        // NFLRequisitionCommentLine: Record "NFL Requisition Comment Line";
         NFLRequisitionLine: Record "NFL Requisition Line";
         CommitmentEntry: Record "Commitment Entry";
         gvCommitmentEntry: Record "Commitment Entry";

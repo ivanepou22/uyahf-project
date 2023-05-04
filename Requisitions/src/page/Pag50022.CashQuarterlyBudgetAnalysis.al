@@ -1,13 +1,13 @@
 /// <summary>
-/// Page Quarterly Budget Analysis (ID 50203).
+/// Page Cash Quarterly Budget Analysis (ID 50216).
 /// </summary>
-page 50012 "Quarterly Budget Analysis"
+page 50022 "Cash Quarterly Budget Analysis"
 {
     // version MAG
 
     Caption = 'Quarterly Budget Analysis';
     PageType = CardPart;
-    SourceTable = "NFL Requisition Line";
+    SourceTable = "Payment Voucher Line";
 
     layout
     {
@@ -55,6 +55,7 @@ page 50012 "Quarterly Budget Analysis"
     trigger OnOpenPage();
     begin
         Rec.SETFILTER("Quarter Date Filter", '%1..%2', Rec."Quarter Start Date", Rec."Quarter End Date");
+        CurrPage.UPDATE;
     end;
 
     var

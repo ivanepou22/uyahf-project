@@ -1,13 +1,13 @@
 /// <summary>
-/// Page Annual Budget Analysis (ID 50204).
+/// Page Cash Annual Budget Analysis (ID 50212).
 /// </summary>
-page 50013 "Annual Budget Analysis"
+page 50018 "Cash Annual Budget Analysis"
 {
     // version MAG
 
     Caption = 'Annual Budget Analysis';
     PageType = CardPart;
-    SourceTable = "NFL Requisition Line";
+    SourceTable = "Payment Voucher Line";
 
     layout
     {
@@ -55,7 +55,6 @@ page 50013 "Annual Budget Analysis"
 
     trigger OnOpenPage();
     begin
-        //SETFILTER("Fiscal Year Date Filter", '%1..%2', "Fiscal Year Start Date", "Fiscal Year End Date");
         Rec.SETFILTER("Fiscal Year Date Filter", '%1..%2', Rec."Fiscal Year Start Date", Rec."Fiscal Year End Date");
     end;
 

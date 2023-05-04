@@ -1,13 +1,13 @@
 /// <summary>
-/// Page Monthly Budget Analysis (ID 50205).
+/// Page Cash Monthly Budget Analysis (ID 50215).
 /// </summary>
-page 50014 "Monthly Budget Analysis"
+page 50021 "Cash Monthly Budget Analysis"
 {
     // version MAG
 
     Caption = 'Monthly Budget Analysis';
     PageType = CardPart;
-    SourceTable = "NFL Requisition Line";
+    SourceTable = "Payment Voucher Line";
 
     layout
     {
@@ -55,6 +55,7 @@ page 50014 "Monthly Budget Analysis"
     trigger OnOpenPage();
     begin
         Rec.SETFILTER("Month Date Filter", '%1..%2', Rec."Accounting Period Start Date", Rec."Accounting Period End Date");
+        CurrPage.UPDATE;
     end;
 
     var

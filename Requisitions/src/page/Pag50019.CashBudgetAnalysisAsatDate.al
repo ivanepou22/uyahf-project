@@ -1,22 +1,22 @@
 /// <summary>
-/// Page Budget Analysis As at Date (ID 50202).
+/// Page CashBudget Analysis As at Date (ID 50213).
 /// </summary>
-page 50011 "Budget Analysis As at Date"
+page 50019 "CashBudget Analysis As at Date"
 {
     // version MAG
 
     Caption = 'Budget Analysis As at Date';
     PageType = CardPart;
-    SourceTable = "NFL Requisition Line";
+    SourceTable = "Payment Voucher Line";
 
     layout
     {
         area(content)
         {
-            field("Fiscal Year Start Date"; Rec."Fiscal Year Start Date")
+            field("Filter to Date Start Date"; Rec."Filter to Date Start Date")
             {
             }
-            field("Fiscal Year End Date"; Rec."Fiscal Year End Date")
+            field("Filter to Date End Date"; Rec."Filter to Date End Date")
             {
             }
             field("Budget Amount as at Date"; Rec."Budget Amount as at Date")

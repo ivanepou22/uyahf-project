@@ -686,7 +686,7 @@ report 50004 "Purchase Requisition"
         gvRequestByName: Text[80];
         gvEmployeeRec: Record Employee;
         gvEmployeePosition: Text[80];
-        gvNFLApprovalCommentLine: Record "NFL Approval Comment Line";
+        // gvNFLApprovalCommentLine: Record "NFL Approval Comment Line";
         Approver1Comment: Text;
         Approver2Comment: Text;
         Approver3Comment: Text;

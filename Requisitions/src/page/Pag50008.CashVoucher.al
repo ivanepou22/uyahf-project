@@ -323,8 +323,8 @@ page 50008 "Cash Voucher"
                     Promoted = true;
                     PromotedCategory = Process;
                     PromotedIsBig = true;
-                    RunObject = page "NFL Approval Comments";
-                    RunPageLink = "Document No." = field("No."), "Document Type" = field("Document Type"), "Table ID" = const(50075);
+                    // RunObject = page "NFL Approval Comments";
+                    // RunPageLink = "Document No." = field("No."), "Document Type" = field("Document Type"), "Table ID" = const(50075); TODO:Review these comments
                 }
 
                 action(Dimensions)
@@ -406,7 +406,7 @@ page 50008 "Cash Voucher"
                         Rec.TESTFIELD("Transferred to Journals", TRUE);
                         IF NOT CONFIRM('Do you really want to archieve the selected document?', FALSE) THEN
                             EXIT;
-                        PaymentVoucherHeader.ArchiveRequisition(Rec);
+                        // PaymentVoucherHeader.ArchiveRequisition(Rec);
                     end;
                 }
             }

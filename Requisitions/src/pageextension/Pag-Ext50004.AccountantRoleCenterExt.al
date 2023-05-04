@@ -60,7 +60,7 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             ApplicationArea = All;
                             Caption = 'NFL Requisition List Archives';
                             Image = Archive;
-                            RunObject = page "NFL Requisition List Archive";
+                            // RunObject = page "NFL Requisition List Archive";
                         }
                     }
 
@@ -121,7 +121,7 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             Caption = 'Archived Payment Vouchers';
                             ApplicationArea = All;
                             Image = Archive;
-                            RunObject = page "Archieved Payment Vouchers";
+                            // RunObject = page "Archieved Payment Vouchers";
                         }
                     }
                 }
@@ -132,7 +132,7 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                     {
                         Caption = 'NFL Setup';
                         ApplicationArea = All;
-                        RunObject = page "NFL Setup";
+                        // RunObject = page "NFL Setup";
                     }
                     // action("NFL Approval Setup")
                     // {

@@ -1,13 +1,13 @@
 /// <summary>
-/// Page Budget Analysis Fact Box (ID 50206).
+/// Page Cash Budget Analysis Fact Box (ID 50214).
 /// </summary>
-page 50015 "Budget Analysis Fact Box"
+page 50020 "Cash Budget Analysis Fact Box"
 {
     // version MAG
 
     Caption = 'Budget Analysis Fact Box';
     PageType = CardPart;
-    SourceTable = "NFL Requisition Line";
+    SourceTable = "Payment Voucher Line";
 
     layout
     {
@@ -15,7 +15,7 @@ page 50015 "Budget Analysis Fact Box"
         {
             group("Analysis Details")
             {
-                field("Control Account"; Rec."Control Account")
+                field("Account No."; Rec."Account No.")
                 {
                 }
                 field("Budget Code"; Rec."Budget Code")
@@ -24,19 +24,12 @@ page 50015 "Budget Analysis Fact Box"
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
                 }
-                field("Amount Requested"; Rec."Line Amount")
+                field(Amount; Rec.Amount)
                 {
-                    Caption = 'Amount Requested';
                 }
                 field("Budget Comment"; Rec."Budget Comment")
                 {
-                    StyleExpr = StyleText3;
-                }
-            }
-            group("Related Documents")
-            {
-                field("Purchase Orders"; Rec."Purchase Orders")
-                {
+                    StyleExpr = StyleText1;
                 }
             }
         }
@@ -49,7 +42,7 @@ page 50015 "Budget Analysis Fact Box"
     trigger OnAfterGetRecord();
     begin
         Rec.SETFILTER("Fiscal Year Date Filter", '%1..%2', Rec."Fiscal Year Start Date", Rec."Fiscal Year End Date");
-        Rec.SETFILTER("Filter to Date Filter", '%1..%2', Rec."Filter to Date Start Date", Rec."Fiscal Year End Date");
+        Rec.SETFILTER("Filter to Date Filter", '%1..%2', Rec."Filter to Date Start Date", Rec."Filter to Date End Date");
         StyleText1 := '';
         StyleText2 := '';
         IF Rec."Budget Comment as at Date" = 'Within Budget' THEN
@@ -61,21 +54,21 @@ page 50015 "Budget Analysis Fact Box"
         IF Rec."Budget Comment for the Year" = 'Out of Budget' THEN
             StyleText2 := 'Unfavorable';
 
+        IF Rec."Budget Comment" = 'Within Budget' THEN
+            StyleText1 := 'Favorable';
         IF Rec."Budget Comment" = 'Out of Budget' THEN
-            StyleText3 := 'Unfavorable';
-        IF Rec."Budget Comment" = 'Out of Budget' THEN
-            StyleText3 := 'Unfavorable';
+            StyleText1 := 'Unfavorable';
     end;
 
     trigger OnOpenPage();
     begin
         Rec.SETFILTER("Fiscal Year Date Filter", '%1..%2', Rec."Fiscal Year Start Date", Rec."Fiscal Year End Date");
         Rec.SETFILTER("Filter to Date Filter", '%1..%2', Rec."Filter to Date Start Date", Rec."Filter to Date End Date");
+        CurrPage.UPDATE;
     end;
 
     var
         StyleText1: Text[20];
         StyleText2: Text[20];
-        StyleText3: Text[20];
 }
 
