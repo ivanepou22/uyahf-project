@@ -19,14 +19,15 @@ page 50003 "Cash Vouchers"
         {
             repeater(Group)
             {
-                field("No."; Rec."No.")
+                field("Posting Date"; Rec."Posting Date")
                 {
                 }
-                field("Posting Date"; Rec."Posting Date")
+                field("No."; Rec."No.")
                 {
                 }
                 field("Budget Code"; Rec."Budget Code")
                 {
+                    Visible = false;
                 }
                 field(Status; Rec.Status)
                 {
@@ -37,6 +38,7 @@ page 50003 "Cash Vouchers"
                 }
                 field(Comment; Rec.Comment)
                 {
+                    Visible = false;
                 }
                 field("Prepared by"; Rec."Prepared by")
                 {

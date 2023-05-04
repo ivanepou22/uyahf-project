@@ -128,18 +128,24 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                 group(Setup12)
                 {
                     Caption = 'Setup';
-                    action("NFL Setup")
+                    action("Staff Advances")
                     {
-                        Caption = 'NFL Setup';
+                        Caption = 'Staff Advances';
                         ApplicationArea = All;
-                        // RunObject = page "NFL Setup";
+                        RunObject = page "Advance Codes";
                     }
-                    // action("NFL Approval Setup")
-                    // {
-                    //     Caption = 'NFL Approval Setup';
-                    //     ApplicationArea = All;
-                    //     RunObject = page "NFL Approval Setup";
-                    // }
+                    action("General Ledger Setup")
+                    {
+                        ApplicationArea = All;
+                        Caption = 'General Ledger Setup';
+                        RunObject = page "General Ledger Setup";
+                    }
+                    action("Purchase & Payables Setup")
+                    {
+                        ApplicationArea = All;
+                        Caption = 'Purchase & Payables Setup';
+                        RunObject = page "Purchases & Payables Setup";
+                    }
                 }
             }
         }

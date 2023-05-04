@@ -65,6 +65,7 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Deferral Code"; Rec."Deferral Code")
                 {
+                    Visible = false;
                 }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
@@ -116,6 +117,7 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Bin Code"; Rec."Bin Code")
                 {
+                    Visible = false;
                 }
                 field(Quantity; Rec.Quantity)
                 {
@@ -269,7 +271,7 @@ page 50009 "Purchase Requisition Subform"
                 field(Control300; ShortcutDimCode[3])
                 {
                     ApplicationArea = All;
-                    Visible = false;
+                    Visible = true;
                     CaptionClass = '1,2,3';
                     TableRelation = "Dimension Value".Code where("Global Dimension No." = const(3), "Dimension Value Type" = const(Standard), Blocked = const(false));
                     trigger OnValidate()
@@ -280,7 +282,7 @@ page 50009 "Purchase Requisition Subform"
                 field(Control301; ShortcutDimCode[4])
                 {
                     ApplicationArea = All;
-                    Visible = false;
+                    Visible = true;
                     CaptionClass = '1,2,4';
                     TableRelation = "Dimension Value".Code where("Global Dimension No." = const(4), "Dimension Value Type" = const(Standard), Blocked = const(false));
                     trigger OnValidate()
@@ -291,7 +293,7 @@ page 50009 "Purchase Requisition Subform"
                 field(Control302; ShortcutDimCode[5])
                 {
                     ApplicationArea = All;
-                    Visible = false;
+                    Visible = true;
                     CaptionClass = '1,2,5';
                     TableRelation = "Dimension Value".Code where("Global Dimension No." = const(5), "Dimension Value Type" = const(Standard), Blocked = const(false));
                     trigger OnValidate()
@@ -324,7 +326,7 @@ page 50009 "Purchase Requisition Subform"
                 field(Control305; ShortcutDimCode[8])
                 {
                     ApplicationArea = All;
-                    Visible = true;
+                    Visible = false;
                     Editable = false;
                     CaptionClass = '1,2,8';
                     TableRelation = "Dimension Value".Code where("Global Dimension No." = const(8), "Dimension Value Type" = const(Standard), Blocked = const(false));
@@ -389,21 +391,25 @@ page 50009 "Purchase Requisition Subform"
                 field("Exceeded at Date Budget"; Rec."Exceeded at Date Budget")
                 {
                     ToolTip = 'Specifies the value of the Exceeded at Date Budget field';
+                    Visible = false;
                     ApplicationArea = All;
                 }
                 field("Exceeded Month Budget"; Rec."Exceeded Month Budget")
                 {
                     ToolTip = 'Specifies the value of the Exceeded Month Budget field';
+                    Visible = false;
                     ApplicationArea = All;
                 }
                 field("Exceeded Quarter Budget"; Rec."Exceeded Quarter Budget")
                 {
                     ToolTip = 'Specifies the value of the Exceeded Quarter Budget field';
+                    Visible = false;
                     ApplicationArea = All;
                 }
                 field("Exceeded Year Budget"; Rec."Exceeded Year Budget")
                 {
                     ToolTip = 'Specifies the value of the Exceeded Year Budget field';
+                    Visible = false;
                     ApplicationArea = All;
                 }
             }

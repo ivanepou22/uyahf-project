@@ -18,6 +18,11 @@ page 50025 "Purchase Requisition List"
         {
             repeater(Group)
             {
+                field("Posting Date"; Rec."Posting Date")
+                {
+                    Visible = false;
+                    ApplicationArea = All;
+                }
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
@@ -38,6 +43,17 @@ page 50025 "Purchase Requisition List"
                 {
                     ApplicationArea = All;
                 }
+                field("Requisition Details Total"; Rec."Requisition Details Total")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Requisition Details Total field.';
+                }
+                field("Requisition Lines Total"; Rec."Requisition Lines Total")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Requisition Lines Total field.';
+                }
+
                 field("Currency Code"; Rec."Currency Code")
                 {
                     ApplicationArea = All;
@@ -45,7 +61,6 @@ page 50025 "Purchase Requisition List"
                 field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
-                    Visible = false;
                 }
                 field("Amount Including VAT"; Rec."Amount Including VAT")
                 {
@@ -56,14 +71,10 @@ page 50025 "Purchase Requisition List"
                     Visible = true;
                     ApplicationArea = All;
                 }
-                field("Posting Date"; Rec."Posting Date")
-                {
-                    Visible = false;
-                    ApplicationArea = All;
-                }
                 field("Expected Receipt Date"; Rec."Expected Receipt Date")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
@@ -83,6 +94,7 @@ page 50025 "Purchase Requisition List"
                 field("Assigned User ID"; Rec."Assigned User ID")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Order Address Code"; Rec."Order Address Code")
                 {

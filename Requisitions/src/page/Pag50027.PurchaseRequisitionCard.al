@@ -51,9 +51,11 @@ page 50027 "Purchase Requisition Card"
                 }
                 field("PD Entity"; Rec."PD Entity")
                 {
+                    Visible = false;
                 }
                 field("Procument Plan Reference"; Rec."Procument Plan Reference")
                 {
+                    Visible = false;
                 }
                 group("Budget Analysis1")
                 {
@@ -68,6 +70,7 @@ page 50027 "Purchase Requisition Card"
                     field("Hub Code"; Rec."Hub Code")
                     {
                         ApplicationArea = All;
+                        Visible = false;
                     }
 
                     field("Budget Code"; Rec."Budget Code")
@@ -186,25 +189,25 @@ page 50027 "Purchase Requisition Card"
                 {
                     ToolTip = 'Specifies the value of the Budget At Date Exceeded field';
                     ApplicationArea = All;
-                    //Visible = false;
+                    Visible = false;
                 }
                 field("Month Budget Exceeded"; Rec."Month Budget Exceeded")
                 {
                     ToolTip = 'Specifies the value of the Month Budget Exceeded field';
                     ApplicationArea = All;
-                    //Visible = false;
+                    Visible = false;
                 }
                 field("Quarter Budget Exceeded"; Rec."Quarter Budget Exceeded")
                 {
                     ToolTip = 'Specifies the value of the Quarter Budget Exceeded field';
                     ApplicationArea = All;
-                    //Visible = false;
+                    Visible = false;
                 }
                 field("Year Budget Exceeded"; Rec."Year Budget Exceeded")
                 {
                     ToolTip = 'Specifies the value of the Year Budget Exceeded field';
                     ApplicationArea = All;
-                    //Visible = false;
+                    Visible = false;
                 }
 
             }

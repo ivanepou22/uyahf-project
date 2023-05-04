@@ -3,8 +3,6 @@
 /// </summary>
 page 50002 "Released Payment Vouchers"
 {
-    // version MAG
-
     Caption = 'Released Payment Vouchers';
     DeleteAllowed = false;
     Editable = false;
