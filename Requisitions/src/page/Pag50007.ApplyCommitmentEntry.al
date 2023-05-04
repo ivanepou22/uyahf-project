@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Apply Commitment  Entry (ID 50233).
+/// Page Apply Commitment  Entry (ID 50007).
 /// </summary>
 page 50007 "Apply Commitment  Entry"
 {

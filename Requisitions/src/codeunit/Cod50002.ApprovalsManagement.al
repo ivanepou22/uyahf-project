@@ -1,5 +1,5 @@
 /// <summary>
-/// Codeunit Approvals Management (ID 50052).
+/// Codeunit Approvals Management (ID 50002).
 /// </summary>
 codeunit 50002 "Approvals Management"
 {

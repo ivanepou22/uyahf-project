@@ -1,5 +1,5 @@
 /// <summary>
-/// Page List of All Payment Vouchers (ID 50104).
+/// Page List of All Payment Vouchers (ID 50004).
 /// </summary>
 page 50004 "List of All Payment Vouchers"
 {

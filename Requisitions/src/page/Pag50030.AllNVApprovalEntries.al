@@ -1,5 +1,5 @@
 /// <summary>
-/// Page NV Approval Entries (ID 50315).
+/// Page NV Approval Entries (ID 50030).
 /// </summary>
 page 50030 "All NV Approval Entries"
 {

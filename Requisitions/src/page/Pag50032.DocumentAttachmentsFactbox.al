@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Document Attachment Factbox OC (ID 50232).
+/// Page Document Attachment Factbox OC (ID 50032).
 /// </summary>
 page 50032 "Document Attachments Factbox"
 {

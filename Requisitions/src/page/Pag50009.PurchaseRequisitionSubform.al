@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Purchase Requisition Subform (ID 50200).
+/// Page Purchase Requisition Subform (ID 50009).
 /// </summary>
 page 50009 "Purchase Requisition Subform"
 {

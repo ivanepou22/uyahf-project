@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Payt Vouchers Pending Approval (ID 50106).
+/// Page Payt Vouchers Pending Approval (ID 50006).
 /// </summary>
 page 50006 "Payt Vouchers Pending Approval"
 {

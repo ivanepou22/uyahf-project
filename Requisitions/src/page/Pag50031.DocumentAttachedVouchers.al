@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Document Attached Vouchers (ID 50190).
+/// Page Document Attached Vouchers (ID 50031).
 /// </summary>
 page 50031 "Document Attached Vouchers"
 {

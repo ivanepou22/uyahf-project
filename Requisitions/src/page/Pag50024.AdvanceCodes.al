@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Revision Log (ID 50222).
+/// Page Revision Log (ID 50024).
 /// </summary>
 page 50024 "Advance Codes"
 {

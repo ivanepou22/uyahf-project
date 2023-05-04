@@ -1,5 +1,5 @@
 /// <summary>
-/// Page All Purchase Requisitions (ID 50226).
+/// Page All Purchase Requisitions (ID 50026).
 /// </summary>
 page 50026 "All Purchase Requisitions"
 {

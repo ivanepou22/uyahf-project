@@ -1,5 +1,5 @@
 /// <summary>
-/// Page NFL Approval Entries (ID 50208).
+/// Page NFL Approval Entries (ID 50016).
 /// </summary>
 page 50016 "NFL Approval Entries"
 {

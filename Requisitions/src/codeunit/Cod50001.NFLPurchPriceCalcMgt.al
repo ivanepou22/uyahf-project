@@ -1,5 +1,5 @@
 /// <summary>
-/// Codeunit NFL Purch. Price Calc. Mgt. (ID 50050).
+/// Codeunit NFL Purch. Price Calc. Mgt. (ID 50001).
 /// </summary>
 codeunit 50001 "NFL Purch. Price Calc. Mgt."
 {

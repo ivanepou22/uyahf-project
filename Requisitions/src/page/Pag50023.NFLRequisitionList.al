@@ -1,5 +1,5 @@
 /// <summary>
-/// Page NFL Requisition List (ID 50221).
+/// Page NFL Requisition List (ID 50023).
 /// </summary>
 page 50023 "NFL Requisition List"
 {

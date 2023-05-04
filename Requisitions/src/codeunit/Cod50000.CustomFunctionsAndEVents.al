@@ -1,5 +1,5 @@
 /// <summary>
-/// Codeunit Custom Functions And EVents (ID 50063).
+/// Codeunit Custom Functions And EVents (ID 50000).
 /// </summary>
 codeunit 50000 "Custom Functions And EVents"
 {

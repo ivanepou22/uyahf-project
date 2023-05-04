@@ -1,5 +1,5 @@
 /// <summary>
-/// Page CashBudget Analysis As at Date (ID 50213).
+/// Page CashBudget Analysis As at Date (ID 50019).
 /// </summary>
 page 50019 "CashBudget Analysis As at Date"
 {

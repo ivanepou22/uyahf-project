@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Released Payment Vouchers (ID 50097).
+/// Page Released Payment Vouchers (ID 50005).
 /// </summary>
 page 50005 "Open Payment Vouchers"
 {

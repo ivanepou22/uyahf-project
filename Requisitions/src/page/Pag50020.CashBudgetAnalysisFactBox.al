@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Cash Budget Analysis Fact Box (ID 50214).
+/// Page Cash Budget Analysis Fact Box (ID 50020).
 /// </summary>
 page 50020 "Cash Budget Analysis Fact Box"
 {

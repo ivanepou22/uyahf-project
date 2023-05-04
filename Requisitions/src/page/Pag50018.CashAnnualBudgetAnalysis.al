@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Cash Annual Budget Analysis (ID 50212).
+/// Page Cash Annual Budget Analysis (ID 50018).
 /// </summary>
 page 50018 "Cash Annual Budget Analysis"
 {

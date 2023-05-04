@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Create Orders from Requisition (ID 50211).
+/// Page Create Orders from Requisition (ID 50017).
 /// </summary>
 page 50017 "Create Orders from Requisition"
 {

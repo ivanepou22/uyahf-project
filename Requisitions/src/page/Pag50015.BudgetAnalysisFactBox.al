@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Budget Analysis Fact Box (ID 50206).
+/// Page Budget Analysis Fact Box (ID 50015).
 /// </summary>
 page 50015 "Budget Analysis Fact Box"
 {

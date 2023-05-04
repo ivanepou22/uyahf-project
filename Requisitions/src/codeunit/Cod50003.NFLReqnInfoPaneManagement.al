@@ -1,5 +1,5 @@
 /// <summary>
-/// Codeunit NFL Reqn Info-Pane Management (ID 50054).
+/// Codeunit NFL Reqn Info-Pane Management (ID 50003).
 /// </summary>
 codeunit 50003 "NFL Reqn Info-Pane Management"
 {

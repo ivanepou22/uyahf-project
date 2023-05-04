@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Purchase Requisitions (ID 50225).
+/// Page Purchase Requisitions (ID 50025).
 /// </summary>
 page 50025 "Purchase Requisition List"
 {

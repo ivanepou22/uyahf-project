@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Cash Voucher Lines Subform (ID 50078).
+/// Page Cash Voucher Lines Subform (ID 50001).
 /// </summary>
 page 50001 "Cash Voucher Lines Subform"
 {

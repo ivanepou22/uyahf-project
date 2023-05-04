@@ -1,5 +1,5 @@
 /// <summary>
-/// Page Cash Vouchers (ID 50098).
+/// Page Cash Vouchers (ID 50003).
 /// </summary>
 page 50003 "Cash Vouchers"
 {
