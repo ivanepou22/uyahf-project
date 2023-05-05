@@ -51,9 +51,11 @@ page 50028 "Requisition Approval Form"
                 }
                 field("PD Entity"; Rec."PD Entity")
                 {
+                    Visible = false;
                 }
                 field("Procument Plan Reference"; Rec."Procument Plan Reference")
                 {
+                    Visible = false;
                 }
                 group("Budget Analysis1")
                 {
@@ -68,6 +70,7 @@ page 50028 "Requisition Approval Form"
                     field("Hub Code"; Rec."Hub Code")
                     {
                         ApplicationArea = All;
+                        Visible = false;
                     }
 
                     field("Budget Code"; Rec."Budget Code")
