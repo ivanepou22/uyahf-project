@@ -8,12 +8,12 @@ pageextension 50020 "NV Approval EntriesExt" extends "NV Approval Entries"
         // Add changes to page layout here
         addafter("Due Date")
         {
-            field("Escalated By"; "Escalated By")
+            field("Escalated By"; Rec."Escalated By")
             {
                 ApplicationArea = All;
                 Editable = false;
             }
-            field("Escalated On"; "Escalated On")
+            field("Escalated On"; Rec."Escalated On")
             {
                 ApplicationArea = All;
                 Editable = false;

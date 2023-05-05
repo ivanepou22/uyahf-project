@@ -1,7 +1,7 @@
 /// <summary>
 /// Codeunit Custom Functions LoanAdvance (ID 50116).
 /// </summary>
-codeunit 50006 "Custom Functions Requisition"
+codeunit 50005 "Custom Functions Requisition"
 {
     Permissions = tabledata "Approval Entry" = rmid;
     trigger OnRun()
@@ -11,7 +11,7 @@ codeunit 50006 "Custom Functions Requisition"
 
     var
         WorkflowManagement: Codeunit 1501;
-        WorkflowEventHandlingCust: Codeunit "Workflow Event Handling Ext";
+        WorkflowEventHandlingCust: Codeunit "PRQ Workflow EventHandling Ext";
         NoWorkflowEnabledErr: TextConst ENU = 'No Approval Workflow for the type is enabled';
 
 
@@ -84,7 +84,7 @@ codeunit 50006 "Custom Functions Requisition"
     local procedure OnAddWorkflowResponsePredecessorsToLibrary(ResponseFunctionName: Code[128])
     var
         WorkflowResponseHandling: Codeunit 1521;
-        WorkflowEventHandlingCust: Codeunit "Workflow Event Handling Ext";
+        WorkflowEventHandlingCust: Codeunit "PRQ Workflow EventHandling Ext";
     begin
         case ResponseFunctionName of
             WorkflowResponseHandling.SetStatusToPendingApprovalCode:
@@ -346,36 +346,36 @@ codeunit 50006 "Custom Functions Requisition"
     procedure DelegatePurchaseApprovalRequest(RequisitionHeader: Record "NFL Requisition Header")
     var
         ApprovalEntry: Record "Approval Entry";
-        DelegateEscalate: Record "Delegate Escalate Management";
+        // DelegateEscalate: Record "Delegate Escalate Management";
         Txt00003: Label 'Are you sure you want to delegate to:';
         MessageToSend: Text[100];
     begin
-        ApprovalEntry.Reset();
-        ApprovalEntry.SetRange(ApprovalEntry."Document No.", RequisitionHeader."No.");
-        ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Open);
-        if ApprovalEntry.FindFirst() then begin
-            DelegateEscalate.Reset();
-            DelegateEscalate.SetRange(DelegateEscalate."User ID", ApprovalEntry."Approver ID");
-            DelegateEscalate.SetRange(DelegateEscalate."Document Type", RequisitionHeader."Document Type");
-            DelegateEscalate.SetRange(DelegateEscalate."Shortcut Dimension 1 Code", RequisitionHeader."Shortcut Dimension 1 Code");
-            if DelegateEscalate.FindFirst() then begin
-                if DelegateEscalate."Delegate ID" <> '' then begin
-                    MessageToSend := Txt00003 + ' ' + DelegateEscalate."Delegate ID";
-                    if Confirm(MessageToSend, true) then begin
-                        ApprovalEntry."Approver ID" := DelegateEscalate."Delegate ID";
-                        ApprovalEntry."Last Modified By User ID" := UserId;
-                        ApprovalEntry.Modify();
-                        Message('Voucher has been Delegated to %1 Successfully', DelegateEscalate."Delegate ID");
-                    end;
-                end else begin
-                    Error('Delegate ID can not be empty. Contact your Systems Administrator');
-                end;
-            end else begin
-                Error('You are not setup please consult your System Administrator');
-            end;
-        end else begin
-            Error('You are not allowed to Delegate please contact your system Administrator');
-        end;
+        // ApprovalEntry.Reset();
+        // ApprovalEntry.SetRange(ApprovalEntry."Document No.", RequisitionHeader."No.");
+        // ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Open);
+        // if ApprovalEntry.FindFirst() then begin
+        //     DelegateEscalate.Reset();
+        //     DelegateEscalate.SetRange(DelegateEscalate."User ID", ApprovalEntry."Approver ID");
+        //     DelegateEscalate.SetRange(DelegateEscalate."Document Type", RequisitionHeader."Document Type");
+        //     DelegateEscalate.SetRange(DelegateEscalate."Shortcut Dimension 1 Code", RequisitionHeader."Shortcut Dimension 1 Code");
+        //     if DelegateEscalate.FindFirst() then begin
+        //         if DelegateEscalate."Delegate ID" <> '' then begin
+        //             MessageToSend := Txt00003 + ' ' + DelegateEscalate."Delegate ID";
+        //             if Confirm(MessageToSend, true) then begin
+        //                 ApprovalEntry."Approver ID" := DelegateEscalate."Delegate ID";
+        //                 ApprovalEntry."Last Modified By User ID" := UserId;
+        //                 ApprovalEntry.Modify();
+        //                 Message('Voucher has been Delegated to %1 Successfully', DelegateEscalate."Delegate ID");
+        //             end;
+        //         end else begin
+        //             Error('Delegate ID can not be empty. Contact your Systems Administrator');
+        //         end;
+        //     end else begin
+        //         Error('You are not setup please consult your System Administrator');
+        //     end;
+        // end else begin
+        //     Error('You are not allowed to Delegate please contact your system Administrator');
+        // end;
     end;
 
     /// <summary>
@@ -391,65 +391,65 @@ codeunit 50006 "Custom Functions Requisition"
         NvText2: Label 'You do not have a person to escalate to. Contact your Systems Administrator';
         NvText3: Label 'Your not allowed to Escale because your not set as an SDU Head';
         userSetup: Record "User Setup";
-        DelegateEscalate: Record "Delegate Escalate Management";
+        // DelegateEscalate: Record "Delegate Escalate Management";
         RequisitionLine: Record "NFL Requisition Line";
     begin
-        ApprovalEntries.Reset();
-        ApprovalEntries.SetRange(ApprovalEntries."Document No.", Rec."No.");
-        ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
-        ApprovalEntries.SetRange(ApprovalEntries.Status, ApprovalEntries.Status::Open);
-        if ApprovalEntries.FindFirst() then begin
-            //Check if the user is an SDU Head
+        // ApprovalEntries.Reset();
+        // ApprovalEntries.SetRange(ApprovalEntries."Document No.", Rec."No.");
+        // ApprovalEntries.SetRange(ApprovalEntries."Approver ID", UserId);
+        // ApprovalEntries.SetRange(ApprovalEntries.Status, ApprovalEntries.Status::Open);
+        // if ApprovalEntries.FindFirst() then begin
+        //     //Check if the user is an SDU Head
 
-            userSetup.Reset();
-            userSetup.SetRange(userSetup."User ID", ApprovalEntries."Approver ID");
-            userSetup.SetRange(userSetup."SBU Head", true);
-            if userSetup.FindFirst() then begin
-                //Getting the Escalate to ID
+        //     userSetup.Reset();
+        //     userSetup.SetRange(userSetup."User ID", ApprovalEntries."Approver ID");
+        //     userSetup.SetRange(userSetup."SBU Head", true);
+        //     if userSetup.FindFirst() then begin
+        //         //Getting the Escalate to ID
 
-                DelegateEscalate.Reset();
-                DelegateEscalate.SetRange(DelegateEscalate."Document Type", Rec."Document Type");
-                DelegateEscalate.SetRange(DelegateEscalate."User ID", userSetup."User ID");
-                DelegateEscalate.SetRange(DelegateEscalate."Shortcut Dimension 1 Code", Rec."Shortcut Dimension 1 Code");
-                if DelegateEscalate.FindFirst() then begin
+        //         DelegateEscalate.Reset();
+        //         DelegateEscalate.SetRange(DelegateEscalate."Document Type", Rec."Document Type");
+        //         DelegateEscalate.SetRange(DelegateEscalate."User ID", userSetup."User ID");
+        //         DelegateEscalate.SetRange(DelegateEscalate."Shortcut Dimension 1 Code", Rec."Shortcut Dimension 1 Code");
+        //         if DelegateEscalate.FindFirst() then begin
 
-                    if DelegateEscalate."Escalate ID" <> '' then begin
-                        Rec.TESTFIELD("Budget Code");
-                        Rec.TESTFIELD("Shortcut Dimension 1 Code");
-                        RequisitionLine.RESET;
-                        IF Rec.Status = Rec.Status::"Pending Approval" THEN BEGIN
+        //             if DelegateEscalate."Escalate ID" <> '' then begin
+        //                 Rec.TESTFIELD("Budget Code");
+        //                 Rec.TESTFIELD("Shortcut Dimension 1 Code");
+        //                 RequisitionLine.RESET;
+        //                 IF Rec.Status = Rec.Status::"Pending Approval" THEN BEGIN
 
-                            // Budget holder should enter the codes before approving the document.
-                            RequisitionLine.SETRANGE("Document Type", Rec."Document Type");
-                            RequisitionLine.SETRANGE("Document No.", Rec."No.");
-                            IF RequisitionLine.FIND('-') THEN
-                                REPEAT
+        //                     // Budget holder should enter the codes before approving the document.
+        //                     RequisitionLine.SETRANGE("Document Type", Rec."Document Type");
+        //                     RequisitionLine.SETRANGE("Document No.", Rec."No.");
+        //                     IF RequisitionLine.FIND('-') THEN
+        //                         REPEAT
 
-                                    IF RequisitionLine.Type = RequisitionLine.Type::"G/L Account" THEN BEGIN
-                                        // if RequisitionLine."G/L Account Type" = RequisitionLine."G/L Account Type"::"Income Statement" then begin
-                                        // IF RequisitionLine."Budget Comment" = 'Out of Budget' THEN BEGIN
-                                        escalateDoc(ApprovalEntries."Approval Code", Rec."No.", UserId, DelegateEscalate."Escalate ID", Rec);
-                                        // END;
-                                        // end;
-                                    END;
-                                UNTIL RequisitionLine.NEXT = 0;
-                        END;
+        //                             IF RequisitionLine.Type = RequisitionLine.Type::"G/L Account" THEN BEGIN
+        //                                 // if RequisitionLine."G/L Account Type" = RequisitionLine."G/L Account Type"::"Income Statement" then begin
+        //                                 // IF RequisitionLine."Budget Comment" = 'Out of Budget' THEN BEGIN
+        //                                 escalateDoc(ApprovalEntries."Approval Code", Rec."No.", UserId, DelegateEscalate."Escalate ID", Rec);
+        //                                 // END;
+        //                                 // end;
+        //                             END;
+        //                         UNTIL RequisitionLine.NEXT = 0;
+        //                 END;
 
-                    end else begin
-                        Error(NvText2);
-                    end;
-                end else begin
-                    Error('You can not Escalate because you are not setup');
-                end;
-            end else begin
-                Error(NvText3);
-            end;
-            //voucher has to be out of budget
-            //>500,000 all cash voucher
-            //wen the voucher is out of budget it should escalated
-        end else begin
-            Error(NvText1);
-        end;
+        //             end else begin
+        //                 Error(NvText2);
+        //             end;
+        //         end else begin
+        //             Error('You can not Escalate because you are not setup');
+        //         end;
+        //     end else begin
+        //         Error(NvText3);
+        //     end;
+        //     //voucher has to be out of budget
+        //     //>500,000 all cash voucher
+        //     //wen the voucher is out of budget it should escalated
+        // end else begin
+        //     Error(NvText1);
+        // end;
     end;
 
     /// <summary>

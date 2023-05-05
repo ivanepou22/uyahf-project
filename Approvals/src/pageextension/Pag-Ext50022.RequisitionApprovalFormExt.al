@@ -9,7 +9,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
         // Add changes to page layout here
         addafter("Converted to Order")
         {
-            field("Approvals Entry"; "Approvals Entry")
+            field("Approvals Entry"; Rec."Approvals Entry")
             {
                 ApplicationArea = All;
             }
@@ -44,26 +44,26 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                         UserSetup: Record "User Setup";
                     // ApprovalDoc: Codeunit "NFL Approvals Management";
                     begin
-                        if Status = Status::Released then
+                        if Rec.Status = Rec.Status::Released then
                             Error('This document is already released');
-                        if Status = Status::Open then
+                        if Rec.Status = Rec.Status::Open then
                             Error('Document Status must be set to Pending Approval');
 
 
-                        if "Requisition Lines Total" <= 0 then begin
+                        if Rec."Requisition Lines Total" <= 0 then begin
                             Error(Txt002);
                         end;
 
                         if Confirm(Txt001, true) then begin
                             ClaimCount := 0;
                             ApprovalEntry.Reset();
-                            ApprovalEntry.SetRange(ApprovalEntry."Document No.", "No.");
+                            ApprovalEntry.SetRange(ApprovalEntry."Document No.", Rec."No.");
                             ApprovalEntry.SetRange(ApprovalEntry."Approval Type", ApprovalEntry."Approval Type"::Approver);
                             ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Open);
                             if ApprovalEntry.FindFirst() then begin
-                                ApprovalsMgmt.ApproveRecordApprovalRequest(RecordId);
+                                ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
                                 if Rec."Approvals Entry" = 0 then
-                                    SendRequisitionApprovedEmail();
+                                    Rec.SendRequisitionApprovedEmail();
                             end
                             else begin
                                 UserSetup.Reset();
@@ -72,8 +72,8 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                                 if UserSetup.FindFirst() then begin
                                     // ApprovalDoc.CheckBudgetPurchase(Rec);
                                 end;
-                                ApprovalsMgmt.ApproveRecordApprovalRequest(RecordId);
-                                ReleaseTheApprovedDoc();
+                                ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
+                                Rec.ReleaseTheApprovedDoc();
                             end;
                             //Send email implemented
                             customFunction.OpenApprovalEntries(Rec);
@@ -94,21 +94,21 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                     trigger OnAction()
                     var
                         RequisitionHeader: Record "NFL Requisition Header";
-                        ApprovalComments: Record "NFL Approval Comment Line";
+                    // ApprovalComments: Record "NFL Approval Comment Line";
                     begin
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
-                            ApprovalComments.Reset();
-                            ApprovalComments.SetRange(ApprovalComments."Document No.", Rec."No.");
-                            ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type");
-                            ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
-                            if ApprovalComments.FindFirst() then begin
-                                ApprovalsMgmt.RejectRecordApprovalRequest(RecordId);
-                                //Send email implemented
-                                customFunction.RejectApprovalRequest(Rec);
-                            end else begin
-                                Error('You can not reject a document with out a comment.');
-                            end;
+                            // ApprovalComments.Reset();
+                            // ApprovalComments.SetRange(ApprovalComments."Document No.", Rec."No.");
+                            // ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type");
+                            // ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
+                            // if ApprovalComments.FindFirst() then begin
+                            //     ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
+                            //     //Send email implemented
+                            //     customFunction.RejectApprovalRequest(Rec);
+                            // end else begin
+                            //     Error('You can not reject a document with out a comment.');
+                            // end;
                         end;
                     end;
                 }
@@ -139,7 +139,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                                     if (userSetup."Voucher Admin" = true) or (UserId = ApprovalEntries."Approver ID") then begin
                                         customFunction.DelegatePurchaseApprovalRequest(Rec);
                                         //Send Email implemented
-                                        SendingDelegateEmail(Rec);
+                                        Rec.SendingDelegateEmail(Rec);
                                     end else begin
                                         Error('Your Not Allowed to Delegate this voucher');
                                     end;
@@ -169,8 +169,8 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                         UserSetup: Record "User Setup";
                     // ApprovalDoc: Codeunit "NFL Approvals Management";
                     begin
-                        CalcFields("Requisition Lines Total");
-                        RequisitionLineTotal := "Requisition Lines Total";
+                        Rec.CalcFields("Requisition Lines Total");
+                        RequisitionLineTotal := Rec."Requisition Lines Total";
                         if RequisitionLineTotal <= 0 then
                             Error('Requisition Lines are Empty, You cannot Escalate this Document');
 
@@ -188,8 +188,8 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                     PromotedIsBig = true;
                     Caption = 'Approval Comments';
                     Image = Comment;
-                    RunObject = page "NFL Approval Comments";
-                    RunPageLink = "Document No." = field("No."), "Document Type" = field("Document Type"), "Table ID" = const(50069);
+                    // RunObject = page "NFL Approval Comments";TODO:
+                    // RunPageLink = "Document No." = field("No."), "Document Type" = field("Document Type"), "Table ID" = const(50069);
                 }
             }
 
@@ -198,10 +198,10 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
 
     trigger OnAfterGetRecord()
     begin
-        OpenApprovalEntriesExistForcurrUser := ApprovalsMgmt.HasOpenApprovalEntriesForCurrentUser(RecordId);
-        OpenApprovalEntriesExist := ApprovalsMgmt.HasOpenApprovalEntries(RecordId);
-        CanCancelApprovalForRecord := ApprovalsMgmt.CanCancelApprovalForRecord(RecordId);
-        WorkflowWebhookMgt.GetCanRequestAndCanCancel(RecordId, CanRequestApprovalForFlow, CanCancelApprovalForFlow);
+        OpenApprovalEntriesExistForcurrUser := ApprovalsMgmt.HasOpenApprovalEntriesForCurrentUser(Rec.RecordId);
+        OpenApprovalEntriesExist := ApprovalsMgmt.HasOpenApprovalEntries(Rec.RecordId);
+        CanCancelApprovalForRecord := ApprovalsMgmt.CanCancelApprovalForRecord(Rec.RecordId);
+        WorkflowWebhookMgt.GetCanRequestAndCanCancel(Rec.RecordId, CanRequestApprovalForFlow, CanCancelApprovalForFlow);
     end;
 
     var
@@ -222,13 +222,13 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
     trigger OnOpenPage()
 
     begin
-        if Status = Status::Open then begin
+        if Rec.Status = Rec.Status::Open then begin
             sendApprovalRequest := true;
         end else begin
             sendApprovalRequest := false;
         end;
 
-        if Status = Status::Released then begin
+        if Rec.Status = Rec.Status::Released then begin
             CancelApprovalVisible := false;
         end else begin
             CancelApprovalVisible := true;

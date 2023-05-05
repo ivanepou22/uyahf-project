@@ -8,7 +8,7 @@ pageextension 50023 "Approval User SetupExt" extends "Approval User Setup"
         // Add changes to page layout here
         addafter(Substitute)
         {
-            field("Escalate to"; "Escalate to")
+            field("Escalate to"; Rec."Escalate to")
             {
                 ApplicationArea = All;
                 Visible = false;

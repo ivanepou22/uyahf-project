@@ -4,4 +4,6 @@
 .snapshots
 .alpackages
 Requisitions/
+../Requisitions
+../Requisitions/
 # update
