@@ -4,7 +4,7 @@
 page 50025 "Purchase Requisition List"
 {
     Caption = 'Purchase Requisitions';
-    CardPageID = "Purchase Requisition Card";
+    CardPageID = "Purchase Requisition";
     DataCaptionFields = "Document Type";
     Editable = false;
     DeleteAllowed = false;
@@ -129,7 +129,7 @@ page 50025 "Purchase Requisition List"
                             Rec."Document Type"::"HR Cash Voucher":
                                 PAGE.RUN(PAGE::"Blanket Purchase Order", Rec);
                             Rec."Document Type"::"Purchase Requisition":
-                                PAGE.RUN(PAGE::"Purchase Requisition Card", Rec);
+                                PAGE.RUN(PAGE::"Purchase Requisition", Rec);
                             Rec."Document Type"::"Store Return":
                                 PAGE.RUN(PAGE::"Purchase Invoice", Rec);
                             Rec."Document Type"::"Imprest Cash Voucher":

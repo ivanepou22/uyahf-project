@@ -1,7 +1,7 @@
 /// <summary>
 /// Page Purchase Requisition (ID 50027).
 /// </summary>
-page 50027 "Purchase Requisition Card"
+page 50027 "Purchase Requisition"
 {
 
     Caption = 'Purchase Requisition';

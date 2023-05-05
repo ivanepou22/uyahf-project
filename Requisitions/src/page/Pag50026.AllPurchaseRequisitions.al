@@ -6,7 +6,7 @@ page 50026 "All Purchase Requisitions"
     // version MAG
 
     Caption = 'List of All Purchase Requisitions';
-    CardPageID = "Purchase Requisition Card";
+    CardPageID = "Purchase Requisition";
     DataCaptionFields = "Document Type";
     DeleteAllowed = false;
     Editable = false;
