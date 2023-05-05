@@ -25,7 +25,7 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             ApplicationArea = All;
                             Caption = 'Purchase Requisition List';
                             RunObject = page "Purchase Requisition List";
-                            RunPageView = where(Status = filter(Open | "Pending Approval" | "Pending Prepayment"));
+                            RunPageView = where(Status = filter(Open | "Pending Approval" | "Pending Prepayment"), Archieved = filter(false));
                             Image = Payables;
                         }
                         action("Approved Purchase Requisitions")
@@ -34,7 +34,7 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             Image = Approvals;
                             Caption = 'Approved Purchase Requisitions';
                             RunObject = page "Purchase Requisition List";
-                            RunPageView = where(Status = filter(Released));
+                            RunPageView = where(Status = filter(Released), Archieved = filter(false));
                         }
                         action("All Purchase Requisitions")
                         {
@@ -51,7 +51,8 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             ApplicationArea = All;
                             Caption = 'NFL Requisition List Archives';
                             Image = Archive;
-                            // RunObject = page "NFL Requisition List Archive";
+                            RunObject = page "Purchase Requisition List";
+                            RunPageView = where(Status = filter(Released), Archieved = filter(true));
                         }
                     }
 

@@ -505,7 +505,7 @@ page 50027 "Purchase Requisition"
                             ERROR('This store requisition is already expired');
 
                         // IF ApprovalMgt.PrePostApprovalCheck(BankReconn, Rec, PaymentJnl) THEN
-                        //     MakePurchOrder;
+                        MakePurchOrder;
                     end;
                 }
                 action("Make Order from All Requisitions")

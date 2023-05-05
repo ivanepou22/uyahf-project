@@ -25,7 +25,7 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             ApplicationArea = All;
                             Caption = 'Purchase Requisition List';
                             RunObject = page "Purchase Requisition List";
-                            RunPageView = where(Status = filter(Open | "Pending Approval" | "Pending Prepayment"));
+                            RunPageView = where(Status = filter(Open | "Pending Approval" | "Pending Prepayment"), Archieved = filter(false));
                             Image = Payables;
                         }
                         action("Pending Approvals Purchase Requisition")
@@ -33,7 +33,7 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             ApplicationArea = All;
                             Caption = 'Pending Approvals Purchase Requisition';
                             RunObject = page "Purchase Requisition List";
-                            RunPageView = where(Status = filter("Pending Approval" | "Pending Prepayment"));
+                            RunPageView = where(Status = filter("Pending Approval" | "Pending Prepayment"), Archieved = filter(false));
                             Image = Payables;
                         }
                         action("Approved Purchase Requisitions")
@@ -42,7 +42,7 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             Image = Approvals;
                             Caption = 'Approved Purchase Requisitions';
                             RunObject = page "Purchase Requisition List";
-                            RunPageView = where(Status = filter(Released));
+                            RunPageView = where(Status = filter(Released), Archieved = filter(false));
                         }
                         action("All Purchase Requisitions")
                         {
@@ -50,6 +50,7 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             Image = Approvals;
                             Caption = 'All Purchase Requisitions';
                             RunObject = page "All Purchase Requisitions";
+                            RunPageView = where(Archieved = filter(false));
                         }
                     }
                     group(Archives12)
@@ -60,7 +61,8 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             ApplicationArea = All;
                             Caption = 'NFL Requisition List Archives';
                             Image = Archive;
-                            // RunObject = page "NFL Requisition List Archive";
+                            RunObject = page "Purchase Requisition List";
+                            RunPageView = where(Status = filter(Released), Archieved = filter(true));
                         }
                     }
 
@@ -118,10 +120,7 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                         Caption = 'Archives';
                         action("Archived Payment Vouchers")
                         {
-                            Caption = 'Archived Payment Vouchers';
-                            ApplicationArea = All;
-                            Image = Archive;
-                            // RunObject = page "Archieved Payment Vouchers";
+
                         }
                     }
                 }
