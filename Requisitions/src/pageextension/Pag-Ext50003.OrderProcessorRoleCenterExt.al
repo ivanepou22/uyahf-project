@@ -42,6 +42,7 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             Image = Approvals;
                             Caption = 'All Purchase Requisitions';
                             RunObject = page "All Purchase Requisitions";
+                            RunPageView = where(Archieved = filter(false));
                         }
                     }
                     group(Archives)

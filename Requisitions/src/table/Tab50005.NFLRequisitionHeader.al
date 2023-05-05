@@ -4201,83 +4201,13 @@ table 50005 "NFL Requisition Header"
     /// </summary>
     /// <param name="PurchHeader">Parameter of type Record "NFL Requisition Header".</param>
     /// <param name="InteractionExist">Parameter of type Boolean.</param>
-    procedure StorePurchDocument(var PurchHeader: Record "NFL Requisition Header"; InteractionExist: Boolean);
-    var
-        PurchLine: Record "NFL Requisition Line";
-        // PurchHeaderArchive: Record "NFL Requisition Header Archive";
-        // PurchLineArchive: Record "NFL Requisition Line Archive";
-        NFLSetup: Record "General Ledger Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+    procedure StorePurchDocument(var PurchHeader: Record "NFL Requisition Header");
     begin
-        // PurchHeaderArchive.INIT;
-        // PurchHeaderArchive.TRANSFERFIELDS(PurchHeader);
-        // PurchHeaderArchive."Document Type" := PurchHeader."Document Type";
-        // PurchHeaderArchive."Buy-from Vendor No." := PurchHeader."Buy-from Vendor No.";
-        // PurchHeaderArchive."Order Date" := PurchHeader."Order Date";
-        // PurchHeaderArchive."Posting Date" := PurchHeader."Posting Date";
-        // PurchHeaderArchive."Archived By" := USERID;
-        // PurchHeaderArchive."Date Archived" := WORKDATE;
-        // PurchHeaderArchive."Time Archived" := TIME();
-        // PurchHeaderArchive."Hub Code" := PurchHeader."Hub Code";
-        // PurchHeaderArchive."Version No." := GetNextVersionNo(
-        //   DATABASE::"NFL Requisition Header", PurchHeader."Document Type", PurchHeader."No.", PurchHeader."Doc. No. Occurrence");
-        // PurchHeaderArchive."Interaction Exist" := InteractionExist;
-        // IF PurchHeader."Document Type" = PurchHeader."Document Type"::"Store Requisition" THEN BEGIN
-        //     NFLSetup.GET;
-        //     NFLSetup.TESTFIELD("Store Req. Archive No. Series");
-        //     PurchHeaderArchive."Archive No." := NoSeriesMgt.GetNextNo(NFLSetup."Store Req. Archive No. Series", TODAY, TRUE);
-        //     PurchHeaderArchive."Created from" := PurchHeader."Document Type"::"Store Requisition";
-        // END;
-
-        // IF PurchHeader."Document Type" = PurchHeader."Document Type"::"Store Return" THEN BEGIN
-        //     NFLSetup.GET;
-        //     NFLSetup.TESTFIELD(NFLSetup."Store Return Archive No series");
-        //     PurchHeaderArchive."Archive No." := NoSeriesMgt.GetNextNo(NFLSetup."Store Return Archive No series", TODAY, TRUE);
-        //     PurchHeaderArchive."Created from" := PurchHeader."Document Type"::"Store Return";
-        // END;
-
-        // //csm
-        // PurchHeaderArchive.INSERT;
-
-        // StoreDocDim(
-        //   DATABASE::"NFL Requisition Header", PurchHeader."Document Type",
-        //   PurchHeader."No.", 0, PurchHeader."Doc. No. Occurrence", PurchHeaderArchive."Version No.",
-        //    DATABASE::"NFL Requisition Header Archive");
-
-        // StorePurchDocumentComments(
-        //   PurchHeader."Document Type", PurchHeader."No.",
-        //   PurchHeader."Doc. No. Occurrence", PurchHeaderArchive."Version No.");
-
-        // PurchLine.SETRANGE("Document Type", PurchHeader."Document Type");
-        // PurchLine.SETRANGE("Document No.", PurchHeader."No.");
-        // IF PurchLine.FINDSET THEN
-        //     REPEAT
-        //         WITH PurchLineArchive DO BEGIN
-        //             INIT;
-        //             TRANSFERFIELDS(PurchLine);
-        //             "Doc. No. Occurrence" := PurchHeader."Doc. No. Occurrence";
-        //             "Version No." := PurchHeaderArchive."Version No.";
-        //             PurchLineArchive."Archive No." := PurchHeaderArchive."Archive No.";
-        //             IF PurchLineArchive."Archive No." <> '' THEN BEGIN
-        //                 IF (PurchHeader."Document Type" = PurchHeader."Document Type"::"Purchase Requisition") THEN BEGIN
-        //                     PurchLineArchive."Transfer to Item Jnl" := FALSE;
-        //                     IF PurchLine."Make Purchase Req." THEN BEGIN
-        //                         PurchLine."Transferred To Purch. Req." := TRUE;
-        //                         PurchLine."Qty To Make Purch. Req." := 0;
-        //                     END;
-        //                     PurchLine."Make Purchase Req." := FALSE;
-        //                     PurchLine.MODIFY;
-
-        //                 END;
-        //             END;
-        //             INSERT;
-        //             StoreDocDim(
-        //               DATABASE::"NFL Requisition Line", PurchLine."Document Type", PurchLine."Document No.",
-        //               PurchLine."Line No.", PurchHeader."Doc. No. Occurrence", "Version No.",
-        //                DATABASE::"NFL Requisition Line Archive");
-        //         END;
-        //         ReverseCommitment(PurchLine, FORMAT(PurchHeader."Document Type"));
-        //     UNTIL PurchLine.NEXT = 0;
+        PurchHeader.TestField("Converted to Order", true);
+        PurchHeader.TestField(Commited, true);
+        PurchHeader.Validate(Archieved, true);
+        PurchHeader.Modify();
+        Message('Purchase Requisition %1 has been archived Successfully.', PurchHeader."No.");
     end;
 
     /// <summary>

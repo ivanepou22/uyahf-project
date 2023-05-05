@@ -343,7 +343,7 @@ page 50028 "Requisition Approval Form"
                         IF CONFIRM(Text0023) THEN BEGIN
                             Rec.TESTFIELD("Converted to Order", true);
                             IF CONFIRM(Text0024) THEN BEGIN
-                                Rec.StorePurchDocument(Rec, TRUE);   // Archives a Purchase Requisition
+                                Rec.StorePurchDocument(Rec);   // Archives a Purchase Requisition
                                 CurrPage.UPDATE(FALSE);
                                 lvPurchLine.SETFILTER("Document Type", FORMAT(Rec."Document Type"::"Purchase Requisition"));
                                 lvPurchLine.SETFILTER("Document No.", Rec."No.");

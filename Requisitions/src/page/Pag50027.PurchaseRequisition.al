@@ -227,7 +227,7 @@ page 50027 "Purchase Requisition"
             {
                 ApplicationArea = All;
                 Caption = 'Attachments';
-                SubPageLink = "Table ID" = CONST(50039),
+                SubPageLink = "Table ID" = CONST(50005),
                               "No." = FIELD("No.");
             }
             systempart(Links; Links)
@@ -396,16 +396,8 @@ page 50027 "Purchase Requisition"
 
                         IF CONFIRM(Text0023) THEN BEGIN
                             Rec.TESTFIELD("Converted to Order", true);
-                            IF CONFIRM(Text0024) THEN BEGIN
-                                Rec.StorePurchDocument(Rec, TRUE);   // Archives a Purchase Requisition
-                                CurrPage.UPDATE(FALSE);
-                                lvPurchLine.SETFILTER("Document Type", FORMAT(Rec."Document Type"::"Purchase Requisition"));
-                                lvPurchLine.SETFILTER("Document No.", Rec."No.");
-                                IF lvPurchLine.FINDFIRST THEN
-                                    lvPurchLine.DELETEALL;
-
-                                Rec.DELETE(TRUE);
-                            END;
+                            Rec.StorePurchDocument(Rec);
+                            CurrPage.UPDATE(FALSE);
                         END;
                     end;
                 }
@@ -740,7 +732,7 @@ page 50027 "Purchase Requisition"
         PurchOrderNo: Code[20];
         gvHeaderTotal: Decimal;
         Text0022: Label 'There must be atleast one line with amount in the Purchase requisition Details Subform';
-        Text0023: Label 'Are you sure you want to archive this document? after archiving, it will be automatically deleted';
+        Text0023: Label 'Are you sure you want to archive this document ?';
         Text0024: Label 'Please confirm archival and deletion of this document.';
         gvUserSetup: Record "User Setup";
         Text0025: Label 'You do not have permissions to archive this document, please consult the Admin';
