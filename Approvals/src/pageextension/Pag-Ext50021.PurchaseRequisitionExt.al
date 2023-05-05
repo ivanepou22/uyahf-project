@@ -16,6 +16,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition Car
             field(Freelance; Rec.Freelance)
             {
                 ApplicationArea = All;
+                Visible = false;
             }
             field("Current Approver"; Rec."Current Approver")
             {
