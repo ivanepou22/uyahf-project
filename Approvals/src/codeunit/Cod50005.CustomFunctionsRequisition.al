@@ -80,6 +80,36 @@ codeunit 50005 "Custom Functions Requisition"
         end;
     end;
 
+    /// <summary>
+    /// CheckBudgetPurchase.
+    /// </summary>
+    /// <param name="RequisitionHeader">VAR Record "NFL Requisition Header".</param>
+    procedure CheckBudgetPurchase(var RequisitionHeader: Record "NFL Requisition Header");
+    var
+        RequisitionLine: Record "NFL Requisition Line";
+    begin
+        // New vision requires that all requisition out of budget are escaladed to the CEO/CFO
+        // for approval.
+        RequisitionHeader.TESTFIELD("Budget Code");
+        RequisitionHeader.TESTFIELD("Shortcut Dimension 1 Code");
+        RequisitionLine.RESET;
+        IF RequisitionHeader.Status = RequisitionHeader.Status::"Pending Approval" THEN BEGIN
+            // Budget holder should enter the codes before approving the document.
+            RequisitionLine.SETRANGE("Document Type", RequisitionHeader."Document Type");
+            RequisitionLine.SETRANGE("Document No.", RequisitionHeader."No.");
+            IF RequisitionLine.FIND('-') THEN
+                REPEAT
+                    IF RequisitionLine.Type = RequisitionLine.Type::"G/L Account" THEN BEGIN
+                        if RequisitionLine."G/L Account Type" = RequisitionLine."G/L Account Type"::"Income Statement" then begin
+                            IF RequisitionLine."Budget Comment" = 'Out of Budget' THEN BEGIN
+                                ERROR('Purchase Requisition Line %1 is Out of Budget and must be escaladed to CFO/CEO!', RequisitionLine."Line No.");
+                            END;
+                        end;
+                    END;
+                UNTIL RequisitionLine.NEXT = 0;
+        END;
+    end;
+
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Workflow Response Handling", 'OnAddWorkflowResponsePredecessorsToLibrary', '', true, true)]
     local procedure OnAddWorkflowResponsePredecessorsToLibrary(ResponseFunctionName: Code[128])
     var

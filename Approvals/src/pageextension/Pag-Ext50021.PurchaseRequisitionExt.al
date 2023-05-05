@@ -1,7 +1,7 @@
 /// <summary>
 /// PageExtension Purchase Requisition Ext (ID 50032) extends Record Purchase Requisition.
 /// </summary>
-pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition Card"
+pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
 {
     PromotedActionCategories = 'New,Process,Report,New Document,Approve,Request Approval,Release,Home,Delegate';
     layout
@@ -51,7 +51,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition Car
                         Txt001: Label 'Are you sure you want to Approve this document ?';
                         Txt002: Label 'Please make Sure you have at least one line in the Requisition Lines';
                         UserSetup: Record "User Setup";
-                    // ApprovalDoc: Codeunit "NFL Approvals Management";
+                        ApprovalDoc: Codeunit "Custom Functions Requisition";
                     begin
                         if Rec.Status = Rec.Status::Released then
                             Error('This document is already released');
@@ -79,7 +79,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition Car
                                 UserSetup.SetRange(UserSetup."User ID", UserId);
                                 UserSetup.SetRange(UserSetup."SBU Head", true);
                                 if UserSetup.FindFirst() then begin
-                                    // ApprovalDoc.CheckBudgetPurchase(Rec);
+                                    ApprovalDoc.CheckBudgetPurchase(Rec);
                                 end;
                                 ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
                                 Rec.ReleaseTheApprovedDoc();
