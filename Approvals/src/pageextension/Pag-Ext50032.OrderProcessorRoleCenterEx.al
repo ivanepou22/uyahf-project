@@ -1,7 +1,4 @@
-/// <summary>
-/// PageExtension Accountant Role Center Exxt (ID 50311) extends Record Accountant Role Center.
-/// </summary>
-pageextension 50031 "Accountant Role Center Exxt" extends "Accountant Role Center"
+pageextension 50032 "Order Processor Role Center Ex" extends "Order Processor Role Center"
 {
     layout
     {
