@@ -191,26 +191,31 @@ page 50040 "Voucher Form"
                 field("Has Links"; Rec."Has Links")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Budget At Date Exceeded"; Rec."Budget At Date Exceeded")
                 {
                     ToolTip = 'Specifies the value of the Budget At Date Exceeded field';
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Quarter Budget Exceeded"; Rec."Quarter Budget Exceeded")
                 {
                     ToolTip = 'Specifies the value of the Quarter Budget Exceeded field';
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Month Budget Exceeded"; Rec."Month Budget Exceeded")
                 {
                     ToolTip = 'Specifies the value of the Month Budget Exceeded field';
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Year Budget Exceeded"; Rec."Year Budget Exceeded")
                 {
                     ToolTip = 'Specifies the value of the Year Budget Exceeded field';
                     ApplicationArea = All;
+                    Visible = false;
                 }
 
             }
