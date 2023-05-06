@@ -383,25 +383,6 @@ page 50028 "Requisition Approval Form"
                         DocumentAttachmentDetails.RunModal;
                     end;
                 }
-                action(DocAttach11)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Attachments';
-                    Image = Attach;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    ToolTip = 'Add a file as an attachment. You can attach images as well as documents.';
-
-                    trigger OnAction()
-                    var
-                        DocumentAttachmentDetails: Page "Document Attached Vouchers";
-                        RecRef: RecordRef;
-                    begin
-                        RecRef.GetTable(Rec);
-                        DocumentAttachmentDetails.OpenForRecRef(RecRef);
-                        DocumentAttachmentDetails.RunModal;
-                    end;
-                }
                 action("Approval Entries")
                 {
                     Caption = '&Approval Entries';
