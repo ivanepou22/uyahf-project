@@ -104,17 +104,6 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             RunObject = page "List of All Payment Vouchers";
                         }
                     }
-                    group(Tasks3)
-                    {
-                        Caption = 'Tasks';
-                        action("Generate Bank Payment")
-                        {
-                            Caption = 'Generate Bank Payment';
-                            Image = BankAccountStatement;
-                            ApplicationArea = All;
-                            RunObject = report "Generate Bank Payment 1";
-                        }
-                    }
                     group(Archives1)
                     {
                         Caption = 'Archives';
@@ -144,6 +133,24 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                         ApplicationArea = All;
                         Caption = 'Purchase & Payables Setup';
                         RunObject = page "Purchases & Payables Setup";
+                    }
+                }
+
+                group("Main Tasks")
+                {
+                    action("Generate Bank Payment")
+                    {
+                        Caption = 'Generate Bank Payment';
+                        Image = BankAccountStatement;
+                        ApplicationArea = All;
+                        RunObject = report "Generate Bank Payment 1";
+                    }
+                    action("Commitment Ledger Entries")
+                    {
+                        ApplicationArea = All;
+                        Caption = 'Commitment Ledger Entries';
+                        Image = Ledger;
+                        RunObject = page "Apply Commitment  Entry";
                     }
                 }
             }
