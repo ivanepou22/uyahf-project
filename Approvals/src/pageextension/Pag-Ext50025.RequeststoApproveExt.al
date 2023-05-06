@@ -5,12 +5,14 @@ pageextension 50025 "Requests to Approve Ext" extends "Requests to Approve"
 {
     layout
     {
+        modify(Comment) { Visible = false; }
+        modify("Amount (LCY)") { Visible = false; }
         // Add changes to page layout heret
         addbefore(ToApprove)
         {
             field("Document No."; Rec."Document No.")
             {
-
+                ApplicationArea = All;
             }
         }
     }

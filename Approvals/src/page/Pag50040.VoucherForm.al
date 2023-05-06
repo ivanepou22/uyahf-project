@@ -5,11 +5,11 @@ page 50040 "Voucher Form"
 {
     // version
 
-    Caption = 'Voucher Form';
+    Caption = 'Cash Voucher';
     PageType = Document;
     RefreshOnActivate = true;
     SourceTable = "Payment Voucher Header";
-    PromotedActionCategories = 'New,Process,Report,New Document,Approve,Request Approval,Release,Delegate';
+    PromotedActionCategories = 'New,Process,Report,New Document,Approve,Request Approval,Release,Delegate,Attachments';
     layout
     {
         area(content)
@@ -67,6 +67,7 @@ page 50040 "Voucher Form"
                 field("Hub Code"; Rec."Hub Code")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
 
                 field(Status; Rec.Status)
@@ -235,6 +236,13 @@ page 50040 "Voucher Form"
         }
         area(factboxes)
         {
+            part("Attached Documents"; "Document Attachments Factbox")
+            {
+                ApplicationArea = All;
+                Caption = 'Attachments';
+                SubPageLink = "Table ID" = CONST(50001),
+                              "No." = FIELD("No.");
+            }
             part("Budget Analysis As at Date"; "CashBudget Analysis As at Date")
             {
                 Provider = Lines;
@@ -381,6 +389,26 @@ page 50040 "Voucher Form"
                         IF NOT CONFIRM('Do you really want to archieve the selected document?', FALSE) THEN
                             EXIT;
                         PaymentVoucherHeader.ArchiveRequisition(Rec);
+                    end;
+                }
+
+                action(DocAttach1)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Attachments';
+                    Image = Attach;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ToolTip = 'Add a file as an attachment. You can attach images as well as documents.';
+
+                    trigger OnAction()
+                    var
+                        DocumentAttachmentDetails: Page "Document Attached Vouchers";
+                        RecRef: RecordRef;
+                    begin
+                        RecRef.GetTable(Rec);
+                        DocumentAttachmentDetails.OpenForRecRef(RecRef);
+                        DocumentAttachmentDetails.RunModal;
                     end;
                 }
             }
