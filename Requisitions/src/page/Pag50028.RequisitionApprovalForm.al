@@ -3,7 +3,6 @@
 /// </summary>
 page 50028 "Requisition Approval Form"
 {
-    // version NFL02.002
 
     Caption = 'Purchase Requisition';
     PageType = Card;
@@ -164,6 +163,13 @@ page 50028 "Requisition Approval Form"
         }
         area(factboxes)
         {
+            part("Attached Documents"; "Document Attachments Factbox")
+            {
+                ApplicationArea = All;
+                Caption = 'Attachments';
+                SubPageLink = "Table ID" = CONST(50005),
+                              "No." = FIELD("No.");
+            }
             part("Budget Analysis As at Date"; "Budget Analysis As at Date")
             {
                 Provider = PurchLines;
@@ -357,6 +363,44 @@ page 50028 "Requisition Approval Form"
                 }
                 separator(separator2)
                 {
+                }
+                action(DocAttach1)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Attachments';
+                    Image = Attach;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ToolTip = 'Add a file as an attachment. You can attach images as well as documents.';
+
+                    trigger OnAction()
+                    var
+                        DocumentAttachmentDetails: Page "Document Attached Vouchers";
+                        RecRef: RecordRef;
+                    begin
+                        RecRef.GetTable(Rec);
+                        DocumentAttachmentDetails.OpenForRecRef(RecRef);
+                        DocumentAttachmentDetails.RunModal;
+                    end;
+                }
+                action(DocAttach11)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Attachments';
+                    Image = Attach;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    ToolTip = 'Add a file as an attachment. You can attach images as well as documents.';
+
+                    trigger OnAction()
+                    var
+                        DocumentAttachmentDetails: Page "Document Attached Vouchers";
+                        RecRef: RecordRef;
+                    begin
+                        RecRef.GetTable(Rec);
+                        DocumentAttachmentDetails.OpenForRecRef(RecRef);
+                        DocumentAttachmentDetails.RunModal;
+                    end;
                 }
                 action("Approval Entries")
                 {
