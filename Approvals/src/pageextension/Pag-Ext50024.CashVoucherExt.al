@@ -5,6 +5,14 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
     PromotedActionCategories = 'New,Process,Report,New Document,Approve,Request Approval,Release,Delegate';
     layout
     {
+        modify("Hub Code")
+        {
+            Visible = false;
+        }
+        modify("Has Links")
+        {
+            Visible = false;
+        }
         // Add changes to page layout here
         addafter("Transferred to Journals")
         {

@@ -95,7 +95,6 @@ codeunit 50004 "PRQ Workflow EventHandling Ext"
     var
         WorkflowStepArgument: Record 1523;
         BlankDateFormula: DateFormula;
-        // WorkflowEventHandlingCust: Codeunit "Workflow Event Handling Ext";
         WorkflowResponseHandling: Codeunit 1521;
         Claim: Record "NFL Requisition Header";
     begin
