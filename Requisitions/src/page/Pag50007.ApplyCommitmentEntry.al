@@ -34,6 +34,7 @@ page 50007 "Apply Commitment  Entry"
                 field("Source No."; Rec."Source No.")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Document No."; Rec."Document No.")
                 {
@@ -42,10 +43,12 @@ page 50007 "Apply Commitment  Entry"
                 field("SalesPerson Code"; Rec."SalesPerson Code")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("External Document No."; Rec."External Document No.")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("System-Created Entry"; Rec."System-Created Entry")
                 {
@@ -60,7 +63,7 @@ page 50007 "Apply Commitment  Entry"
                 field("G/L Account Name"; Rec."G/L Account Name")
                 {
                     DrillDown = false;
-                    Visible = false;
+                    // Visible = false;
                     ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
@@ -75,19 +78,21 @@ page 50007 "Apply Commitment  Entry"
                 field("Advance Code"; Rec."Advance Code")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Cashier ID"; Rec."Cashier ID")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field("Global Dimension 1 Code"; Rec."Global Dimension 1 Code")
                 {
-                    Visible = false;
+                    // Visible = false;
                     ApplicationArea = All;
                 }
                 field("Global Dimension 2 Code"; Rec."Global Dimension 2 Code")
                 {
-                    Visible = false;
+                    // Visible = false;
                     ApplicationArea = All;
                 }
                 field("IC Partner Code"; Rec."IC Partner Code")
@@ -95,18 +100,7 @@ page 50007 "Apply Commitment  Entry"
                     Visible = false;
                     ApplicationArea = All;
                 }
-                field("Gen. Posting Type"; Rec."Gen. Posting Type")
-                {
-                    ApplicationArea = All;
-                }
-                field("Gen. Bus. Posting Group"; Rec."Gen. Bus. Posting Group")
-                {
-                    ApplicationArea = All;
-                }
-                field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
-                {
-                    ApplicationArea = All;
-                }
+
                 field(Quantity; Rec.Quantity)
                 {
                     Visible = false;
@@ -136,7 +130,19 @@ page 50007 "Apply Commitment  Entry"
                 }
                 field("User ID"; Rec."User ID")
                 {
-                    Visible = false;
+                    // Visible = false;
+                    ApplicationArea = All;
+                }
+                field("Gen. Posting Type"; Rec."Gen. Posting Type")
+                {
+                    ApplicationArea = All;
+                }
+                field("Gen. Bus. Posting Group"; Rec."Gen. Bus. Posting Group")
+                {
+                    ApplicationArea = All;
+                }
+                field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
+                {
                     ApplicationArea = All;
                 }
                 field("Source Code"; Rec."Source Code")

@@ -79,10 +79,10 @@ tableextension 50008 "Purchase Line ExtRQ" extends "Purchase Line"
             begin
             end;
         }
-        // field(50311; "Applies-to ID"; Code[50])
-        // {
-        //     Caption = 'Applies-to ID';
-        // }
+        field(50311; "Applies-to ID"; Code[50])
+        {
+            Caption = 'Applies-to ID';
+        }
         field(50312; "Invoiced Amount"; Decimal)
         {
             Description = 'Used in the LPO pages list: JCK 13.08.12';
@@ -148,10 +148,10 @@ tableextension 50008 "Purchase Line ExtRQ" extends "Purchase Line"
         {
             TableRelation = "G/L Budget Name".Name;
         }
-        // field(50343; "non contract"; Boolean)
-        // {
-        //     Description = 'rRe';
-        // }
+        field(50343; "non contract"; Boolean)
+        {
+            Description = 'rRe';
+        }
         field(50344; "Transfer to Item Jnl"; Boolean)
         {
         }
