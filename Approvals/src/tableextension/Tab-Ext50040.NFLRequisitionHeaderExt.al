@@ -76,7 +76,7 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
     /// </summary>
     procedure ReleaseTheApprovedDoc()
     var
-        NvText: Label 'The approval Request has been Approved';
+        NvText: Label 'The approval Request has been Approved .......';
     begin
         CalcFields("Approvals Entry");
         if "Approvals Entry" = 0 then begin

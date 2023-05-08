@@ -103,7 +103,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                             // ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type");
                             // ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
                             // if ApprovalComments.FindFirst() then begin
-                            //     ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
+                            ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                             //     //Send email implemented
                             //     customFunction.RejectApprovalRequest(Rec);
                             // end else begin
