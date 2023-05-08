@@ -28,6 +28,7 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
 
     end;
 
+
     /// <summary>
     /// PerformManualReopen.
     /// </summary>
