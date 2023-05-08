@@ -1489,10 +1489,10 @@ table 50005 "NFL Requisition Header"
             var
                 myInt: Integer;
             begin
-                Message('Status here');
-                if Rec.Status = Rec.Status::Released then begin
-                    Rec.CreatePurchaseRequisitionCommitmentEntries();
-                end;
+                // Message(Format(Rec.Status));
+                // if Rec.Status = Rec.Status::Released then begin
+                //     Rec.CreatePurchaseRequisitionCommitmentEntries();
+                // end;
             end;
         }
         field(121; "Invoice Discount Calculation"; Option)
@@ -2536,8 +2536,9 @@ table 50005 "NFL Requisition Header"
             var
                 myInt: Integer;
             begin
-                Message('Updadte');
-                Rec.Validate(Status);
+                // Message('Updadte');
+                // Rec.Validate(Status);
+                // Message(Format(Rec.Status));
             end;
         }
     }
