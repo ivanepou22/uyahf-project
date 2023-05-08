@@ -43,6 +43,24 @@ pageextension 50001 "PurchasesAndpayables" extends "Purchases & Payables Setup" 
                 ToolTip = 'Specifies the value of the Eng. Cash Voucher Nos. field.';
             }
         }
+
+        addafter(Archiving)
+        {
+            group(Requisitions)
+            {
+
+                field("Create Purch. comm. on Approv."; Rec."Create Purch. comm. on Approv.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Create Purch. Commitment On Approval field.';
+                }
+                field("Create Vouch. comm. on Approv."; Rec."Create Vouch. comm. on Approv.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Create Voucher Commitment On Approval field.';
+                }
+            }
+        }
     }
 
     actions
