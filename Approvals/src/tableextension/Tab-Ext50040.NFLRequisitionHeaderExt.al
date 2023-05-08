@@ -127,6 +127,18 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
         end;
     end;
 
+    //check he document release
+    procedure CheckDocumentRelease(var PurchaseRequisition: Record "NFL Requisition Header")
+    var
+        ApprovalEntries: Record "Approval Entry";
+    begin
+        ApprovalEntries.Reset();
+        ApprovalEntries.SetRange("Document No.", PurchaseRequisition."No.");
+        if ApprovalEntries.Find('-') then begin
+            if not ((ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created)) then
+                Message('Fully Approved');
+        end;
+    end;
 
     /// <summary>
     /// SendingCancelApprovalEmail.

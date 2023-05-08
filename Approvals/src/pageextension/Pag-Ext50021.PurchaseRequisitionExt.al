@@ -88,7 +88,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                             customFunction.OpenApprovalEntries(Rec);
                         end;
 
-                        Rec.Validate(Process, true);
+                        Rec.CheckDocumentRelease(Rec)
                     end;
                 }
                 action(Reject)
@@ -114,7 +114,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                             // ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type");
                             // ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
                             // if ApprovalComments.FindFirst() then begin
-                            //     ApprovalsMgmt.RejectRecordApprovalRequest(RecordId);
+                            ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                             //     //Send email implemented
                             //     customFunction.RejectApprovalRequest(Rec);
                             // end else begin
