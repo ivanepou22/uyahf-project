@@ -156,10 +156,6 @@ page 50001 "Cash Voucher Lines Subform"
                         //Added by SEJ
                         IF Rec."Account Type" = Rec."Account Type"::"G/L Account" THEN
                             Rec.TESTFIELD("Shortcut Dimension 1 Code");
-
-                        // IF ShortcutDimCode[8] = '' THEN
-                        //     ERROR(Text001);
-
                         CurrPage.UPDATE;
                     end;
                 }
@@ -304,6 +300,6 @@ page 50001 "Cash Voucher Lines Subform"
 
     var
         ShortcutDimCode: array[9] of Code[20];
-        Text001: Label 'You must first specify the sub cost centre';
+    // Text001: Label 'You must first specify the sub cost centre';
 }
 
