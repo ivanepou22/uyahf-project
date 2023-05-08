@@ -76,6 +76,14 @@ tableextension 50013 "Purchases Payables Setup ExtRQ" extends "Purchases & Payab
             Caption = 'Cash Voucher Nos.';
             TableRelation = "No. Series";
         }
+        field(50118; "Create Purch. comm. on Approv."; Boolean)
+        {
+            Caption = 'Create Purch. Commitment On Approval';
+        }
+        field(50119; "Create Vouch. comm. on Approv."; Boolean)
+        {
+            Caption = 'Create Voucher Commitment On Approval';
+        }
     }
 
     var
