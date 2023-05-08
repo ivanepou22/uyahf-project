@@ -87,6 +87,8 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                             //Send email implemented
                             customFunction.OpenApprovalEntries(Rec);
                         end;
+
+                        Rec.Validate(Process, true);
                     end;
                 }
                 action(Reject)
