@@ -1489,6 +1489,7 @@ table 50005 "NFL Requisition Header"
             var
                 myInt: Integer;
             begin
+                Message('Status here');
                 if Rec.Status = Rec.Status::Released then begin
                     Rec.CreatePurchaseRequisitionCommitmentEntries();
                 end;
@@ -2527,6 +2528,16 @@ table 50005 "NFL Requisition Header"
             trigger OnValidate();
             begin
                 ValidateShortcutDimCode(8, "Hub Code");
+            end;
+        }
+        field(50114; Process; Boolean)
+        {
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
+                Message('Updadte');
+                Rec.Validate(Status);
             end;
         }
     }
