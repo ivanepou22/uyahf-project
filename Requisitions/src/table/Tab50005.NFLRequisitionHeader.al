@@ -1484,6 +1484,15 @@ table 50005 "NFL Requisition Header"
             Editable = true;
             OptionCaption = 'Open,Released,Pending Approval,Pending Prepayment';
             OptionMembers = Open,Released,"Pending Approval","Pending Prepayment";
+
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
+                if Rec.Status = Rec.Status::Released then begin
+                    Rec.CreatePurchaseRequisitionCommitmentEntries();
+                end;
+            end;
         }
         field(121; "Invoice Discount Calculation"; Option)
         {
@@ -4565,6 +4574,57 @@ table 50005 "NFL Requisition Header"
         // for approval.
         TESTFIELD(Rec."Budget Code");
         TESTFIELD(Rec."Shortcut Dimension 1 Code");
+    end;
+
+    /// <summary>
+    /// Description for ReversePurchaseRequisitionCommitmentEntries.
+    /// </summary>
+    local procedure ReversePurchaseRequisitionCommitmentEntries();
+    var
+        gvNFLRequisitionLine: Record "NFL Requisition Line";
+    begin
+        //Reverse commitment on converting requistion to order for a released purchase requisistion document.
+        IF Rec.Commited = TRUE THEN BEGIN
+            gvNFLRequisitionLine.SETRANGE("Document No.", Rec."No.");
+            IF gvNFLRequisitionLine.FIND('-') THEN
+                REPEAT
+                    gvCommitmentEntry.SETRANGE(gvCommitmentEntry."Entry No.", gvNFLRequisitionLine."Commitment Entry No.");
+                    IF gvCommitmentEntry.FIND('-') THEN
+                        IF NOT lastCommitmentEntry.FINDLAST THEN
+                            lastCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No." + 1
+                        ELSE
+                            lastCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No." + 1;
+                    reversedCommitmentEntry.INIT;
+                    reversedCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No.";
+                    reversedCommitmentEntry."G/L Account No." := gvCommitmentEntry."G/L Account No.";
+                    reversedCommitmentEntry."Posting Date" := gvCommitmentEntry."Posting Date";
+                    reversedCommitmentEntry."Document Type" := gvCommitmentEntry."Document Type";
+                    reversedCommitmentEntry."Document No." := gvCommitmentEntry."Document No.";
+                    reversedCommitmentEntry.Description := gvCommitmentEntry.Description;
+                    reversedCommitmentEntry."External Document No." := gvCommitmentEntry."External Document No.";
+                    reversedCommitmentEntry."Global Dimension 1 Code" := gvCommitmentEntry."Global Dimension 1 Code";
+                    reversedCommitmentEntry."Global Dimension 2 Code" := gvCommitmentEntry."Global Dimension 2 Code";
+                    reversedCommitmentEntry."Dimension Set ID" := gvCommitmentEntry."Dimension Set ID";
+                    reversedCommitmentEntry.Amount := -1 * gvCommitmentEntry.Amount;
+                    reversedCommitmentEntry."Debit Amount" := -1 * gvCommitmentEntry."Debit Amount";
+                    reversedCommitmentEntry."Credit Amount" := -1 * gvCommitmentEntry."Credit Amount";
+                    reversedCommitmentEntry."Additional-Currency Amount" := -1 * gvCommitmentEntry."Additional-Currency Amount";
+                    reversedCommitmentEntry."Add.-Currency Debit Amount" := -1 * gvCommitmentEntry."Add.-Currency Debit Amount";
+                    reversedCommitmentEntry."Add.-Currency Credit Amount" := -1 * gvCommitmentEntry."Add.-Currency Credit Amount";
+                    reversedCommitmentEntry.Reversed := TRUE;
+                    reversedCommitmentEntry."Reversed Entry No." := gvCommitmentEntry."Entry No.";
+                    reversedCommitmentEntry."User ID" := USERID;
+                    reversedCommitmentEntry."Source Code" := 'converted to order';
+                    gvCommitmentEntry.Reversed := TRUE;
+                    gvCommitmentEntry."Reversed by Entry No." := reversedCommitmentEntry."Entry No.";
+                    reversedCommitmentEntry.INSERT;
+                    gvCommitmentEntry.MODIFY;
+                    gvNFLRequisitionLine."Commitment Entry No." := 0; //Reset the commited purchase line back to zero.
+                    gvNFLRequisitionLine.MODIFY;
+                UNTIL gvNFLRequisitionLine.NEXT = 0;
+        END;
+        Rec.Commited := FALSE;
+        //END
     end;
 
     [IntegrationEvent(false, false)]
