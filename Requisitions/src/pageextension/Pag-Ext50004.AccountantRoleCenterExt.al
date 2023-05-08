@@ -61,7 +61,7 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             ApplicationArea = All;
                             Caption = 'NFL Requisition List Archives';
                             Image = Archive;
-                            RunObject = page "Purchase Requisition List";
+                            RunObject = page "All Purchase Requisitions";
                             RunPageView = where(Status = filter(Released), Archieved = filter(true));
                         }
                     }
@@ -69,7 +69,7 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                 }
                 group("Cash Requisition")
                 {
-                    group(Lists2)
+                    group(Lists1)
                     {
                         Caption = 'Lists';
                         action("Cash Vouchers")
@@ -78,38 +78,47 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                             Image = Approvals;
                             Caption = 'Cash Vouchers';
                             RunObject = page "Cash Vouchers";
+                            RunPageView = where(Archieved = filter(false));
                         }
                         action("Pending Vouchers Approval")
                         {
                             ApplicationArea = All;
                             Image = HRSetup;
                             RunObject = page "Payt Vouchers Pending Approval";
+                            RunPageView = where(Archieved = filter(false));
                         }
                         action("Released Vouchers Approval")
                         {
                             ApplicationArea = All;
                             Image = HRSetup;
                             RunObject = page "Released Payment Vouchers";
+                            RunPageView = where(Archieved = filter(false));
                         }
                         action("Open Vouchers Approval")
                         {
                             ApplicationArea = All;
                             Image = HRSetup;
                             RunObject = page "Open Payment Vouchers";
+                            RunPageView = where(Archieved = filter(false));
                         }
                         action("All Payment Vouchers")
                         {
                             ApplicationArea = All;
                             Image = HRSetup;
                             RunObject = page "List of All Payment Vouchers";
+                            RunPageView = where(Archieved = filter(false));
                         }
                     }
-                    group(Archives1)
+                    group(Archives100)
                     {
                         Caption = 'Archives';
-                        action("Archived Payment Vouchers")
+                        action("Archived Payment Vouchers001")
                         {
-
+                            Caption = 'Archived Payment Vouchers';
+                            ApplicationArea = All;
+                            Image = Archive;
+                            RunObject = page "List of All Payment Vouchers";
+                            RunPageView = where(Archieved = filter(true));
                         }
                     }
                 }

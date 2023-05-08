@@ -52,7 +52,7 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             ApplicationArea = All;
                             Caption = 'NFL Requisition List Archives';
                             Image = Archive;
-                            RunObject = page "Purchase Requisition List";
+                            RunObject = page "All Purchase Requisitions";
                             RunPageView = where(Status = filter(Released), Archieved = filter(true));
                         }
                     }
@@ -69,30 +69,35 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             Image = Approvals;
                             Caption = 'Cash Vouchers';
                             RunObject = page "Cash Vouchers";
+                            RunPageView = where(Archieved = filter(false));
                         }
                         action("Pending Vouchers Approval")
                         {
                             ApplicationArea = All;
                             Image = HRSetup;
                             RunObject = page "Payt Vouchers Pending Approval";
+                            RunPageView = where(Archieved = filter(false));
                         }
                         action("Released Vouchers Approval")
                         {
                             ApplicationArea = All;
                             Image = HRSetup;
                             RunObject = page "Released Payment Vouchers";
+                            RunPageView = where(Archieved = filter(false));
                         }
                         action("Open Vouchers Approval")
                         {
                             ApplicationArea = All;
                             Image = HRSetup;
                             RunObject = page "Open Payment Vouchers";
+                            RunPageView = where(Archieved = filter(false));
                         }
                         action("All Payment Vouchers")
                         {
                             ApplicationArea = All;
                             Image = HRSetup;
                             RunObject = page "List of All Payment Vouchers";
+                            RunPageView = where(Archieved = filter(false));
                         }
                     }
                     group(Archives100)
@@ -103,7 +108,8 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             Caption = 'Archived Payment Vouchers';
                             ApplicationArea = All;
                             Image = Archive;
-                            // RunObject = page "Archieved Payment Vouchers";
+                            RunObject = page "List of All Payment Vouchers";
+                            RunPageView = where(Archieved = filter(true));
                         }
                     }
                 }
