@@ -123,8 +123,9 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                         // RunObject = page "NFL Setup";
                     }
                 }
-                group("Main Tasks")
+                group(MainTasks)
                 {
+                    Caption = 'Tasks';
                     action("Generate Bank Payment")
                     {
                         Caption = 'Generate Bank Payment';

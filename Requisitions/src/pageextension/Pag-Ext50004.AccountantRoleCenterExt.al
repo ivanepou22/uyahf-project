@@ -145,8 +145,9 @@ pageextension 50004 "Accountant Role Center Ext" extends "Accountant Role Center
                     }
                 }
 
-                group("Main Tasks")
+                group(MainTasks)
                 {
+                    Caption = 'Tasks';
                     action("Generate Bank Payment")
                     {
                         Caption = 'Generate Bank Payment';
