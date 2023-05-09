@@ -409,6 +409,22 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
         end;
     end;
 
+    procedure CheckVoucherRelease(var PaymentVoucher: Record "Payment Voucher Header")
+    var
+        ApprovalEntries: Record "Approval Entry";
+        PurchaseSetup: Record "Purchases & Payables Setup";
+        customFunctionsCash: Codeunit "Custom Functions Cash";
+    begin
+        ApprovalEntries.Reset();
+        ApprovalEntries.SetRange("Document No.", PaymentVoucher."No.");
+        if ApprovalEntries.Find('-') then begin
+            if not ((ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created)) then begin
+                if PurchaseSetup."Create Vouch. comm. on Approv." then
+                    customFunctionsCash.CreatePaymentVoucherCommitment(Rec);
+            end;
+        end;
+    end;
+
     procedure ArchiveRequisition(var PaymentVoucherHeader: Record "Payment Voucher Header")
     var
         myInt: Integer;

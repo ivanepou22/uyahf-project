@@ -476,6 +476,7 @@ page 50040 "Voucher Form"
                             CustomFunctions.DoubleCheckApprovalEntries(Rec);
                             CustomFunctions.CompleteDocumentApproval(Rec);
                         end;
+                        Rec.CheckVoucherRelease(Rec);
                     end;
                 }
                 action(Reject)
