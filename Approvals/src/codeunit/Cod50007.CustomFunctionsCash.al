@@ -645,7 +645,7 @@ codeunit 50007 "Custom Functions Cash"
         CurrencyFactor: Decimal;
         CurrencyExchangeRate: Record "Currency Exchange Rate";
     begin
-        // MAG 24TH SEPT. 2018, Create Payment Voucher Commitment on releasing payment requisiton.
+        //Create Payment Voucher Commitment on releasing payment requisiton.
         IF PaymentVoucherHeader."Payment Type" = PaymentVoucherHeader."Payment Type"::"Cash Requisition" THEN BEGIN
             // Invoice already posted for supplier, No need to create a commitment for supplier payment
             // Money will be deducted from the staff's salary, no need to create a commitment for advances.
@@ -672,7 +672,6 @@ codeunit 50007 "Custom Functions Cash"
                     CommitmentEntry.Description := PaytVouchLine.Description;
                     CommitmentEntry.VALIDATE("Document Type", PaymentVoucherHeader."Document Type");
                     CommitmentEntry."Document No." := PaytVouchLine."Document No.";
-                    //CommitmentEntry."Posting Date" := "Posting Date";
                     CommitmentEntry."Posting Date" := PaymentVoucherHeader."Posting Date";
                     CommitmentEntry."Dimension Set ID" := PaytVouchLine."Dimension Set ID";
                     CommitmentEntry."Global Dimension 1 Code" := PaytVouchLine."Shortcut Dimension 1 Code";
@@ -699,7 +698,6 @@ codeunit 50007 "Custom Functions Cash"
             PaymentVoucherHeader.Commited := TRUE;
             PaymentVoucherHeader.MODIFY;
         END;
-        //MAG - END
     end;
 
     procedure SendPaymentVoucherDelegationMail(PaymentVoucherHeader: Record "Payment Voucher Header"; NFLApprovalEntry: Record "Approval Entry");
