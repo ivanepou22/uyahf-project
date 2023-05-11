@@ -57,12 +57,13 @@ page 50021 "Cash Monthly Budget Analysis"
             StyleText1 := 'Favorable';
         IF Rec."Budget Comment for the Month" = 'Out of Budget' THEN
             StyleText1 := 'Unfavorable';
+
+        Rec.CalcFields("Budget Amount for the Month", "Actual Amount for the Month", "Commitment Amt for the Month");
     end;
 
     trigger OnOpenPage();
     begin
         Rec.SETFILTER("Month Date Filter", '%1..%2', Rec."Accounting Period Start Date", Rec."Accounting Period End Date");
-        CurrPage.UPDATE;
     end;
 
     var

@@ -58,6 +58,7 @@ page 50013 "Annual Budget Analysis"
         ELSE
             IF Rec."Budget Comment for the Year" = 'Out of Budget' THEN
                 StyleText1 := 'Unfavorable';
+        Rec.CalcFields("Budget Amount for the Year", "Actual Amount for the Year", "Commitment Amount for the Year")
     end;
 
     trigger OnOpenPage();

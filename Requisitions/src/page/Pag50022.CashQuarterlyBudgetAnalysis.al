@@ -57,12 +57,13 @@ page 50022 "Cash Quarterly Budget Analysis"
             StyleText1 := 'Favorable';
         IF Rec."Budget Comment for the Quarter" = 'Out of Budget' THEN
             StyleText1 := 'Unfavorable';
+
+        Rec.CalcFields("Budget Amount for the Quarter", "Actual Amount for the Quarter", "Commitment Amt for the Quarter");
     end;
 
     trigger OnOpenPage();
     begin
         Rec.SETFILTER("Quarter Date Filter", '%1..%2', Rec."Quarter Start Date", Rec."Quarter End Date");
-        CurrPage.UPDATE;
     end;
 
     var

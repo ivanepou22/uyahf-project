@@ -69,7 +69,6 @@ page 50020 "Cash Budget Analysis Fact Box"
     begin
         Rec.SETFILTER("Fiscal Year Date Filter", '%1..%2', Rec."Fiscal Year Start Date", Rec."Fiscal Year End Date");
         Rec.SETFILTER("Filter to Date Filter", '%1..%2', Rec."Filter to Date Start Date", Rec."Filter to Date End Date");
-        CurrPage.UPDATE;
     end;
 
     var

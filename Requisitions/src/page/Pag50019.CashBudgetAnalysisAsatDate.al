@@ -57,6 +57,8 @@ page 50019 "CashBudget Analysis As at Date"
             StyleText1 := 'Favorable';
         IF Rec."Budget Comment as at Date" = 'Out of Budget' THEN
             StyleText1 := 'Unfavorable';
+
+        Rec.CalcFields("Budget Amount as at Date", "Actual Amount as at Date", "Commitment Amount as at Date")
     end;
 
     trigger OnOpenPage();

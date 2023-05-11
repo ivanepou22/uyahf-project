@@ -57,6 +57,8 @@ page 50014 "Monthly Budget Analysis"
             StyleText1 := 'Favorable';
         IF Rec."Budget Comment for the Month" = 'Out of Budget' THEN
             StyleText1 := 'Unfavorable';
+
+        Rec.CalcFields("Budget Amount for the Month", "Actual Amount for the Month", "Commitment Amt for the Month")
     end;
 
     trigger OnOpenPage();

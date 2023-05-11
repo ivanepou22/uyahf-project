@@ -57,6 +57,8 @@ page 50012 "Quarterly Budget Analysis"
             StyleText1 := 'Favorable';
         IF Rec."Budget Comment for the Quarter" = 'Out of Budget' THEN
             StyleText1 := 'Unfavorable';
+
+        Rec.CalcFields("Budget Amount for the Quarter", "Actual Amount for the Quarter", "Commitment Amt for the Quarter");
     end;
 
     trigger OnOpenPage();
