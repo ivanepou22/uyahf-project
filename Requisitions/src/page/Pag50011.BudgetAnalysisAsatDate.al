@@ -15,24 +15,31 @@ page 50011 "Budget Analysis As at Date"
         {
             field("Fiscal Year Start Date"; Rec."Fiscal Year Start Date")
             {
+                ApplicationArea = All;
             }
             field("Fiscal Year End Date"; Rec."Fiscal Year End Date")
             {
+                ApplicationArea = All;
             }
             field("Budget Amount as at Date"; Rec."Budget Amount as at Date")
             {
+                ApplicationArea = All;
             }
             field("Actual Amount as at Date"; Rec."Actual Amount as at Date")
             {
+                ApplicationArea = All;
             }
             field("Commitment Amount as at Date"; Rec."Commitment Amount as at Date")
             {
+                ApplicationArea = All;
             }
             field("Balance on Budget as at Date"; Rec."Balance on Budget as at Date")
             {
+                ApplicationArea = All;
             }
             field("Budget Comment as at Date"; Rec."Budget Comment as at Date")
             {
+                ApplicationArea = All;
                 StyleExpr = StyleText1;
             }
         }

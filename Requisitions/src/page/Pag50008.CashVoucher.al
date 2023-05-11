@@ -90,6 +90,7 @@ page 50008 "Cash Voucher"
                 }
                 field("Prepared by"; Rec."Prepared by")
                 {
+                    ApplicationArea = All;
                 }
                 field("Received by"; Rec."Received by")
                 {
@@ -194,12 +195,14 @@ page 50008 "Cash Voucher"
             }
             part(Details; "Cash Voucher Details Subform")
             {
+                ApplicationArea = Basic, Suite;
                 SubPageLink = "Document No." = FIELD("No."),
                               "Document Type" = FIELD("Document Type");
                 UpdatePropagation = Both;
             }
             part(Lines; "Cash Voucher Lines Subform")
             {
+                ApplicationArea = Basic, Suite;
                 SubPageLink = "Document No." = FIELD("No."),
                               "Document Type" = FIELD("Document Type");
                 UpdatePropagation = Both;
@@ -225,6 +228,7 @@ page 50008 "Cash Voucher"
             }
             part("Budget Analysis As at Date"; "CashBudget Analysis As at Date")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = Lines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -233,6 +237,7 @@ page 50008 "Cash Voucher"
             }
             part("Monthly Budget Analysis"; "Cash Monthly Budget Analysis")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = Lines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -241,6 +246,7 @@ page 50008 "Cash Voucher"
             }
             part("Quarterly Budget Analysis"; "Cash Quarterly Budget Analysis")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = Lines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -249,6 +255,7 @@ page 50008 "Cash Voucher"
             }
             part("Annual Budget Analysis"; "Cash Annual Budget Analysis")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = Lines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -257,6 +264,7 @@ page 50008 "Cash Voucher"
             }
             part("<Cash Budget Analysis Fact Box>"; "Cash Budget Analysis Fact Box")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = Lines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -308,6 +316,7 @@ page 50008 "Cash Voucher"
                 }
                 action("List of All Approval Entries")
                 {
+                    ApplicationArea = All;
                     Caption = '&List of All Approval Entries';
                     Image = EntriesList;
                     Promoted = true;
@@ -319,6 +328,7 @@ page 50008 "Cash Voucher"
                 }
                 action(Comments)
                 {
+                    ApplicationArea = All;
                     Image = Comment;
                     Promoted = true;
                     PromotedCategory = Process;
@@ -348,6 +358,7 @@ page 50008 "Cash Voucher"
                 }
                 action("Print Payment Requisition")
                 {
+                    ApplicationArea = All;
                     Image = PrintDocument;
                     Promoted = true;
                     PromotedCategory = "Report";
@@ -366,6 +377,7 @@ page 50008 "Cash Voucher"
                 }
                 action("Transfer Payee Lines to Journal")
                 {
+                    ApplicationArea = All;
                     Image = TransferToGeneralJournal;
                     Promoted = true;
                     PromotedCategory = Process;
@@ -380,6 +392,7 @@ page 50008 "Cash Voucher"
                 }
                 action("Generate Bank File")
                 {
+                    ApplicationArea = All;
                     Image = ExportFile;
                     Promoted = true;
                     PromotedCategory = Process;
@@ -395,6 +408,7 @@ page 50008 "Cash Voucher"
                 }
                 action("Archive Voucher")
                 {
+                    ApplicationArea = All;
                     Image = Archive;
                     Promoted = true;
                     PromotedCategory = Process;

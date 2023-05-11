@@ -17,18 +17,23 @@ page 50020 "Cash Budget Analysis Fact Box"
             {
                 field("Account No."; Rec."Account No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Budget Code"; Rec."Budget Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
+                    ApplicationArea = All;
                 }
                 field(Amount; Rec.Amount)
                 {
+                    ApplicationArea = All;
                 }
                 field("Budget Comment"; Rec."Budget Comment")
                 {
+                    ApplicationArea = All;
                     StyleExpr = StyleText1;
                 }
             }

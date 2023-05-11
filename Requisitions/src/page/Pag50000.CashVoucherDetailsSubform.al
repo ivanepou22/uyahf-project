@@ -22,9 +22,11 @@ page 50000 "Cash Voucher Details Subform"
             {
                 field(Details; Rec.Details)
                 {
+                    ApplicationArea = All;
                 }
                 field(Amount; Rec.Amount)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

@@ -15,24 +15,31 @@ page 50014 "Monthly Budget Analysis"
         {
             field("Accounting Period Start Date"; Rec."Accounting Period Start Date")
             {
+                ApplicationArea = All;
             }
             field("Accounting Period End Date"; Rec."Accounting Period End Date")
             {
+                ApplicationArea = All;
             }
             field("Budget Amount for the Month"; Rec."Budget Amount for the Month")
             {
+                ApplicationArea = All;
             }
             field("Actual Amount for the Month"; Rec."Actual Amount for the Month")
             {
+                ApplicationArea = All;
             }
             field("Commitment Amt for the Month"; Rec."Commitment Amt for the Month")
             {
+                ApplicationArea = All;
             }
             field("Bal. on Budget for the Month"; Rec."Bal. on Budget for the Month")
             {
+                ApplicationArea = All;
             }
             field("Budget Comment for the Month"; Rec."Budget Comment for the Month")
             {
+                ApplicationArea = All;
                 StyleExpr = StyleText1;
             }
         }

@@ -3,8 +3,6 @@
 /// </summary>
 page 50015 "Budget Analysis Fact Box"
 {
-    // version MAG
-
     Caption = 'Budget Analysis Fact Box';
     PageType = CardPart;
     SourceTable = "NFL Requisition Line";
@@ -17,19 +15,24 @@ page 50015 "Budget Analysis Fact Box"
             {
                 field("Control Account"; Rec."Control Account")
                 {
+                    ApplicationArea = All;
                 }
                 field("Budget Code"; Rec."Budget Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Amount Requested"; Rec."Line Amount")
                 {
+                    ApplicationArea = All;
                     Caption = 'Amount Requested';
                 }
                 field("Budget Comment"; Rec."Budget Comment")
                 {
+                    ApplicationArea = All;
                     StyleExpr = StyleText3;
                 }
             }
@@ -37,6 +40,7 @@ page 50015 "Budget Analysis Fact Box"
             {
                 field("Purchase Orders"; Rec."Purchase Orders")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

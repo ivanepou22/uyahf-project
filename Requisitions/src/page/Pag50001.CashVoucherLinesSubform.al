@@ -21,9 +21,11 @@ page 50001 "Cash Voucher Lines Subform"
             {
                 field("Account Type"; Rec."Account Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Account No."; Rec."Account No.")
                 {
+                    ApplicationArea = All;
 
                     trigger OnValidate();
                     begin
@@ -39,15 +41,19 @@ page 50001 "Cash Voucher Lines Subform"
                 }
                 field("Advance Code"; Rec."Advance Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Control Account"; Rec."Control Account")
                 {
+                    ApplicationArea = All;
                 }
                 field("Account Name"; Rec."Account Name")
                 {
+                    ApplicationArea = All;
                 }
                 field("Budget Code"; Rec."Budget Code")
                 {
+                    ApplicationArea = All;
 
                     trigger OnValidate();
                     begin
@@ -60,6 +66,7 @@ page 50001 "Cash Voucher Lines Subform"
                 }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
+                    ApplicationArea = All;
 
                     trigger OnValidate();
                     begin
@@ -72,6 +79,7 @@ page 50001 "Cash Voucher Lines Subform"
                 }
                 field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
+                    ApplicationArea = All;
                 }
                 field(Control300; ShortcutDimCode[3])
                 {
@@ -139,12 +147,15 @@ page 50001 "Cash Voucher Lines Subform"
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
                 field("Currency Code"; Rec."Currency Code")
                 {
+                    ApplicationArea = All;
                 }
                 field(Amount; Rec.Amount)
                 {
+                    ApplicationArea = All;
 
                     trigger OnValidate();
                     begin
@@ -161,12 +172,15 @@ page 50001 "Cash Voucher Lines Subform"
                 }
                 field("Amount (LCY)"; Rec."Amount (LCY)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bal. Account Type"; Rec."Bal. Account Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bal. Account No."; Rec."Bal. Account No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Loan Type"; Rec."Loan Type")
                 {
@@ -174,65 +188,83 @@ page 50001 "Cash Voucher Lines Subform"
                 }
                 field("Exclude Amount"; Rec."Exclude Amount")
                 {
+                    ApplicationArea = All;
                 }
                 field("Applies-to Doc. Type"; Rec."Applies-to Doc. Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Applies-to Doc. No."; Rec."Applies-to Doc. No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bank Account"; Rec."Bank Account")
                 {
+                    ApplicationArea = All;
                 }
                 field("Beneficary Name"; Rec."Beneficary Name")
                 {
+                    ApplicationArea = All;
                 }
                 field("Beneficary Bank Account No."; Rec."Beneficary Bank Account No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Beneficary Bank Name"; Rec."Beneficary Bank Name")
                 {
+                    ApplicationArea = All;
                 }
                 field("Beneficary Bank Code"; Rec."Beneficary Bank Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Beneficary Branch Code"; Rec."Beneficary Branch Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Budget Amount as at Date"; Rec."Budget Amount as at Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Actual Amount as at Date"; Rec."Actual Amount as at Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Commitment Amount as at Date"; Rec."Commitment Amount as at Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Balance on Budget as at Date"; Rec."Balance on Budget as at Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Budget Comment as at Date"; Rec."Budget Comment as at Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Budget Amount for the Year"; Rec."Budget Amount for the Year")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Actual Amount for the Year"; Rec."Actual Amount for the Year")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Commitment Amount for the Year"; Rec."Commitment Amount for the Year")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Balance on Budget for the Year"; Rec."Balance on Budget for the Year")
                 {
+                    ApplicationArea = All;
                     Visible = false;
 
                     trigger OnValidate();
@@ -242,22 +274,28 @@ page 50001 "Cash Voucher Lines Subform"
                 }
                 field("Budget Comment for the Year"; Rec."Budget Comment for the Year")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Budget Amount for the Quarter"; Rec."Budget Amount for the Quarter")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bank File Generated"; Rec."Bank File Generated")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bank File Generated On"; Rec."Bank File Generated On")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bank File Gen. by"; Rec."Bank File Gen. by")
                 {
+                    ApplicationArea = All;
                 }
                 field("Income/Balance"; Rec."Income/Balance")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

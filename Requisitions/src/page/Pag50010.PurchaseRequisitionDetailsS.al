@@ -21,9 +21,11 @@ page 50010 "Purchase Requisition Details S"
             {
                 field(Details; Rec.Details)
                 {
+                    ApplicationArea = All;
                 }
                 field(Amount; Rec.Amount)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

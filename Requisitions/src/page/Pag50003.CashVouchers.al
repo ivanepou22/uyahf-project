@@ -21,45 +21,58 @@ page 50003 "Cash Vouchers"
             {
                 field("Posting Date"; Rec."Posting Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Budget Code"; Rec."Budget Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field(Status; Rec.Status)
                 {
+                    ApplicationArea = All;
                     Editable = StatusEdit;
                 }
                 field("Document Type"; Rec."Document Type")
                 {
+                    ApplicationArea = All;
                 }
                 field(Comment; Rec.Comment)
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Prepared by"; Rec."Prepared by")
                 {
+                    ApplicationArea = All;
                 }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Currency Code"; Rec."Currency Code")
                 {
+                    ApplicationArea = All;
                 }
                 field(Payee; Rec.Payee)
                 {
+                    ApplicationArea = All;
                 }
                 field("Payment Voucher Details Total"; Rec."Payment Voucher Details Total")
                 {
+                    ApplicationArea = All;
                 }
                 field("Payment Voucher Lines Total"; Rec."Payment Voucher Lines Total")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

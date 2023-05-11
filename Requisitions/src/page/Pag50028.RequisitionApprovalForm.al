@@ -19,6 +19,7 @@ page 50028 "Requisition Approval Form"
                 Caption = 'General';
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
 
                     trigger OnAssistEdit();
@@ -29,14 +30,17 @@ page 50028 "Requisition Approval Form"
                 }
                 field("Request-By No."; Rec."Request-By No.")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Request-By Name"; Rec."Request-By Name")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
 
                     trigger OnValidate();
@@ -46,14 +50,17 @@ page 50028 "Requisition Approval Form"
                 }
                 field("Wrks/Srvcs/Sup"; Rec."Wrks/Srvcs/Sup")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("PD Entity"; Rec."PD Entity")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Procument Plan Reference"; Rec."Procument Plan Reference")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 group("Budget Analysis1")
@@ -62,9 +69,11 @@ page 50028 "Requisition Approval Form"
                     Caption = 'Budget Analysis';
                     field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                     {
+                        ApplicationArea = All;
                     }
                     field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                     {
+                        ApplicationArea = All;
                     }
                     field("Hub Code"; Rec."Hub Code")
                     {
@@ -74,32 +83,39 @@ page 50028 "Requisition Approval Form"
 
                     field("Budget Code"; Rec."Budget Code")
                     {
+                        ApplicationArea = All;
                     }
                 }
                 field("Posting Description"; Rec."Posting Description")
                 {
+                    ApplicationArea = All;
                     Caption = 'Subject of Procurement';
                     Editable = EditPage;
                 }
                 field("Location Code"; Rec."Location Code")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Order Date"; Rec."Order Date")
                 {
+                    ApplicationArea = All;
                     Caption = 'Request Date';
                     Editable = EditPage;
                 }
                 field("Document Date"; Rec."Document Date")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Requested Receipt Date"; Rec."Requested Receipt Date")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Currency Code"; Rec."Currency Code")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
 
                     trigger OnAssistEdit();
@@ -123,41 +139,52 @@ page 50028 "Requisition Approval Form"
                 }
                 field(Status; Rec.Status)
                 {
+                    ApplicationArea = All;
                 }
                 field("Valid to Date"; Rec."Valid to Date")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Converted to Order"; Rec."Converted to Order")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Converted to Quote"; Rec."Converted to Quote")
                 {
+                    ApplicationArea = All;
                 }
                 field(Commited; Rec.Commited)
                 {
+                    ApplicationArea = All;
                 }
                 field(Archieved; Rec.Archieved)
                 {
+                    ApplicationArea = All;
                 }
                 field("Prepared by"; Rec."Prepared by")
                 {
+                    ApplicationArea = All;
                 }
                 field("Requisition Details Total"; Rec."Requisition Details Total")
                 {
+                    ApplicationArea = All;
                 }
                 field("Requisition Lines Total"; Rec."Requisition Lines Total")
                 {
+                    ApplicationArea = All;
                 }
             }
             part("Requisition Details"; "Purchase Requisition Details S")
             {
+                ApplicationArea = Basic, Suite;
                 Editable = EditPage;
                 SubPageLink = "Document No." = FIELD("No.");
             }
             part(PurchLines; "Purchase Requisition Subform")
             {
+                ApplicationArea = Basic, Suite;
                 SubPageLink = "Document No." = FIELD("No.");
             }
         }
@@ -172,6 +199,7 @@ page 50028 "Requisition Approval Form"
             }
             part("Budget Analysis As at Date"; "Budget Analysis As at Date")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = PurchLines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -180,6 +208,7 @@ page 50028 "Requisition Approval Form"
             }
             part("Monthly Budget Analysis"; "Monthly Budget Analysis")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = PurchLines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -188,6 +217,7 @@ page 50028 "Requisition Approval Form"
             }
             part("Quarterly Budget Analysis"; "Quarterly Budget Analysis")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = PurchLines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -196,6 +226,7 @@ page 50028 "Requisition Approval Form"
             }
             part("Annual Budget Analysis"; "Annual Budget Analysis")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = PurchLines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -204,6 +235,7 @@ page 50028 "Requisition Approval Form"
             }
             part("Budget Analysis"; "Budget Analysis Fact Box")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = PurchLines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -222,6 +254,7 @@ page 50028 "Requisition Approval Form"
                 Caption = '&Requisition';
                 action(Card)
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Card';
                     Image = EditLines;
                     RunObject = Page "Employee Card";
@@ -230,6 +263,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action("Co&mments")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Co&mments';
                     Image = ViewComments;
                     Promoted = true;
@@ -239,6 +273,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action(Dimensions)
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Dimensions';
                     Image = Dimensions;
 
@@ -249,6 +284,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action(Approvals)
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Approvals';
                     Image = Approvals;
                     Visible = false;
@@ -262,6 +298,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action("NFL Approval Entries History")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'NFL Approval Entries History';
                     Image = "Action";
 
@@ -286,6 +323,7 @@ page 50028 "Requisition Approval Form"
                     }
                     action("Purchase Quote")
                     {
+                        ApplicationArea = Basic, Suite;
                         Caption = 'Purchase Quote';
                         Image = Quote;
                         RunObject = Page "Purchase List";
@@ -295,6 +333,7 @@ page 50028 "Requisition Approval Form"
                     }
                     action("Purchase Orders")
                     {
+                        ApplicationArea = Basic, Suite;
                         Caption = 'Purchase Orders';
                         RunObject = Page "Purchase List";
                         RunPageLink = "Purchase Requisition No." = FIELD("No.");
@@ -303,11 +342,13 @@ page 50028 "Requisition Approval Form"
                     }
                     action("Purchase Receipts")
                     {
+                        ApplicationArea = Basic, Suite;
                         Caption = 'Purchase Receipts';
                         RunObject = Page "Posted Purchase Receipts";
                     }
                     action("Posted Purchase Invoices")
                     {
+                        ApplicationArea = Basic, Suite;
                         Caption = 'Posted Purchase Invoices';
                         RunObject = Page "Posted Purchase Invoices";
                     }
@@ -329,6 +370,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action("Archi&ve Document")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Archi&ve Document';
                     Image = Archive;
                     Promoted = true;
@@ -398,6 +440,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action("List of All Approval Entries")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = '&List of All Approval Entries';
                     Image = EntriesList;
                     Promoted = true;
@@ -406,15 +449,10 @@ page 50028 "Requisition Approval Form"
                     Enabled = true;
                     RunObject = Page "All NV Approval Entries";
                     RunPageLink = "Document No." = FIELD("No.");
-
-                    trigger OnAction();
-                    var
-                    // ApprovalEntry: Record "NFL Approval Entry";
-                    begin
-                    end;
                 }
                 action("Approval Request Entries")
                 {
+                    ApplicationArea = Basic, Suite;
                     Image = LedgerEntries;
                     Promoted = true;
                     PromotedCategory = Category8;
@@ -431,6 +469,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action("Make Order")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Make Order';
                     Image = MakeOrder;
                     Promoted = true;
@@ -469,6 +508,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action("Make Order from All Requisitions")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Make Order from All Requisitions';
                     Visible = false;
 
@@ -488,6 +528,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action("Make RFQ")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Make RFQ';
                     Image = Quote;
                     Promoted = true;
@@ -513,6 +554,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action(Print)
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Print';
                     Image = Print;
                     Promoted = true;
@@ -532,6 +574,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action("Detail Commitment Report")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Detail Commitment Report';
                     Image = "Report";
                     Promoted = true;
@@ -540,6 +583,7 @@ page 50028 "Requisition Approval Form"
                 }
                 action("Form 5")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Form 5';
                     Image = Print;
                     Promoted = true;

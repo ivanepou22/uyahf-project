@@ -118,7 +118,7 @@ page 50026 "All Purchase Requisitions"
                     Caption = 'Card';
                     Image = EditLines;
                     ShortCutKey = 'Shift+F7';
-
+                    ApplicationArea = Basic, Suite;
                     trigger OnAction();
                     begin
                         CASE Rec."Document Type" OF
@@ -138,7 +138,7 @@ page 50026 "All Purchase Requisitions"
                 }
                 action("Print PP Form 20")
                 {
-
+                    ApplicationArea = Basic, Suite;
                     trigger OnAction();
                     var
                         ReqnHeader: Record "NFL Requisition Header";

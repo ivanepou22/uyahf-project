@@ -20,6 +20,7 @@ page 50027 "Purchase Requisition"
                 Caption = 'General';
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
 
                     trigger OnAssistEdit();
@@ -30,14 +31,17 @@ page 50027 "Purchase Requisition"
                 }
                 field("Request-By No."; Rec."Request-By No.")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Request-By Name"; Rec."Request-By Name")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
 
                     trigger OnValidate();
@@ -47,15 +51,18 @@ page 50027 "Purchase Requisition"
                 }
                 field("Wrks/Srvcs/Sup"; Rec."Wrks/Srvcs/Sup")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("PD Entity"; Rec."PD Entity")
                 {
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 field("Procument Plan Reference"; Rec."Procument Plan Reference")
                 {
                     Visible = false;
+                    ApplicationArea = All;
                 }
                 group("Budget Analysis1")
                 {
@@ -63,9 +70,11 @@ page 50027 "Purchase Requisition"
                     Caption = 'Budget Analysis';
                     field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                     {
+                        ApplicationArea = All;
                     }
                     field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                     {
+                        ApplicationArea = All;
                     }
                     field("Hub Code"; Rec."Hub Code")
                     {
@@ -75,32 +84,39 @@ page 50027 "Purchase Requisition"
 
                     field("Budget Code"; Rec."Budget Code")
                     {
+                        ApplicationArea = All;
                     }
                 }
                 field("Posting Description"; Rec."Posting Description")
                 {
+                    ApplicationArea = All;
                     Caption = 'Subject of Procurement';
                     Editable = EditPage;
                 }
                 field("Location Code"; Rec."Location Code")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Order Date"; Rec."Order Date")
                 {
+                    ApplicationArea = All;
                     Caption = 'Request Date';
                     Editable = EditPage;
                 }
                 field("Document Date"; Rec."Document Date")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Requested Receipt Date"; Rec."Requested Receipt Date")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Currency Code"; Rec."Currency Code")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
 
                     trigger OnAssistEdit();
@@ -157,38 +173,47 @@ page 50027 "Purchase Requisition"
                 }
                 field(Status; Rec.Status)
                 {
+                    ApplicationArea = All;
 
                 }
                 field("Valid to Date"; Rec."Valid to Date")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Converted to Order"; Rec."Converted to Order")
                 {
+                    ApplicationArea = All;
                     Editable = EditPage;
                 }
                 field("Converted to Quote"; Rec."Converted to Quote")
                 {
+                    ApplicationArea = All;
                 }
                 field(Commited; Rec.Commited)
                 {
+                    ApplicationArea = All;
                 }
                 field(Archieved; Rec.Archieved)
                 {
+                    ApplicationArea = All;
                 }
                 field("Prepared by"; Rec."Prepared by")
                 {
+                    ApplicationArea = All;
                 }
                 field("Requisition Details Total"; Rec."Requisition Details Total")
                 {
+                    ApplicationArea = All;
                 }
                 field("Requisition Lines Total"; Rec."Requisition Lines Total")
                 {
+                    ApplicationArea = All;
                 }
                 field("Budget At Date Exceeded"; Rec."Budget At Date Exceeded")
                 {
-                    ToolTip = 'Specifies the value of the Budget At Date Exceeded field';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Budget At Date Exceeded field';
                     Visible = false;
                 }
                 field("Month Budget Exceeded"; Rec."Month Budget Exceeded")
@@ -213,11 +238,13 @@ page 50027 "Purchase Requisition"
             }
             part("Requisition Details"; "Purchase Requisition Details S")
             {
+                ApplicationArea = Basic, Suite;
                 Editable = EditPage;
                 SubPageLink = "Document No." = FIELD("No.");
             }
             part(PurchLines; "Purchase Requisition Subform")
             {
+                ApplicationArea = Basic, Suite;
                 SubPageLink = "Document No." = FIELD("No.");
             }
         }
@@ -240,6 +267,7 @@ page 50027 "Purchase Requisition"
             }
             part("Budget Analysis As at Date"; "Budget Analysis As at Date")
             {
+                ApplicationArea = All;
                 Provider = PurchLines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -248,6 +276,7 @@ page 50027 "Purchase Requisition"
             }
             part("Monthly Budget Analysis"; "Monthly Budget Analysis")
             {
+                ApplicationArea = All;
                 Provider = PurchLines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -256,6 +285,7 @@ page 50027 "Purchase Requisition"
             }
             part("Quarterly Budget Analysis"; "Quarterly Budget Analysis")
             {
+                ApplicationArea = All;
                 Provider = PurchLines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -264,6 +294,7 @@ page 50027 "Purchase Requisition"
             }
             part("Annual Budget Analysis"; "Annual Budget Analysis")
             {
+                ApplicationArea = All;
                 Provider = PurchLines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -272,6 +303,7 @@ page 50027 "Purchase Requisition"
             }
             part("Budget Analysis"; "Budget Analysis Fact Box")
             {
+                ApplicationArea = All;
                 Provider = PurchLines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -290,6 +322,7 @@ page 50027 "Purchase Requisition"
                 Caption = '&Requisition';
                 action(Card)
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Card';
                     Image = EditLines;
                     RunObject = Page "Employee Card";
@@ -298,6 +331,7 @@ page 50027 "Purchase Requisition"
                 }
                 action("Co&mments")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Co&mments';
                     Image = ViewComments;
                     // RunObject = page "NFL Approval Comments";
@@ -305,6 +339,7 @@ page 50027 "Purchase Requisition"
                 }
                 action(Dimensions)
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Dimensions';
                     Image = Dimensions;
 
@@ -334,6 +369,7 @@ page 50027 "Purchase Requisition"
                     }
                     action("Purchase Quote")
                     {
+                        ApplicationArea = Basic, Suite;
                         Caption = 'Purchase Quote';
                         Image = Quote;
                         RunObject = Page "Purchase List";
@@ -343,6 +379,7 @@ page 50027 "Purchase Requisition"
                     }
                     action("Purchase Orders")
                     {
+                        ApplicationArea = Basic, Suite;
                         Caption = 'Purchase Orders';
                         RunObject = Page "Purchase List";
                         RunPageLink = "Purchase Requisition No." = FIELD("No.");
@@ -351,11 +388,13 @@ page 50027 "Purchase Requisition"
                     }
                     action("Purchase Receipts")
                     {
+                        ApplicationArea = Basic, Suite;
                         Caption = 'Purchase Receipts';
                         RunObject = Page "Posted Purchase Receipts";
                     }
                     action("Posted Purchase Invoices")
                     {
+                        ApplicationArea = Basic, Suite;
                         Caption = 'Posted Purchase Invoices';
                         RunObject = Page "Posted Purchase Invoices";
                     }
@@ -363,7 +402,6 @@ page 50027 "Purchase Requisition"
                 action("Revision Log")
                 {
                     Caption = 'Revision Log';
-                    // RunObject = Page 51402644; IE
                 }
             }
         }
@@ -381,6 +419,7 @@ page 50027 "Purchase Requisition"
                     Image = Archive;
                     Promoted = true;
                     PromotedCategory = Process;
+                    ApplicationArea = Basic, Suite;
                     trigger OnAction();
                     var
                         lvPurchLine: Record "NFL Requisition Line";
@@ -438,6 +477,7 @@ page 50027 "Purchase Requisition"
                 }
                 action("List of All Approval Entries")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = '&List of All Approval Entries';
                     Image = EntriesList;
                     Promoted = true;
@@ -449,6 +489,7 @@ page 50027 "Purchase Requisition"
                 }
                 action("Approval Request Entries")
                 {
+                    ApplicationArea = Basic, Suite;
                     Image = LedgerEntries;
                     Promoted = true;
                     PromotedCategory = Process;
@@ -465,6 +506,7 @@ page 50027 "Purchase Requisition"
                 }
                 action("Make Order")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Make Order';
                     Image = MakeOrder;
                     Promoted = true;
@@ -502,6 +544,7 @@ page 50027 "Purchase Requisition"
                 }
                 action("Make Order from All Requisitions")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Make Order from All Requisitions';
                     Visible = false;
 
@@ -521,6 +564,7 @@ page 50027 "Purchase Requisition"
                 }
                 action("Make RFQ")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Make RFQ';
                     Image = Quote;
                     Promoted = true;
@@ -546,6 +590,7 @@ page 50027 "Purchase Requisition"
                 }
                 action(Print)
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Print';
                     Image = Print;
                     Promoted = true;
@@ -565,14 +610,15 @@ page 50027 "Purchase Requisition"
                 }
                 action("Detail Commitment Report")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Detail Commitment Report';
                     Image = "Report";
                     Promoted = true;
                     PromotedCategory = "Report";
-                    // RunObject = Report 51402257; // Report not found IE
                 }
                 action("Form 5")
                 {
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Form 5';
                     Image = Print;
                     Promoted = true;

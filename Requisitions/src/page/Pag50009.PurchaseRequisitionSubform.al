@@ -21,9 +21,11 @@ page 50009 "Purchase Requisition Subform"
             {
                 field(Type; Rec.Type)
                 {
+                    ApplicationArea = All;
                 }
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = All;
 
                     trigger OnValidate();
                     begin
@@ -40,6 +42,7 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Budget Code"; Rec."Budget Code")
                 {
+                    ApplicationArea = All;
 
                     trigger OnValidate();
                     begin
@@ -52,6 +55,7 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Control Account"; Rec."Control Account")
                 {
+                    ApplicationArea = All;
                     Caption = 'Expense Account';
 
                     trigger OnValidate();
@@ -65,10 +69,12 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Deferral Code"; Rec."Deferral Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
+                    ApplicationArea = All;
 
                     trigger OnValidate();
                     begin
@@ -81,6 +87,7 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Cross-Reference No."; Rec."Cross-Reference No.")
                 {
+                    ApplicationArea = All;
                     Visible = false;
 
                     trigger OnLookup(var Text: Text): Boolean;
@@ -96,31 +103,39 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Variant Code"; Rec."Variant Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field(Nonstock; Rec.Nonstock)
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("VAT Prod. Posting Group"; Rec."VAT Prod. Posting Group")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                 }
                 field("Buy-from Vendor No."; Rec."Buy-from Vendor No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Location Code"; Rec."Location Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bin Code"; Rec."Bin Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field(Quantity; Rec.Quantity)
                 {
+                    ApplicationArea = All;
                     BlankZero = true;
 
                     trigger OnValidate();
@@ -144,13 +159,16 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Unit of Measure"; Rec."Unit of Measure")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Direct Unit Cost"; Rec."Direct Unit Cost")
                 {
+                    ApplicationArea = All;
                     BlankZero = true;
 
                     trigger OnValidate();
@@ -164,18 +182,22 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Indirect Cost %"; Rec."Indirect Cost %")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Unit Cost (LCY)"; Rec."Unit Cost (LCY)")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Unit Price (LCY)"; Rec."Unit Price (LCY)")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Line Amount"; Rec."Line Amount")
                 {
+                    ApplicationArea = All;
                     BlankZero = true;
 
                     trigger OnValidate();
@@ -189,43 +211,54 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Direct Unit Cost (LCY)"; Rec."Direct Unit Cost (LCY)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Line Amount (LCY)"; Rec."Line Amount (LCY)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Applies-to Doc. No."; Rec."Applies-to Doc. No.")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Applies-to Doc. Type"; Rec."Applies-to Doc. Type")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Line Discount %"; Rec."Line Discount %")
                 {
+                    ApplicationArea = All;
                     BlankZero = true;
                     Visible = false;
                 }
                 field("Line Discount Amount"; Rec."Line Discount Amount")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Allow Invoice Disc."; Rec."Allow Invoice Disc.")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Allow Item Charge Assignment"; Rec."Allow Item Charge Assignment")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Qty. to Order"; Rec."Qty. to Order")
                 {
+                    ApplicationArea = All;
                 }
                 field("Qty. to Assign"; Rec."Qty. to Assign")
                 {
+                    ApplicationArea = All;
                     BlankZero = true;
                     Visible = false;
 
@@ -238,6 +271,7 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Qty. Assigned"; Rec."Qty. Assigned")
                 {
+                    ApplicationArea = All;
                     BlankZero = true;
                     Visible = false;
 
@@ -250,22 +284,27 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Prod. Order No."; Rec."Prod. Order No.")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Blanket Order No."; Rec."Blanket Order No.")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Blanket Order Line No."; Rec."Blanket Order Line No.")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Appl.-to Item Entry"; Rec."Appl.-to Item Entry")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
+                    ApplicationArea = All;
                     Visible = true;
                 }
                 field(Control300; ShortcutDimCode[3])
@@ -337,38 +376,47 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Budget Amount as at Date"; Rec."Budget Amount as at Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Actual Amount as at Date"; Rec."Actual Amount as at Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Commitment Amount as at Date"; Rec."Commitment Amount as at Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Balance on Budget as at Date"; Rec."Balance on Budget as at Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Budget Comment as at Date"; Rec."Budget Comment as at Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Budget Amount for the Year"; Rec."Budget Amount for the Year")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Actual Amount for the Year"; Rec."Actual Amount for the Year")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Commitment Amount for the Year"; Rec."Commitment Amount for the Year")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Balance on Budget for the Year"; Rec."Balance on Budget for the Year")
                 {
+                    ApplicationArea = All;
                     Visible = false;
 
                     trigger OnValidate();
@@ -378,10 +426,12 @@ page 50009 "Purchase Requisition Subform"
                 }
                 field("Budget Comment for the Year"; Rec."Budget Comment for the Year")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Budget Comment"; Rec."Budget Comment")
                 {
+                    ApplicationArea = All;
                 }
                 field(Committed; Rec.Committed)
                 {
@@ -419,16 +469,19 @@ page 50009 "Purchase Requisition Subform"
                 Visible = false;
                 field(Contr0001; STRSUBSTNO('(%1)', PurchInfoPaneMgt.CalcAvailability(Rec)))
                 {
+                    ApplicationArea = All;
                     ShowCaption = false;
                     Editable = false;
                 }
                 field(Contr0002; STRSUBSTNO('(%1)', PurchInfoPaneMgt.CalcNoOfPurchasePrices(Rec)))
                 {
+                    ApplicationArea = All;
                     ShowCaption = false;
                     Editable = false;
                 }
                 field(Contr0003; STRSUBSTNO('(%1)', PurchInfoPaneMgt.CalcNoOfPurchLineDisc(Rec)))
                 {
+                    ApplicationArea = All;
                     ShowCaption = false;
                     Editable = false;
                 }
@@ -450,6 +503,7 @@ page 50009 "Purchase Requisition Subform"
                     {
                         Caption = 'Period';
 
+                        ApplicationArea = All;
                         trigger OnAction();
                         begin
                             //This functionality was copied from page #51406300. Unsupported part was commented. Please check it.
@@ -462,6 +516,7 @@ page 50009 "Purchase Requisition Subform"
                     {
                         Caption = 'Variant';
 
+                        ApplicationArea = All;
                         trigger OnAction();
                         begin
                             //This functionality was copied from page #51406300. Unsupported part was commented. Please check it.
@@ -474,6 +529,7 @@ page 50009 "Purchase Requisition Subform"
                     {
                         Caption = 'Location';
 
+                        ApplicationArea = All;
                         trigger OnAction();
                         begin
                             //This functionality was copied from page #51406300. Unsupported part was commented. Please check it.
@@ -489,6 +545,7 @@ page 50009 "Purchase Requisition Subform"
                     Image = Dimensions;
                     ShortCutKey = 'Shift+Ctrl+D';
 
+                    ApplicationArea = All;
                     trigger OnAction();
                     begin
                         //This functionality was copied from page #51406300. Unsupported part was commented. Please check it.
@@ -502,6 +559,7 @@ page 50009 "Purchase Requisition Subform"
                     Caption = 'Co&mments';
                     Image = ViewComments;
 
+                    ApplicationArea = All;
                     trigger OnAction();
                     begin
                         ShowLineComments;
@@ -515,7 +573,7 @@ page 50009 "Purchase Requisition Subform"
                 {
                     Caption = 'E&xplode BOM';
                     Image = ExplodeBOM;
-
+                    ApplicationArea = All;
                     trigger OnAction();
                     begin
                         //This functionality was copied from page #51406300. Unsupported part was commented. Please check it.
@@ -526,6 +584,7 @@ page 50009 "Purchase Requisition Subform"
                 }
                 action("Insert &Ext. Texts")
                 {
+                    ApplicationArea = All;
                     Caption = 'Insert &Ext. Texts';
 
                     trigger OnAction();
@@ -540,9 +599,7 @@ page 50009 "Purchase Requisition Subform"
             action("Purchase Line &Discounts")
             {
                 Caption = 'Purchase Line &Discounts';
-                Promoted = true;
-                PromotedCategory = Process;
-
+                ApplicationArea = All;
                 trigger OnAction();
                 begin
                     ShowLineDisc;
@@ -552,8 +609,7 @@ page 50009 "Purchase Requisition Subform"
             action("Purcha&se Prices")
             {
                 Caption = 'Purcha&se Prices';
-                Promoted = true;
-                PromotedCategory = Process;
+                ApplicationArea = All;
 
                 trigger OnAction();
                 begin
@@ -564,8 +620,7 @@ page 50009 "Purchase Requisition Subform"
             action("Availa&bility")
             {
                 Caption = 'Availa&bility';
-                Promoted = true;
-                PromotedCategory = Process;
+                ApplicationArea = All;
 
                 trigger OnAction();
                 begin
@@ -576,8 +631,7 @@ page 50009 "Purchase Requisition Subform"
             action("Ite&m Card")
             {
                 Caption = 'Ite&m Card';
-                Promoted = true;
-                PromotedCategory = Process;
+                ApplicationArea = All;
 
                 trigger OnAction();
                 begin

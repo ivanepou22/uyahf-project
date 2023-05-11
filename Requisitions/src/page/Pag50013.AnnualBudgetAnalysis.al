@@ -15,24 +15,31 @@ page 50013 "Annual Budget Analysis"
         {
             field("Fiscal Year Start Date"; Rec."Fiscal Year Start Date")
             {
+                ApplicationArea = All;
             }
             field("Fiscal Year End Date"; Rec."Fiscal Year End Date")
             {
+                ApplicationArea = All;
             }
             field("Budget Amount for the Year"; Rec."Budget Amount for the Year")
             {
+                ApplicationArea = All;
             }
             field("Actual Amount for the Year"; Rec."Actual Amount for the Year")
             {
+                ApplicationArea = All;
             }
             field("Commitment Amount for the Year"; Rec."Commitment Amount for the Year")
             {
+                ApplicationArea = All;
             }
             field("Balance on Budget for the Year"; Rec."Balance on Budget for the Year")
             {
+                ApplicationArea = All;
             }
             field("Budget Comment for the Year"; Rec."Budget Comment for the Year")
             {
+                ApplicationArea = All;
                 StyleExpr = StyleText1;
             }
         }

@@ -15,24 +15,31 @@ page 50022 "Cash Quarterly Budget Analysis"
         {
             field("Quarter Start Date"; Rec."Quarter Start Date")
             {
+                ApplicationArea = All;
             }
             field("Quarter End Date"; Rec."Quarter End Date")
             {
+                ApplicationArea = All;
             }
             field("Budget Amount for the Quarter"; Rec."Budget Amount for the Quarter")
             {
+                ApplicationArea = All;
             }
             field("Actual Amount for the Quarter"; Rec."Actual Amount for the Quarter")
             {
+                ApplicationArea = All;
             }
             field("Commitment Amt for the Quarter"; Rec."Commitment Amt for the Quarter")
             {
+                ApplicationArea = All;
             }
             field("Bal. on Budget for the Quarter"; Rec."Bal. on Budget for the Quarter")
             {
+                ApplicationArea = All;
             }
             field("Budget Comment for the Quarter"; Rec."Budget Comment for the Quarter")
             {
+                ApplicationArea = All;
                 StyleExpr = StyleText1;
             }
         }
