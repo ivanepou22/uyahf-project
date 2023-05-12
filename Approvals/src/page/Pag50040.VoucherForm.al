@@ -92,6 +92,7 @@ page 50040 "Voucher Form"
                 }
                 field("Prepared by"; Rec."Prepared by")
                 {
+                    ApplicationArea = All;
                 }
                 field("Received by"; Rec."Received by")
                 {
@@ -222,16 +223,17 @@ page 50040 "Voucher Form"
             }
             part(Details; "Voucher Details Subform")
             {
+                ApplicationArea = Basic, Suite;
                 SubPageLink = "Document No." = FIELD("No."),
                               "Document Type" = FIELD("Document Type");
                 UpdatePropagation = Both;
             }
             part(Lines; "Voucher Lines Subform")
             {
+                ApplicationArea = Basic, Suite;
                 SubPageLink = "Document No." = FIELD("No."),
                               "Document Type" = FIELD("Document Type");
                 UpdatePropagation = Both;
-                //Visible = PaymentVoucherLinesVisible;
             }
         }
         area(factboxes)
@@ -245,6 +247,7 @@ page 50040 "Voucher Form"
             }
             part("Budget Analysis As at Date"; "CashBudget Analysis As at Date")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = Lines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -253,6 +256,7 @@ page 50040 "Voucher Form"
             }
             part("Monthly Budget Analysis"; "Cash Monthly Budget Analysis")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = Lines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -261,6 +265,7 @@ page 50040 "Voucher Form"
             }
             part("Quarterly Budget Analysis"; "Cash Quarterly Budget Analysis")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = Lines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -269,6 +274,7 @@ page 50040 "Voucher Form"
             }
             part("Annual Budget Analysis"; "Cash Annual Budget Analysis")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = Lines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -277,6 +283,7 @@ page 50040 "Voucher Form"
             }
             part("<Cash Budget Analysis Fact Box>"; "Cash Budget Analysis Fact Box")
             {
+                ApplicationArea = Basic, Suite;
                 Provider = Lines;
                 SubPageLink = "Document Type" = FIELD("Document Type"),
                               "Document No." = FIELD("Document No."),
@@ -314,6 +321,7 @@ page 50040 "Voucher Form"
                     Image = EntriesList;
                     Promoted = true;
                     PromotedCategory = Process;
+                    ApplicationArea = Basic, Suite;
                     PromotedIsBig = true;
                     Enabled = true;
                     RunObject = Page "All NV Approval Entries";
@@ -324,6 +332,7 @@ page 50040 "Voucher Form"
                     Image = Comment;
                     Promoted = true;
                     PromotedCategory = Process;
+                    ApplicationArea = Basic, Suite;
                     PromotedIsBig = true;
                     // RunObject = page "NFL Approval Comments";
                     // RunPageLink = "Document No." = field("No."), "Document Type" = field("Document Type"), "Table ID" = const(50075);
@@ -331,6 +340,7 @@ page 50040 "Voucher Form"
                 action("Print Payment Requisition")
                 {
                     Image = PrintDocument;
+                    ApplicationArea = Basic, Suite;
                     Promoted = true;
                     PromotedCategory = "Report";
                     PromotedIsBig = true;
@@ -351,6 +361,7 @@ page 50040 "Voucher Form"
                     Image = TransferToGeneralJournal;
                     Promoted = true;
                     PromotedCategory = Process;
+                    ApplicationArea = Basic, Suite;
                     PromotedIsBig = true;
 
                     trigger OnAction();
@@ -365,6 +376,7 @@ page 50040 "Voucher Form"
                     Image = ExportFile;
                     Promoted = true;
                     PromotedCategory = Process;
+                    ApplicationArea = Basic, Suite;
                     PromotedIsBig = true;
                     RunObject = Report "Generate Bank Payment 1";
 
@@ -380,6 +392,7 @@ page 50040 "Voucher Form"
                     Image = Archive;
                     Promoted = true;
                     PromotedCategory = Process;
+                    ApplicationArea = Basic, Suite;
                     PromotedIsBig = true;
 
                     trigger OnAction();
