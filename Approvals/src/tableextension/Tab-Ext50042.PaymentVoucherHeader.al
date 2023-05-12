@@ -409,18 +409,38 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
         end;
     end;
 
-    procedure CheckVoucherRelease(var PaymentVoucher: Record "Payment Voucher Header")
+    // procedure CheckVoucherRelease(var PaymentVoucher: Record "Payment Voucher Header")
+    // var
+    //     ApprovalEntries: Record "Approval Entry";
+    //     PurchaseSetup: Record "Purchases & Payables Setup";
+    //     customFunctionsCash: Codeunit "Custom Functions Cash";
+    // begin
+    //     ApprovalEntries.Reset();
+    //     ApprovalEntries.SetRange("Document No.", PaymentVoucher."No.");
+    //     if ApprovalEntries.Find('-') then begin
+    //         if not ((ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created)) then begin
+    //             if PurchaseSetup."Create Vouch. comm. on Approv." then
+    //                 customFunctionsCash.CreatePaymentVoucherCommitment(Rec);
+    //         end;
+    //     end;
+    // end;
+
+    procedure CheckForBudgetControllerApproval(var PaymentVoucher: Record "Payment Voucher Header")
     var
         ApprovalEntries: Record "Approval Entry";
-        PurchaseSetup: Record "Purchases & Payables Setup";
+        UserSetup: Record "User Setup";
         customFunctionsCash: Codeunit "Custom Functions Cash";
     begin
         ApprovalEntries.Reset();
+        ApprovalEntries.SetRange("Approver ID", UserId);
         ApprovalEntries.SetRange("Document No.", PaymentVoucher."No.");
-        if ApprovalEntries.Find('-') then begin
-            if not ((ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created)) then begin
-                if PurchaseSetup."Create Vouch. comm. on Approv." then
-                    customFunctionsCash.CreatePaymentVoucherCommitment(Rec);
+        ApprovalEntries.SetRange(Status, ApprovalEntries.Status::Approved);
+        if ApprovalEntries.FindFirst() then begin
+            UserSetup.Reset();
+            UserSetup.SetRange("User ID", ApprovalEntries."Approver ID");
+            UserSetup.SetRange("Budget Controller", true);
+            if UserSetup.FindFirst() then begin
+                customFunctionsCash.CreatePaymentVoucherCommitment(Rec);
             end;
         end;
     end;

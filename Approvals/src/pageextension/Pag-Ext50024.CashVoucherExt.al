@@ -132,7 +132,7 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                             CustomFunctions.DoubleCheckApprovalEntries(Rec);
                             CustomFunctions.CompleteDocumentApproval(Rec);
                         end;
-                        Rec.CheckVoucherRelease(Rec);
+                        Rec.CheckForBudgetControllerApproval(Rec);
                     end;
                 }
                 action(Reject)
