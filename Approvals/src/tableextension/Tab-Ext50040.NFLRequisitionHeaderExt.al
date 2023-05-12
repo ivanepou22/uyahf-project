@@ -128,17 +128,36 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
     end;
 
     //check he document release
-    procedure CheckDocumentRelease(var PurchaseRequisition: Record "NFL Requisition Header")
+    // procedure CheckDocumentRelease(var PurchaseRequisition: Record "NFL Requisition Header")
+    // var
+    //     ApprovalEntries: Record "Approval Entry";
+    //     PurchaseSetup: Record "Purchases & Payables Setup";
+    // begin
+    //     ApprovalEntries.Reset();
+    //     ApprovalEntries.SetRange("Document No.", PurchaseRequisition."No.");
+    //     if ApprovalEntries.Find('-') then begin
+    //         if not ((ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created)) then begin
+    //             if PurchaseSetup."Create Purch. comm. on Approv." then
+    //                 Rec.CreatePurchaseRequisitionCommitmentEntries();
+    //         end;
+    //     end;
+    // end;
+
+    procedure CheckForBudgetControllerApproval(var PurchaseRequisition: Record "NFL Requisition Header")
     var
         ApprovalEntries: Record "Approval Entry";
-        PurchaseSetup: Record "Purchases & Payables Setup";
+        UserSetup: Record "User Setup";
     begin
         ApprovalEntries.Reset();
+        ApprovalEntries.SetRange("Approver ID", UserId);
         ApprovalEntries.SetRange("Document No.", PurchaseRequisition."No.");
-        if ApprovalEntries.Find('-') then begin
-            if not ((ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created)) then begin
-                if PurchaseSetup."Create Purch. comm. on Approv." then
-                    Rec.CreatePurchaseRequisitionCommitmentEntries();
+        ApprovalEntries.SetRange(Status, ApprovalEntries.Status::Approved);
+        if ApprovalEntries.FindFirst() then begin
+            UserSetup.Reset();
+            UserSetup.SetRange("User ID", ApprovalEntries."Approver ID");
+            UserSetup.SetRange("Budget Controller", true);
+            if UserSetup.FindFirst() then begin
+                Rec.CreatePurchaseRequisitionCommitmentEntries();
             end;
         end;
     end;

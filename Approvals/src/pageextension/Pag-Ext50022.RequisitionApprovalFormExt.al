@@ -77,7 +77,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                             end;
                             //Send email implemented
                             customFunction.OpenApprovalEntries(Rec);
-                            Rec.CheckDocumentRelease(Rec)
+                            Rec.CheckForBudgetControllerApproval(Rec)
                         end;
                     end;
                 }
