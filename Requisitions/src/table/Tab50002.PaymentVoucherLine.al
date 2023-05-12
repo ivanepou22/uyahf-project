@@ -331,7 +331,16 @@ table 50002 "Payment Voucher Line"
 
             trigger OnValidate();
             begin
+                TestStatusPendingApproval;
+                ModificationAllowed;
+                ApprovedByBudgetMonitorOfficer;
                 ValidateShortcutDimCode(2, "Shortcut Dimension 2 Code");
+                IF ("Account Type" = "Account Type"::"G/L Account") AND ("Income/Balance" = "Income/Balance"::"Income Statement") THEN BEGIN
+                    VALIDATE("Balance on Budget as at Date");
+                    VALIDATE("Balance on Budget for the Year");
+                    VALIDATE("Bal. on Budget for the Quarter");
+                    VALIDATE("Bal. on Budget for the Month");
+                END;
             end;
         }
         field(10; "Document Type"; Option)
@@ -423,14 +432,15 @@ table 50002 "Payment Voucher Line"
         }
         field(21; "Budget Amount as at Date"; Decimal)
         {
-            CalcFormula = Sum("G/L Budget Entry".Amount WHERE("Budget Name" = FIELD("Budget Code"),
-                                                               "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
-                                                               "G/L Account No." = FIELD("Account No."),
-                                                               Date = FIELD("Filter to Date Filter")));
             Caption = 'Budget Amount as at Date';
             DecimalPlaces = 0 : 2;
             Editable = false;
             FieldClass = FlowField;
+            CalcFormula = Sum("G/L Budget Entry".Amount WHERE("Budget Name" = FIELD("Budget Code"),
+                                                               "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
+                                                               "G/L Account No." = FIELD("Account No."),
+                                                               Date = FIELD("Filter to Date Filter")));
 
             trigger OnValidate();
             begin
@@ -446,6 +456,7 @@ table 50002 "Payment Voucher Line"
         {
             CalcFormula = Sum("G/L Budget Entry".Amount WHERE("Budget Name" = FIELD("Budget Code"),
                                                               "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                              "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "G/L Account No." = FIELD("Account No."),
                                                                Date = FIELD("Fiscal Year Date Filter")));
             Caption = 'Budget Amount for the Year';
@@ -466,6 +477,7 @@ table 50002 "Payment Voucher Line"
         field(24; "Actual Amount as at Date"; Decimal)
         {
             CalcFormula = Sum("G/L Entry".Amount WHERE("Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                        "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                         "G/L Account No." = FIELD("Account No."),
                                                         "Posting Date" = FIELD("Filter to Date Filter")));
             Caption = 'Actual Amount as at Date';
@@ -476,6 +488,7 @@ table 50002 "Payment Voucher Line"
         field(25; "Actual Amount for the Year"; Decimal)
         {
             CalcFormula = Sum("G/L Entry".Amount WHERE("Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                        "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                         "G/L Account No." = FIELD("Account No."),
                                                         "Posting Date" = FIELD("Fiscal Year Date Filter")));
             Caption = 'Actual Amount for the Year';
@@ -684,6 +697,7 @@ table 50002 "Payment Voucher Line"
         {
             CalcFormula = Sum("Commitment Entry".Amount WHERE("G/L Account No." = FIELD("Account No."),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "Posting Date" = FIELD("Filter to Date Filter")));
             Caption = 'Commitment Amount as at Date';
             DecimalPlaces = 0 : 2;
@@ -694,6 +708,7 @@ table 50002 "Payment Voucher Line"
         {
             CalcFormula = Sum("Commitment Entry".Amount WHERE("G/L Account No." = FIELD("Account No."),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "Posting Date" = FIELD("Fiscal Year Date Filter")));
             Caption = 'Commitment Amount for the Year';
             DecimalPlaces = 0 : 2;
@@ -711,6 +726,7 @@ table 50002 "Payment Voucher Line"
         field(44; "Commitment Amt for the Month"; Decimal)
         {
             CalcFormula = Sum("Commitment Entry".Amount WHERE("Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "G/L Account No." = FIELD("Account No."),
                                                                "Posting Date" = FIELD("Month Date Filter")));
             Caption = 'Commitment Amt for the Month';
@@ -722,6 +738,7 @@ table 50002 "Payment Voucher Line"
         {
             CalcFormula = Sum("Commitment Entry".Amount WHERE("G/L Account No." = FIELD("Account No."),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "Posting Date" = FIELD("Quarter Date Filter")));
             Caption = 'Commitment Amt for the Quarter';
             DecimalPlaces = 0 : 2;
@@ -731,6 +748,7 @@ table 50002 "Payment Voucher Line"
         field(46; "Actual Amount for the Month"; Decimal)
         {
             CalcFormula = Sum("G/L Entry".Amount WHERE("Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                        "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                         "G/L Account No." = FIELD("Account No."),
                                                         "Posting Date" = FIELD("Month Date Filter")));
             Caption = 'Actual Amount for the Month';
@@ -741,6 +759,7 @@ table 50002 "Payment Voucher Line"
         field(47; "Actual Amount for the Quarter"; Decimal)
         {
             CalcFormula = Sum("G/L Entry".Amount WHERE("Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                        "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                         "G/L Account No." = FIELD("Account No."),
                                                         "Posting Date" = FIELD("Quarter Date Filter")));
             Caption = 'Actual Amount for the Quarter';
@@ -762,6 +781,7 @@ table 50002 "Payment Voucher Line"
         {
             CalcFormula = Sum("G/L Budget Entry".Amount WHERE("Budget Name" = FIELD("Budget Code"),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "G/L Account No." = FIELD("Account No."),
                                                                Date = FIELD("Month Date Filter")));
             Caption = 'Budget Amount for the Month';
@@ -783,6 +803,7 @@ table 50002 "Payment Voucher Line"
         {
             CalcFormula = Sum("G/L Budget Entry".Amount WHERE("Budget Name" = FIELD("Budget Code"),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "G/L Account No." = FIELD("Account No."),
                                                                Date = FIELD("Quarter Date Filter")));
             Caption = 'Budget Amount for the Quarter';

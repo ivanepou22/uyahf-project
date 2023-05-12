@@ -1077,7 +1077,15 @@ table 50006 "NFL Requisition Line"
             trigger OnValidate();
             begin
                 TestStatusOpen;
+                ApprovedByBudgetMonitorOfficer;
                 ValidateShortcutDimCode(2, "Shortcut Dimension 2 Code");
+
+                //IVAN
+                VALIDATE("Balance on Budget as at Date");
+                VALIDATE("Balance on Budget for the Year");
+                VALIDATE("Bal. on Budget for the Quarter");
+                VALIDATE("Bal. on Budget for the Month");
+                //END IVAN
             end;
         }
         field(45; "Job No."; Code[20])
@@ -3002,13 +3010,14 @@ table 50006 "NFL Requisition Line"
         }
         field(50017; "Budget Amount as at Date"; Decimal)
         {
-            CalcFormula = Sum("G/L Budget Entry".Amount WHERE("Budget Name" = FIELD("Budget Code"),
-                                                               "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
-                                                               "G/L Account No." = FIELD("Control Account"),
-                                                               Date = FIELD("Filter to Date Filter")));
             Caption = 'Budget Amount as at Date';
             Editable = false;
             FieldClass = FlowField;
+            CalcFormula = Sum("G/L Budget Entry".Amount WHERE("Budget Name" = FIELD("Budget Code"),
+                                                               "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
+                                                               "G/L Account No." = FIELD("Control Account"),
+                                                               Date = FIELD("Filter to Date Filter")));
 
             trigger OnValidate();
             begin
@@ -3024,6 +3033,7 @@ table 50006 "NFL Requisition Line"
         {
             CalcFormula = Sum("G/L Budget Entry".Amount WHERE("Budget Name" = FIELD("Budget Code"),
                                                              "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "G/L Account No." = FIELD("Control Account"),
                                                                Date = FIELD("Fiscal Year Date Filter")));
             Caption = 'Budget Amount for the Year';
@@ -3070,6 +3080,7 @@ table 50006 "NFL Requisition Line"
         field(50023; "Actual Amount as at Date"; Decimal)
         {
             CalcFormula = Sum("G/L Entry".Amount WHERE("Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                        "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                         "G/L Account No." = FIELD("Control Account"),
                                                         "Posting Date" = FIELD("Filter to Date Filter")));
             Caption = 'Actual Amount as at Date';
@@ -3079,6 +3090,7 @@ table 50006 "NFL Requisition Line"
         field(50024; "Actual Amount for the Year"; Decimal)
         {
             CalcFormula = Sum("G/L Entry".Amount WHERE("Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                        "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                         "G/L Account No." = FIELD("Control Account"),
                                                         "Posting Date" = FIELD("Fiscal Year Date Filter")));
             Caption = 'Actual Amount for the Year';
@@ -3364,6 +3376,7 @@ table 50006 "NFL Requisition Line"
         {
             CalcFormula = Sum("Commitment Entry".Amount WHERE("G/L Account No." = FIELD("Control Account"),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "Posting Date" = FIELD("Filter to Date Filter")));
             Caption = 'Commitment Amount as at Date';
             Editable = false;
@@ -3373,6 +3386,7 @@ table 50006 "NFL Requisition Line"
         {
             CalcFormula = Sum("Commitment Entry".Amount WHERE("G/L Account No." = FIELD("Control Account"),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "Posting Date" = FIELD("Fiscal Year Date Filter")));
             Caption = 'Commitment Amount for the Year';
             Editable = false;
@@ -3390,6 +3404,7 @@ table 50006 "NFL Requisition Line"
         {
             CalcFormula = Sum("Commitment Entry".Amount WHERE("G/L Account No." = FIELD("Control Account"),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "Posting Date" = FIELD("Month Date Filter")));
             Caption = 'Commitment Amt for the Month';
             Editable = false;
@@ -3399,6 +3414,7 @@ table 50006 "NFL Requisition Line"
         {
             CalcFormula = Sum("Commitment Entry".Amount WHERE("G/L Account No." = FIELD("Control Account"),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "Posting Date" = FIELD("Quarter Date Filter")));
             Caption = 'Commitment Amt for the Quarter';
             Editable = false;
@@ -3407,6 +3423,7 @@ table 50006 "NFL Requisition Line"
         field(50061; "Actual Amount for the Month"; Decimal)
         {
             CalcFormula = Sum("G/L Entry".Amount WHERE("Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                        "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                         "G/L Account No." = FIELD("Control Account"),
                                                         "Posting Date" = FIELD("Month Date Filter")));
             Caption = 'Actual Amount for the Month';
@@ -3416,6 +3433,7 @@ table 50006 "NFL Requisition Line"
         field(50062; "Actual Amount for the Quarter"; Decimal)
         {
             CalcFormula = Sum("G/L Entry".Amount WHERE("Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                        "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                         "G/L Account No." = FIELD("Control Account"),
                                                         "Posting Date" = FIELD("Quarter Date Filter")));
             Caption = 'Actual Amount for the Quarter';
@@ -3436,6 +3454,7 @@ table 50006 "NFL Requisition Line"
         {
             CalcFormula = Sum("G/L Budget Entry".Amount WHERE("Budget Name" = FIELD("Budget Code"),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "G/L Account No." = FIELD("Control Account"),
                                                                Date = FIELD("Month Date Filter")));
             Caption = 'Budget Amount for the Month';
@@ -3456,6 +3475,7 @@ table 50006 "NFL Requisition Line"
         {
             CalcFormula = Sum("G/L Budget Entry".Amount WHERE("Budget Name" = FIELD("Budget Code"),
                                                                "Global Dimension 1 Code" = FIELD("Shortcut Dimension 1 Code"),
+                                                               "Global Dimension 2 Code" = field("Shortcut Dimension 2 Code"),
                                                                "G/L Account No." = FIELD("Control Account"),
                                                                Date = FIELD("Quarter Date Filter")));
             Caption = 'Budget Amount for the Quarter';
