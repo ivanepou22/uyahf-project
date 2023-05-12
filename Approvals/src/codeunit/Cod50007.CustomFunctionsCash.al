@@ -676,6 +676,8 @@ codeunit 50007 "Custom Functions Cash"
                     CommitmentEntry."Dimension Set ID" := PaytVouchLine."Dimension Set ID";
                     CommitmentEntry."Global Dimension 1 Code" := PaytVouchLine."Shortcut Dimension 1 Code";
                     CommitmentEntry."Global Dimension 2 Code" := PaytVouchLine."Shortcut Dimension 2 Code";
+                    CommitmentEntry."Bal. Account Type" := PaytVouchLine."Bal. Account Type";
+                    CommitmentEntry."Bal. Account No." := PaytVouchLine."Bal. Account No.";
                     CommitmentEntry.Amount := PaytVouchLine."Amount (LCY)";
                     CommitmentEntry."Source Code" := 'Released';
                     CommitmentEntry."User ID" := USERID;
