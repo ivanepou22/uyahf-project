@@ -488,8 +488,8 @@ page 50040 "Voucher Form"
                             CustomFunctions.OpenApprovalEntries(Rec);
                             CustomFunctions.DoubleCheckApprovalEntries(Rec);
                             CustomFunctions.CompleteDocumentApproval(Rec);
+                            Rec.CheckForBudgetControllerApproval(Rec);
                         end;
-                        Rec.CheckForBudgetControllerApproval(Rec);
                     end;
                 }
                 action(Reject)
@@ -520,7 +520,7 @@ page 50040 "Voucher Form"
                             // if ApprovalComments.FindFirst() then begin
                             ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                             CustomFunctions.RejectApprovalRequest(Rec);
-                            Rec.ReversePaymentVoucherCommitmentEntrie();
+                            Rec.ReversePaymentVoucherCommitmentEntries();
                             // end else begin
                             //     ApprovalComments2.Reset();
                             //     ApprovalComments2.SetRange(ApprovalComments2."Document No.", Rec."No.");

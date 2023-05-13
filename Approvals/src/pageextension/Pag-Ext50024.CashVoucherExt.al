@@ -131,8 +131,8 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                             CustomFunctions.OpenApprovalEntries(Rec);
                             CustomFunctions.DoubleCheckApprovalEntries(Rec);
                             CustomFunctions.CompleteDocumentApproval(Rec);
+                            Rec.CheckForBudgetControllerApproval(Rec);
                         end;
-                        Rec.CheckForBudgetControllerApproval(Rec);
                     end;
                 }
                 action(Reject)
@@ -160,9 +160,9 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                             // ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type");
                             // ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
                             // if ApprovalComments.FindFirst() then begin
-                            //     ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
-                            //send Email implemented
+                            ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                             CustomFunctions.RejectApprovalRequest(Rec);
+                            Rec.ReversePaymentVoucherCommitmentEntries();
                             // end else begin
                             //     // ApprovalComments2.Reset();
                             //     // ApprovalComments2.SetRange(ApprovalComments2."Document No.", Rec."No.");
@@ -361,6 +361,7 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                                 //send Email implemented
                                 Rec.SendingCancelApprovalEmail(Rec);
                             end;
+                            Rec.ReversePaymentVoucherCommitmentEntries();
                         end;
                     end;
                 }

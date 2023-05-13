@@ -111,7 +111,7 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
                 EXIT;
             Status := Status::Open;
             MODIFY(TRUE);
-            ReversePaymentVoucherCommitmentEntrie();
+            ReversePaymentVoucherCommitmentEntries();
             Message('The Document has been Reopened Successfully');
         END;
     end;
@@ -217,7 +217,7 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
     /// <summary>
     /// ReversePaymentVoucherCommitmentEntrie.
     /// </summary>
-    procedure ReversePaymentVoucherCommitmentEntrie()
+    procedure ReversePaymentVoucherCommitmentEntries()
     var
         lastCommitmentEntry: Record "Commitment Entry";
         reversedCommitmentEntry: Record "Commitment Entry";
