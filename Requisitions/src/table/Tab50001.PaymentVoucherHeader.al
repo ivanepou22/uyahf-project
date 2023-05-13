@@ -1343,7 +1343,7 @@ table 50001 "Payment Voucher Header"
     /// </summary>
     /// <param name="PaymentVoucherLines">Parameter of type Record "Payment Voucher Line".</param>
     /// <param name="DocumentStatus">Parameter of type Code[20].</param>
-    procedure ReverseCommitment(var PaymentVoucherLines: Record "Payment Voucher Line"; DocumentStatus: Code[20]);
+    procedure ReverseVoucherCommitment(var PaymentVoucherLines: Record "Payment Voucher Line"; DocumentStatus: Code[20]);
     begin
         //Reverse out commitment.
         gvCommitmentEntry.SETRANGE("Entry No.", PaymentVoucherLines."Commitment Entry No.");
@@ -1352,7 +1352,8 @@ table 50001 "Payment Voucher Header"
                 lastCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No." + 1
             ELSE
                 lastCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No." + 1;
-            // reversedCommitmentEntry.INIT;
+
+            reversedCommitmentEntry.INIT;
             reversedCommitmentEntry := lastCommitmentEntry;
             reversedCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No.";
             reversedCommitmentEntry."G/L Account No." := gvCommitmentEntry."G/L Account No.";
