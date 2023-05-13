@@ -4589,13 +4589,18 @@ table 50005 "NFL Requisition Header"
     end;
 
     /// <summary>
-    /// Description for ReversePurchaseRequisitionCommitmentEntries.
+    /// ReversePurchaseRequisitionCommitmentEntry.
     /// </summary>
-    local procedure ReversePurchaseRequisitionCommitmentEntries();
+    procedure ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen()
     var
+        gvCommitmentEntry: Record "Commitment Entry";
+        lastCommitmentEntry: Record "Commitment Entry";
+        reversedCommitmentEntry: Record "Commitment Entry";
+        NFLRequisitionLine: Record "NFL Requisition Line";
         gvNFLRequisitionLine: Record "NFL Requisition Line";
+        PurchaseRequisition: Record "NFL Requisition Header";
     begin
-        //Reverse commitment on converting requistion to order for a released purchase requisistion document.
+        //Reverse commitment on reopening an already released purchase requisistion document.
         IF Rec.Commited = TRUE THEN BEGIN
             gvNFLRequisitionLine.SETRANGE("Document No.", Rec."No.");
             IF gvNFLRequisitionLine.FIND('-') THEN
@@ -4614,9 +4619,9 @@ table 50005 "NFL Requisition Header"
                     reversedCommitmentEntry."Document No." := gvCommitmentEntry."Document No.";
                     reversedCommitmentEntry.Description := gvCommitmentEntry.Description;
                     reversedCommitmentEntry."External Document No." := gvCommitmentEntry."External Document No.";
+                    reversedCommitmentEntry."Dimension Set ID" := gvCommitmentEntry."Dimension Set ID";
                     reversedCommitmentEntry."Global Dimension 1 Code" := gvCommitmentEntry."Global Dimension 1 Code";
                     reversedCommitmentEntry."Global Dimension 2 Code" := gvCommitmentEntry."Global Dimension 2 Code";
-                    reversedCommitmentEntry."Dimension Set ID" := gvCommitmentEntry."Dimension Set ID";
                     reversedCommitmentEntry.Amount := -1 * gvCommitmentEntry.Amount;
                     reversedCommitmentEntry."Debit Amount" := -1 * gvCommitmentEntry."Debit Amount";
                     reversedCommitmentEntry."Credit Amount" := -1 * gvCommitmentEntry."Credit Amount";
@@ -4626,7 +4631,7 @@ table 50005 "NFL Requisition Header"
                     reversedCommitmentEntry.Reversed := TRUE;
                     reversedCommitmentEntry."Reversed Entry No." := gvCommitmentEntry."Entry No.";
                     reversedCommitmentEntry."User ID" := USERID;
-                    reversedCommitmentEntry."Source Code" := 'converted to order';
+                    reversedCommitmentEntry."Source Code" := 'Reopened';
                     gvCommitmentEntry.Reversed := TRUE;
                     gvCommitmentEntry."Reversed by Entry No." := reversedCommitmentEntry."Entry No.";
                     reversedCommitmentEntry.INSERT;
@@ -4635,8 +4640,13 @@ table 50005 "NFL Requisition Header"
                     gvNFLRequisitionLine.MODIFY;
                 UNTIL gvNFLRequisitionLine.NEXT = 0;
         END;
-        Rec.Commited := FALSE;
-        //END
+
+        PurchaseRequisition.Reset();
+        PurchaseRequisition.SetRange("No.", Rec."No.");
+        if PurchaseRequisition.FindFirst() then begin
+            PurchaseRequisition.Commited := FALSE;
+            PurchaseRequisition.Modify();
+        end;
     end;
 
     [IntegrationEvent(false, false)]
