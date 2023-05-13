@@ -224,6 +224,7 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
         PaytVouchLine: Record "Payment Voucher Line";
         gvPaytVouchLine: Record "Payment Voucher Line";
         gvCommitmentEntry: Record "Commitment Entry";
+        PaymentVoucher: Record "Payment Voucher Header";
     begin
         //Reverse commitment on reopening an already released Cash voucher document.
         IF Commited = TRUE THEN BEGIN
@@ -267,8 +268,14 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
                     gvPaytVouchLine.MODIFY;
                 UNTIL gvPaytVouchLine.NEXT = 0;
         END;
-        Commited := FALSE;
-        MODIFY(TRUE);
+
+        PaymentVoucher.Reset();
+        PaymentVoucher.SetRange("Document Type", Rec."Document Type");
+        PaymentVoucher.SetRange("No.", Rec."No.");
+        if PaymentVoucher.FindFirst() then begin
+            PaymentVoucher.Commited := false;
+            PaymentVoucher.Modify();
+        end;
     end;
 
     /// <summary>
