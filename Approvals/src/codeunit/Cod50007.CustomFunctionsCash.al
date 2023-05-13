@@ -132,7 +132,6 @@ codeunit 50007 "Custom Functions Cash"
                     repeat
                         ApprovalEntry.Status := ApprovalEntry.Status::Canceled;
                         ApprovalEntry.Modify();
-                    // NFLApprovalMgt.SendPaymentVoucherCancellationMail(VoucherHeader, ApprovalEntry);TODO:
                     until ApprovalEntry.Next() = 0;
             end;
         end;

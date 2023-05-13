@@ -519,8 +519,8 @@ page 50040 "Voucher Form"
                             // ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
                             // if ApprovalComments.FindFirst() then begin
                             ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
-                            //send Email implemented
                             CustomFunctions.RejectApprovalRequest(Rec);
+                            Rec.ReversePaymentVoucherCommitmentEntrie();
                             // end else begin
                             //     ApprovalComments2.Reset();
                             //     ApprovalComments2.SetRange(ApprovalComments2."Document No.", Rec."No.");
