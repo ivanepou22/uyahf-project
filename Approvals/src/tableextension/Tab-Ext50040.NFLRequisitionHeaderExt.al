@@ -66,7 +66,7 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
                 EXIT;
             Status := Status::Open;
             MODIFY(TRUE);
-            ReversePurchaseRequisitionCommitmentEntry();
+            ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen();
             Message('The Document has been Reopened Successfully');
         END;
     end;
@@ -202,10 +202,10 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
     /// <summary>
     /// ReversePurchaseRequisitionCommitmentEntry.
     /// </summary>
-    procedure ReversePurchaseRequisitionCommitmentEntry()
+    procedure ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen()
     var
         gvCommitmentEntry: Record "Commitment Entry";
-        gvPurchLine: Record "Purchase Line";
+        // gvPurchLine: Record "Purchase Line";
         lastCommitmentEntry: Record "Commitment Entry";
         reversedCommitmentEntry: Record "Commitment Entry";
         NFLRequisitionLine: Record "NFL Requisition Line";
