@@ -492,7 +492,6 @@ codeunit 50005 "Custom Functions Requisition"
     procedure escalateDoc(var ApproveCode: Code[50]; DocNo: Code[50]; userIDEsc: Code[50]; EscalateTo: Code[50]; NFLRequisitionHeader: Record "NFL Requisition Header")
     var
         ApprovalEntry: Record "Approval Entry";
-        // NFLApprovemgt: Codeunit "NFL Approvals Mgt Notification";
         Txt0010: Label 'Are you sure you want to escalate to';
         SendMessage: Text[100];
     begin
@@ -509,7 +508,6 @@ codeunit 50005 "Custom Functions Requisition"
                 ApprovalEntry."Escalated On" := Today();
                 ApprovalEntry.Modify();
                 Message('Document has been Escalated to: %1', EscalateTo);
-                // NFLApprovemgt.SendNFLRequisitionEscalationMail(NFLRequisitionHeader, ApprovalEntry);
             end else
                 Message('The Document has not been escalate');
         end;
@@ -576,7 +574,6 @@ codeunit 50005 "Custom Functions Requisition"
                     repeat
                         ApprovalEntry.Status := ApprovalEntry.Status::Canceled;
                         ApprovalEntry.Modify();
-                    // NFLApprovalMgt.SendNFLRequisitionCancellationMail(RequisitionHeader, ApprovalEntry);
                     until ApprovalEntry.Next() = 0;
             end;
         end;
