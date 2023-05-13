@@ -116,6 +116,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                             // if ApprovalComments.FindFirst() then begin
                             ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                             customFunction.RejectApprovalRequest(Rec);
+                            Rec.ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen();
                             // end else begin
                             //     Error('You can not reject a document with out a comment.');
                             // end;
@@ -271,7 +272,6 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                 {
                     ApplicationArea = Basic, Suite;
                     Caption = 'Cancel Approval Re&quest';
-                    // Enabled = CanCancelApprovalForRecord OR CanCancelApprovalForFlow;
                     Enabled = ViewCancel;
                     Image = CancelApprovalRequest;
                     Promoted = true;
@@ -309,6 +309,8 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                                 //send Email implemented
                                 Rec.SendingCancelApprovalEmail(Rec);
                             end;
+
+                            Rec.ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen();
                         end;
                     end;
                 }

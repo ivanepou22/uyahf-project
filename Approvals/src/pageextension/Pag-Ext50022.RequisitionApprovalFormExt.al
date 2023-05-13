@@ -106,6 +106,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                             // if ApprovalComments.FindFirst() then begin
                             ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                             customFunction.RejectApprovalRequest(Rec);
+                            Rec.ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen();
                             // end else begin
                             //     Error('You can not reject a document with out a comment.');
                             // end;
