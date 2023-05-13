@@ -4481,7 +4481,7 @@ table 50005 "NFL Requisition Header"
     begin
         NFLRequisitionLine.SETRANGE("Document Type", "Document Type"::"Purchase Requisition");
         NFLRequisitionLine.SETRANGE("Document No.", Rec."No.");
-        NFLRequisitionLine.SetRange(NFLRequisitionLine.Convert, true);
+        // NFLRequisitionLine.SetRange(NFLRequisitionLine.Convert, true);
         NFLRequisitionLine.SetRange(NFLRequisitionLine.Committed, false);
         NFLRequisitionLine.SETFILTER("Commitment Entry No.", '%1', 0);
         IF NFLRequisitionLine.FINDFIRST THEN
