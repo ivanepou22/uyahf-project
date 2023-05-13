@@ -3666,7 +3666,7 @@ table 50006 "NFL Requisition Line"
         }
         field(50087; Committed; Boolean)
         {
-            Editable = false;
+            // Editable = false;
         }
         field(50088; "Transfer to Item Jnl"; Boolean)
         {

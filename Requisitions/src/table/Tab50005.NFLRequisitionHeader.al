@@ -4637,6 +4637,7 @@ table 50005 "NFL Requisition Header"
                     reversedCommitmentEntry.INSERT;
                     gvCommitmentEntry.MODIFY;
                     gvNFLRequisitionLine."Commitment Entry No." := 0; //Reset the commited purchase line back to zero.
+                    gvNFLRequisitionLine.Committed := false;
                     gvNFLRequisitionLine.MODIFY;
                 UNTIL gvNFLRequisitionLine.NEXT = 0;
         END;
