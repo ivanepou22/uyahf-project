@@ -115,8 +115,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                             // ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
                             // if ApprovalComments.FindFirst() then begin
                             ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
-                            //     //Send email implemented
-                            //     customFunction.RejectApprovalRequest(Rec);
+                            customFunction.RejectApprovalRequest(Rec);
                             // end else begin
                             //     Error('You can not reject a document with out a comment.');
                             // end;

@@ -343,7 +343,6 @@ codeunit 50005 "Custom Functions Requisition"
                 repeat
                     ApprovalEntries1.Status := ApprovalEntries1.Status::Rejected;
                     ApprovalEntries1.Modify();
-                // NFLApprovalMgt.SendNFLRequisitionRejectionMail(Rec, ApprovalEntries1);
                 until ApprovalEntries1.Next() = 0;
             end;
             OpenDocument(Rec);
