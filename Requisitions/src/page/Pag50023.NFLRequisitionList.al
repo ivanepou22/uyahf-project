@@ -19,98 +19,123 @@ page 50023 "NFL Requisition List"
             {
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Request-By No."; Rec."Request-By No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Request-By Name"; Rec."Request-By Name")
                 {
+                    ApplicationArea = All;
                 }
                 field("Requestor ID"; Rec."Requestor ID")
                 {
+                    ApplicationArea = All;
                 }
                 field("Order Address Code"; Rec."Order Address Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Buy-from Post Code"; Rec."Buy-from Post Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Buy-from Country/Region Code"; Rec."Buy-from Country/Region Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Buy-from Contact"; Rec."Buy-from Contact")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Pay-to Vendor No."; Rec."Pay-to Vendor No.")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Pay-to Name"; Rec."Pay-to Name")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Pay-to Post Code"; Rec."Pay-to Post Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Pay-to Country/Region Code"; Rec."Pay-to Country/Region Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Pay-to Contact"; Rec."Pay-to Contact")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Ship-to Code"; Rec."Ship-to Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Ship-to Name"; Rec."Ship-to Name")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Ship-to Post Code"; Rec."Ship-to Post Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Ship-to Country/Region Code"; Rec."Ship-to Country/Region Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Ship-to Contact"; Rec."Ship-to Contact")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
 
                 }
                 field("Location Code"; Rec."Location Code")
                 {
+                    ApplicationArea = All;
                     Visible = true;
                 }
                 field("Purchaser Code"; Rec."Purchaser Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Assigned User ID"; Rec."Assigned User ID")
                 {
+                    ApplicationArea = All;
                 }
                 field("Currency Code"; Rec."Currency Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
             }
@@ -127,6 +152,7 @@ page 50023 "NFL Requisition List"
                 action(Card)
                 {
                     Caption = 'Card';
+                    ApplicationArea = All;
                     Image = EditLines;
                     ShortCutKey = 'Shift+F7';
 

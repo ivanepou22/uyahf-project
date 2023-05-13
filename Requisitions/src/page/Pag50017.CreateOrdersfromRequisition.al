@@ -23,6 +23,7 @@ page 50017 "Create Orders from Requisition"
         {
             field("Vendor No."; "Vendor No.")
             {
+                ApplicationArea = All;
                 Caption = 'Vendor No.';
                 Lookup = true;
                 LookupPageID = "Vendor List";
@@ -37,7 +38,7 @@ page 50017 "Create Orders from Requisition"
             {
                 field("Include in Purch. Order"; Rec."Include in Purch. Order")
                 {
-
+                    ApplicationArea = All;
                     trigger OnValidate();
                     var
                         PurchReqHeader: Record "NFL Requisition Header";
@@ -51,34 +52,42 @@ page 50017 "Create Orders from Requisition"
                 }
                 field("Buy-from Vendor No."; Rec."Buy-from Vendor No.")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("Document No."; Rec."Document No.")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field(Description; Rec.Description)
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field(Quantity; Rec.Quantity)
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("Direct Unit Cost"; Rec."Direct Unit Cost")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("Line Amount"; Rec."Line Amount")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
             }
@@ -95,6 +104,7 @@ page 50017 "Create Orders from Requisition"
                 Image = MakeOrder;
                 Promoted = true;
                 PromotedCategory = Process;
+                ApplicationArea = All;
 
                 trigger OnAction();
                 begin

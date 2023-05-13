@@ -1189,6 +1189,8 @@ table 50001 "Payment Voucher Header"
         CASE "Document Type" OF
             "Document Type"::"Cash Voucher":
                 PAGE.RUN(PAGE::"Cash Voucher", PaymentVoucherHeader);
+            "Document Type"::"Store Requisition":
+                PAGE.RUN(PAGE::"Cash Voucher", PaymentVoucherHeader);
         END;
     end;
 

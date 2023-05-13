@@ -25,6 +25,7 @@ page 50004 "List of All Payment Vouchers"
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document Type"; Rec."Document Type")
                 {
@@ -85,6 +86,7 @@ page 50004 "List of All Payment Vouchers"
             action(Document)
             {
                 Caption = 'Document';
+                ApplicationArea = Basic, Suite;
                 Image = Document;
                 Promoted = true;
                 PromotedCategory = Process;

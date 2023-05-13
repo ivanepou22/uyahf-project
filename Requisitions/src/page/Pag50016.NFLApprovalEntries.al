@@ -18,6 +18,7 @@ page 50016 "NFL Approval Entries"
             {
                 field(Overdue; Overdue)
                 {
+                    ApplicationArea = All;
                     Caption = 'Overdue';
                     Editable = false;
                     OptionCaption = 'Yes';
@@ -25,18 +26,23 @@ page 50016 "NFL Approval Entries"
                 }
                 field("Table ID"; Rec."Table ID")
                 {
+                    ApplicationArea = All;
                 }
                 field("Limit Type"; Rec."Limit Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Approval Type"; Rec."Approval Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document Type"; Rec."Document Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document No."; Rec."Document No.")
                 {
+                    ApplicationArea = All;
                 }
                 // field(Payee; Payee)
                 // {
@@ -52,45 +58,59 @@ page 50016 "NFL Approval Entries"
                 // }
                 field("Sequence No."; Rec."Sequence No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Approval Code"; Rec."Approval Code")
                 {
+                    ApplicationArea = All;
                 }
                 field(Status; Rec.Status)
                 {
+                    ApplicationArea = All;
                 }
                 field("Sender ID"; Rec."Sender ID")
                 {
+                    ApplicationArea = All;
                 }
                 field("Salespers./Purch. Code"; Rec."Salespers./Purch. Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Approver ID"; Rec."Approver ID")
                 {
+                    ApplicationArea = All;
                 }
                 field("Currency Code"; Rec."Currency Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Amount (LCY)"; Rec."Amount (LCY)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Available Credit Limit (LCY)"; Rec."Available Credit Limit (LCY)")
                 {
+                    ApplicationArea = All;
                 }
                 field("Date-Time Sent for Approval"; Rec."Date-Time Sent for Approval")
                 {
+                    ApplicationArea = All;
                 }
                 field("Last Date-Time Modified"; Rec."Last Date-Time Modified")
                 {
+                    ApplicationArea = All;
                 }
                 field("Last Modified By ID"; Rec."Last Modified By User ID")
                 {
+                    ApplicationArea = All;
                 }
                 field(Comment; Rec.Comment)
                 {
+                    ApplicationArea = All;
                 }
                 field("Due Date"; Rec."Due Date")
                 {
+                    ApplicationArea = All;
                 }
                 // field(Escalated; Escalated)
                 // {

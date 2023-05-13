@@ -20,45 +20,59 @@ page 50002 "Released Payment Vouchers"
             {
                 field("No."; Rec."No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document Type"; Rec."Document Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Payment Type"; Rec."Payment Type")
                 {
+                    ApplicationArea = All;
                 }
                 field(Payee; Rec.Payee)
                 {
+                    ApplicationArea = All;
                 }
                 field("Budget Code"; Rec."Budget Code")
                 {
+                    ApplicationArea = All;
                 }
                 field(Status; Rec.Status)
                 {
+                    ApplicationArea = All;
                 }
                 field(Comment; Rec.Comment)
                 {
+                    ApplicationArea = All;
                 }
                 field("Prepared by"; Rec."Prepared by")
                 {
+                    ApplicationArea = All;
                 }
                 field("Currency Code"; Rec."Currency Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("WHT Local"; Rec."WHT Local")
                 {
+                    ApplicationArea = All;
                 }
                 field("WHT Foreign"; Rec."WHT Foreign")
                 {
+                    ApplicationArea = All;
                 }
                 field("Payment Voucher Details Total"; Rec."Payment Voucher Details Total")
                 {
+                    ApplicationArea = All;
                 }
                 field("Payment Voucher Lines Total"; Rec."Payment Voucher Lines Total")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -71,6 +85,7 @@ page 50002 "Released Payment Vouchers"
             action(Document)
             {
                 Caption = 'Document';
+                ApplicationArea = Basic, Suite;
                 Image = Document;
                 Promoted = true;
                 PromotedCategory = Process;
