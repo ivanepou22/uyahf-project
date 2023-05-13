@@ -1343,41 +1343,41 @@ table 50001 "Payment Voucher Header"
     /// </summary>
     /// <param name="PaymentVoucherLines">Parameter of type Record "Payment Voucher Line".</param>
     /// <param name="DocumentStatus">Parameter of type Code[20].</param>
-    procedure ReverseVoucherCommitment(var PaymentVoucherLines: Record "Payment Voucher Line"; DocumentStatus: Code[20]);
-    begin
-        //Reverse out commitment.
-        gvCommitmentEntry.SETRANGE("Entry No.", PaymentVoucherLines."Commitment Entry No.");
-        IF gvCommitmentEntry.FIND('-') THEN BEGIN
-            IF NOT lastCommitmentEntry.FINDLAST THEN
-                lastCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No." + 1
-            ELSE
-                lastCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No." + 1;
+    // procedure ReverseVoucherCommitment(var PaymentVoucherLines: Record "Payment Voucher Line"; DocumentStatus: Code[20]);
+    // begin
+    //     //Reverse out commitment.
+    //     gvCommitmentEntry.SETRANGE("Entry No.", PaymentVoucherLines."Commitment Entry No.");
+    //     IF gvCommitmentEntry.FIND('-') THEN BEGIN
+    //         IF NOT lastCommitmentEntry.FINDLAST THEN
+    //             lastCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No." + 1
+    //         ELSE
+    //             lastCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No." + 1;
 
-            reversedCommitmentEntry.INIT;
-            reversedCommitmentEntry := lastCommitmentEntry;
-            reversedCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No.";
-            reversedCommitmentEntry."G/L Account No." := gvCommitmentEntry."G/L Account No.";
-            reversedCommitmentEntry."Posting Date" := gvCommitmentEntry."Posting Date";
-            reversedCommitmentEntry."Document No." := gvCommitmentEntry."Document No.";
-            reversedCommitmentEntry.Description := gvCommitmentEntry.Description;
-            reversedCommitmentEntry."External Document No." := gvCommitmentEntry."External Document No.";
-            reversedCommitmentEntry."Global Dimension 1 Code" := gvCommitmentEntry."Global Dimension 1 Code";
-            reversedCommitmentEntry."Global Dimension 2 Code" := gvCommitmentEntry."Global Dimension 2 Code";
-            reversedCommitmentEntry."Dimension Set ID" := gvCommitmentEntry."Dimension Set ID";
-            reversedCommitmentEntry.Quantity := 1 * gvCommitmentEntry.Quantity;
-            reversedCommitmentEntry.Amount := -1 * gvCommitmentEntry.Amount;
-            reversedCommitmentEntry."Debit Amount" := -1 * gvCommitmentEntry."Debit Amount";
-            reversedCommitmentEntry."Credit Amount" := -1 * gvCommitmentEntry."Credit Amount";
-            reversedCommitmentEntry.Reversed := TRUE;
-            reversedCommitmentEntry."Reversed Entry No." := gvCommitmentEntry."Entry No.";
-            reversedCommitmentEntry."User ID" := USERID;
-            reversedCommitmentEntry."Source Code" := DocumentStatus;
-            reversedCommitmentEntry.INSERT;
-            gvCommitmentEntry."Reversed by Entry No." := reversedCommitmentEntry."Entry No.";
-            gvCommitmentEntry.Reversed := true;
-            gvCommitmentEntry.MODIFY;
-        END;
-        //END.
-    end;
+    //         reversedCommitmentEntry.INIT;
+    //         reversedCommitmentEntry := lastCommitmentEntry;
+    //         reversedCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No.";
+    //         reversedCommitmentEntry."G/L Account No." := gvCommitmentEntry."G/L Account No.";
+    //         reversedCommitmentEntry."Posting Date" := gvCommitmentEntry."Posting Date";
+    //         reversedCommitmentEntry."Document No." := gvCommitmentEntry."Document No.";
+    //         reversedCommitmentEntry.Description := gvCommitmentEntry.Description;
+    //         reversedCommitmentEntry."External Document No." := gvCommitmentEntry."External Document No.";
+    //         reversedCommitmentEntry."Global Dimension 1 Code" := gvCommitmentEntry."Global Dimension 1 Code";
+    //         reversedCommitmentEntry."Global Dimension 2 Code" := gvCommitmentEntry."Global Dimension 2 Code";
+    //         reversedCommitmentEntry."Dimension Set ID" := gvCommitmentEntry."Dimension Set ID";
+    //         reversedCommitmentEntry.Quantity := 1 * gvCommitmentEntry.Quantity;
+    //         reversedCommitmentEntry.Amount := -1 * gvCommitmentEntry.Amount;
+    //         reversedCommitmentEntry."Debit Amount" := -1 * gvCommitmentEntry."Debit Amount";
+    //         reversedCommitmentEntry."Credit Amount" := -1 * gvCommitmentEntry."Credit Amount";
+    //         reversedCommitmentEntry.Reversed := TRUE;
+    //         reversedCommitmentEntry."Reversed Entry No." := gvCommitmentEntry."Entry No.";
+    //         reversedCommitmentEntry."User ID" := USERID;
+    //         reversedCommitmentEntry."Source Code" := DocumentStatus;
+    //         reversedCommitmentEntry.INSERT;
+    //         gvCommitmentEntry."Reversed by Entry No." := reversedCommitmentEntry."Entry No.";
+    //         gvCommitmentEntry.Reversed := true;
+    //         gvCommitmentEntry.MODIFY;
+    //     END;
+    //END.
+    // end;
 }
 
