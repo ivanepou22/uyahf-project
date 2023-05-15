@@ -553,4 +553,43 @@ codeunit 50000 "Custom Functions And EVents"
             ;
         //ReservationManagement.CalcReservedQtyOnPick(TotalAvailQty, QtyAllocInWhse); IE
     end;
+
+    procedure ReverseCommitmentFromPostingJnl(VAR GenJnlLine: Record "Gen. Journal Line");
+    var
+        gvCommitmentEntry: Record "Commitment Entry";
+        lastCommitmentEntry: Record "Commitment Entry";
+        reversedCommitmentEntry: Record "Commitment Entry";
+    BEGIN
+        gvCommitmentEntry.SETRANGE("Entry No.", GenJnlLine."Appl.-to Commitment Entry");
+        if gvCommitmentEntry.FIND('-') THEN BEGIN
+            IF NOT lastCommitmentEntry.FINDLAST THEN
+                lastCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No." + 1
+            ELSE
+                lastCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No." + 1;
+
+            reversedCommitmentEntry.INIT;
+            reversedCommitmentEntry := gvCommitmentEntry;
+            reversedCommitmentEntry."Entry No." := lastCommitmentEntry."Entry No.";
+            reversedCommitmentEntry."G/L Account No." := gvCommitmentEntry."G/L Account No.";
+            reversedCommitmentEntry."Posting Date" := gvCommitmentEntry."Posting Date";
+            reversedCommitmentEntry."Document No." := gvCommitmentEntry."Document No.";
+            reversedCommitmentEntry.Description := gvCommitmentEntry.Description;
+            reversedCommitmentEntry."External Document No." := gvCommitmentEntry."External Document No.";
+            reversedCommitmentEntry."Global Dimension 1 Code" := gvCommitmentEntry."Global Dimension 1 Code";
+            reversedCommitmentEntry."Global Dimension 2 Code" := gvCommitmentEntry."Global Dimension 2 Code";
+            reversedCommitmentEntry."Dimension Set ID" := gvCommitmentEntry."Dimension Set ID";
+            reversedCommitmentEntry.Quantity := 1 * gvCommitmentEntry.Quantity;
+            reversedCommitmentEntry.Amount := -1 * gvCommitmentEntry.Amount;
+            reversedCommitmentEntry."Debit Amount" := -1 * gvCommitmentEntry."Debit Amount";
+            reversedCommitmentEntry."Credit Amount" := -1 * gvCommitmentEntry."Credit Amount";
+            reversedCommitmentEntry.Reversed := TRUE;
+            reversedCommitmentEntry."Reversed Entry No." := gvCommitmentEntry."Entry No.";
+            reversedCommitmentEntry."User ID" := USERID;
+            reversedCommitmentEntry."Source Code" := 'GENJNL';
+            reversedCommitmentEntry.INSERT;
+            gvCommitmentEntry.Reversed := TRUE;
+            gvCommitmentEntry."Reversed by Entry No." := reversedCommitmentEntry."Entry No.";
+            gvCommitmentEntry.MODIFY;
+        END;
+    END;
 }
