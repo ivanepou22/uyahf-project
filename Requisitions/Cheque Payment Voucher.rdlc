@@ -315,7 +315,7 @@
             <Top>4.26959in</Top>
             <Left>0.38972in</Left>
             <Height>0.66666in</Height>
-            <Width>7.60904in</Width>
+            <Width>7.60905in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -565,7 +565,7 @@
             <Top>5.17584in</Top>
             <Left>0.38972in</Left>
             <Height>0.66667in</Height>
-            <Width>7.60904in</Width>
+            <Width>7.60905in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1032,7 +1032,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!CostCentre.Value</Value>
+                                  <Value>Donor</Value>
                                   <Style>
                                     <FontFamily>segoe ui</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1087,7 +1087,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Subcost Center</Value>
+                                  <Value>Project</Value>
                                   <Style>
                                     <FontFamily>segoe ui</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1142,7 +1142,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Advance Code</Value>
+                                  <Value>Activity</Value>
                                   <Style>
                                     <FontFamily>segoe ui</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1464,14 +1464,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="DimCode8">
+                        <Textbox Name="ShortcutDimension2Code_PaymentVoucherLine">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!DimCode8.Value</Value>
+                                  <Value>=Fields!ShortcutDimension2Code_PaymentVoucherLine.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1481,7 +1481,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>DimCode8</rd:DefaultName>
+                          <rd:DefaultName>ShortcutDimension2Code_PaymentVoucherLine</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -2114,14 +2114,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="DimCode81">
+                        <Textbox Name="ShortcutDimension2Code_PaymentVoucherLine2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!DimCode8.Value</Value>
+                                  <Value>=Fields!ShortcutDimension2Code_PaymentVoucherLine.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2131,7 +2131,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>DimCode81</rd:DefaultName>
+                          <rd:DefaultName>ShortcutDimension2Code_PaymentVoucherLine</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -2817,7 +2817,7 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
             <Top>3.20014in</Top>
             <Left>0.38972in</Left>
             <Height>0.8125in</Height>
-            <Width>7.60902in</Width>
+            <Width>7.60901in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -2960,14 +2960,14 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="DimCode9">
+                        <Textbox Name="ShortcutDimension2Code_PaymentVoucherLine3">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!DimCode8.Value</Value>
+                                  <Value>=Fields!ShortcutDimension2Code_PaymentVoucherLine.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2977,7 +2977,7 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>DimCode8</rd:DefaultName>
+                          <rd:DefaultName>ShortcutDimension2Code_PaymentVoucherLine</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -3407,7 +3407,7 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
             <Top>1.06945in</Top>
             <Left>0.38972in</Left>
             <Height>0.5104in</Height>
-            <Width>2.32031in</Width>
+            <Width>2.3203in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
