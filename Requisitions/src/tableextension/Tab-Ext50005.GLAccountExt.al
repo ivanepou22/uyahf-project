@@ -1,7 +1,7 @@
 /// <summary>
 /// TableExtension G/L Account Ext (ID 50009) extends Record G/L Account.
 /// </summary>
-tableextension 50018 "G/L Account Ext" extends "G/L Account"
+tableextension 50005 "G/L Account Ext" extends "G/L Account"
 {
     fields
     {

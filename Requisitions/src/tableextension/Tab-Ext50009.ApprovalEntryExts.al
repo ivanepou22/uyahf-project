@@ -1,7 +1,7 @@
 /// <summary>
 /// TableExtension Approval Entry Exts extends Record Approval Entry.
 /// </summary>
-tableextension 50015 "Approval Entry Exts" extends "Approval Entry"
+tableextension 50009 "Approval Entry Exts" extends "Approval Entry"
 {
     fields
     {

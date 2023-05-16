@@ -1,7 +1,7 @@
 /// <summary>
 /// TableExtension Purchase Line Ext (ID 50063) extends Record Purchase Line.
 /// </summary>
-tableextension 50017 "Purch Inv Line Ext" extends "Purch. Inv. Line"
+tableextension 50007 "Purch Inv Line Ext" extends "Purch. Inv. Line"
 {
     fields
     {

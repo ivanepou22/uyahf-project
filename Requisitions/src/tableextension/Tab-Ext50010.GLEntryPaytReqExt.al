@@ -1,7 +1,7 @@
 /// <summary>
 /// TableExtension G/L Entry Ext (ID 50072) extends Record G/L Entry.
 /// </summary>
-tableextension 50014 "G/L Entry Payt Req Ext" extends "G/L Entry"
+tableextension 50010 "G/L Entry Payt Req Ext" extends "G/L Entry"
 {
     fields
     {

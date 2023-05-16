@@ -1,7 +1,7 @@
 /// <summary>
 /// TableExtension Purchase Header Ext (ID 50050) extends Record Purchase Header.
 /// </summary>
-tableextension 50016 "Purch. Inv. Header" extends "Purch. Inv. Header"
+tableextension 50006 "Purch. Inv. Header" extends "Purch. Inv. Header"
 {
     fields
     {
