@@ -560,6 +560,7 @@ codeunit 50000 "Custom Functions And EVents"
         lastCommitmentEntry: Record "Commitment Entry";
         reversedCommitmentEntry: Record "Commitment Entry";
     BEGIN
+        Error('Here we go');
         gvCommitmentEntry.SETRANGE("Entry No.", GenJnlLine."Appl.-to Commitment Entry");
         if gvCommitmentEntry.FIND('-') THEN BEGIN
             IF NOT lastCommitmentEntry.FINDLAST THEN
@@ -717,4 +718,11 @@ codeunit 50000 "Custom Functions And EVents"
         CustLedgerEntry."Payment Voucher No." := GenJournalLine."Payment Voucher No.";
         CustLedgerEntry."Banking Date" := Today();
     end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnPostGLAccOnAfterInitGLEntry', '', true, true)]
+    local procedure OnPostGLAccOnAfterInitGLEntry(var GenJournalLine: Record "Gen. Journal Line"; var GLEntry: Record "G/L Entry")
+    begin
+        ReverseCommitmentFromPostingJnl(GenJournalLine);
+    end;
+
 }
