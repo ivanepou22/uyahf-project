@@ -182,6 +182,11 @@ page 50040 "Voucher Form"
                 {
                     ApplicationArea = All;
                 }
+                field("Current Approver"; Rec."Current Approver")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Current Approver field.';
+                }
                 field("Payment Voucher Details Total"; Rec."Payment Voucher Details Total")
                 {
                     ApplicationArea = All;
@@ -551,25 +556,7 @@ page 50040 "Voucher Form"
                         CustomFunctions: Codeunit "Custom Functions Cash";
                     begin
                         if Confirm(Txt002, true) then begin
-                            userSetup.Reset();
-                            userSetup.SetRange(userSetup."User ID", UserId);
-                            if userSetup.Find('-') then begin
-                                ApprovalEntries.Reset();
-                                ApprovalEntries.SetRange(ApprovalEntries."Document No.", Rec."No.");
-                                ApprovalEntries.SetRange(ApprovalEntries.Status, ApprovalEntries.Status::Open);
-                                if ApprovalEntries.Find('-') then begin
-                                    if (userSetup."Voucher Admin" = true) or (UserId = ApprovalEntries."Approver ID") then begin
-                                        CustomFunctions.DelegatePaymentVoucherApprovalRequest(Rec);
-                                        //Send Email implemented
-                                        Rec.SendingDelegateEmail(Rec);
-                                    end else begin
-                                        Error('Your Not Allowed to Delegate this voucher');
-                                    end;
-                                end else begin
-                                    Error('You can not perform this action. Contact your Systems Administrator');
-                                end;
-                            end;
-
+                            ApprovalsMgmt.DelegateRecordApprovalRequest(Rec.RecordId);
                         end;
                     end;
                 }

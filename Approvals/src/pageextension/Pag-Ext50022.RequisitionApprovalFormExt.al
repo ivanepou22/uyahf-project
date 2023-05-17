@@ -130,25 +130,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                         ApprovalEntries: Record "Approval Entry";
                     begin
                         if Confirm(Txt002, true) then begin
-                            userSetup.Reset();
-                            userSetup.SetRange(userSetup."User ID", UserId);
-                            if userSetup.Find('-') then begin
-                                ApprovalEntries.Reset();
-                                ApprovalEntries.SetRange(ApprovalEntries."Document No.", Rec."No.");
-                                ApprovalEntries.SetRange(ApprovalEntries.Status, ApprovalEntries.Status::Open);
-                                if ApprovalEntries.Find('-') then begin
-                                    if (userSetup."Voucher Admin" = true) or (UserId = ApprovalEntries."Approver ID") then begin
-                                        customFunction.DelegatePurchaseApprovalRequest(Rec);
-                                        //Send Email implemented
-                                        Rec.SendingDelegateEmail(Rec);
-                                    end else begin
-                                        Error('Your Not Allowed to Delegate this voucher');
-                                    end;
-                                end else begin
-                                    Error('You can not perform this action. Contact your Systems Administrator');
-                                end;
-                            end;
-
+                            ApprovalsMgmt.DelegateRecordApprovalRequest(Rec.RecordId);
                         end;
                     end;
                 }
