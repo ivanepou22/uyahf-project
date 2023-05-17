@@ -541,7 +541,7 @@ report 50002 "Cheque Payment Voucher"
         RecipientSign: Label 'Recipient Signature :';
         CompanyInformation: Record "Company Information";
         ReportHeader: Label 'CHEQUE PAYMENT VOUCHER';
-        NewVision: Label 'The New Vision Priting and Publishing Co. Ltd.';
+        NewVision: Label 'UGANDA YOUTH AND ADOLESCENTS HEALTH FORUM.';
         FinanceMana: Label 'Finance Manager';
         PVDate: Label 'Date';
         FinancialYear: Label 'Financial Year';
