@@ -560,7 +560,6 @@ codeunit 50000 "Custom Functions And EVents"
         lastCommitmentEntry: Record "Commitment Entry";
         reversedCommitmentEntry: Record "Commitment Entry";
     BEGIN
-        Error('Here we go');
         gvCommitmentEntry.SETRANGE("Entry No.", GenJnlLine."Appl.-to Commitment Entry");
         if gvCommitmentEntry.FIND('-') THEN BEGIN
             IF NOT lastCommitmentEntry.FINDLAST THEN

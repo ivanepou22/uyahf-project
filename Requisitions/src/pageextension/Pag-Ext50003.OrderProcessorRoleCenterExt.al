@@ -18,14 +18,23 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
             {
                 group("Purchase Requisition")
                 {
-                    group(Lists)
+                    group(Lists3)
                     {
+                        Caption = 'Lists';
                         action("Purchase Requisition List")
                         {
                             ApplicationArea = All;
                             Caption = 'Purchase Requisition List';
                             RunObject = page "Purchase Requisition List";
                             RunPageView = where(Status = filter(Open | "Pending Approval" | "Pending Prepayment"), Archieved = filter(false));
+                            Image = Payables;
+                        }
+                        action("Pending Approvals Purchase Requisition")
+                        {
+                            ApplicationArea = All;
+                            Caption = 'Pending Approvals Purchase Requisition';
+                            RunObject = page "Purchase Requisition List";
+                            RunPageView = where(Status = filter("Pending Approval" | "Pending Prepayment"), Archieved = filter(false));
                             Image = Payables;
                         }
                         action("Approved Purchase Requisitions")
@@ -45,8 +54,9 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                             RunPageView = where(Archieved = filter(false));
                         }
                     }
-                    group(Archives)
+                    group(Archives12)
                     {
+                        Caption = 'Archives';
                         action("NFL Requisition List Archives")
                         {
                             ApplicationArea = All;
@@ -113,16 +123,29 @@ pageextension 50003 "OrderProcessor RoleCenter Ext" extends "Order Processor Rol
                         }
                     }
                 }
-                group(Setup)
+                group(Setup12)
                 {
-                    Caption = 'NFL Setup';
-                    action("NFL Setup")
+                    Caption = 'Setup';
+                    action("Staff Advances")
                     {
-                        Caption = 'NFL Setup';
+                        Caption = 'Staff Advances';
                         ApplicationArea = All;
-                        // RunObject = page "NFL Setup";
+                        RunObject = page "Advance Codes";
+                    }
+                    action("General Ledger Setup")
+                    {
+                        ApplicationArea = All;
+                        Caption = 'General Ledger Setup';
+                        RunObject = page "General Ledger Setup";
+                    }
+                    action("Purchase & Payables Setup")
+                    {
+                        ApplicationArea = All;
+                        Caption = 'Purchase & Payables Setup';
+                        RunObject = page "Purchases & Payables Setup";
                     }
                 }
+
                 group(MainTasks)
                 {
                     Caption = 'Tasks';
