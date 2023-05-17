@@ -592,4 +592,129 @@ codeunit 50000 "Custom Functions And EVents"
             gvCommitmentEntry.MODIFY;
         END;
     END;
+
+
+    /// <summary>
+    /// OnPostGLAccOnBeforeInsertGLEntry.
+    /// </summary>
+    /// <param name="GenJournalLine">VAR Record "Gen. Journal Line".</param>
+    /// <param name="GLEntry">VAR Record "G/L Entry".</param>
+    /// <param name="IsHandled">VAR Boolean.</param>
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnPostGLAccOnBeforeInsertGLEntry', '', true, true)]
+    procedure OnPostGLAccOnBeforeInsertGLEntry(var GenJournalLine: Record "Gen. Journal Line"; var GLEntry: Record "G/L Entry"; var IsHandled: Boolean)
+    var
+        GlAccount: Record "G/L Account";
+        GlAccount1: Record "G/L Account";
+    begin
+
+        GLEntry."Advance Code" := GenJournalLine."Advance Code";
+        GLEntry."Cashier ID" := GenJournalLine."Cashier ID";
+        GLEntry."Payment Type" := GenJournalLine."Payment Type";
+        GLEntry."Credit Memo Type" := GenJournalLine."Credit Memo Type";
+        GLEntry."Transaction Type" := GenJournalLine."Transaction Type";
+        GLEntry."SalesPerson Code" := GenJournalLine."Salespers./Purch. Code";
+        GLEntry."Entry Date" := Today;
+        GLEntry."Payment Voucher" := GenJournalLine."Payment Voucher";
+        GLEntry."Payment Voucher No." := GenJournalLine."Payment Voucher No.";
+        GLEntry."Appl.-to Commitment Entry" := GenJournalLine."Appl.-to Commitment Entry";
+        GLEntry."Banking Date" := Today;
+        GLEntry."Deferral Code" := GenJournalLine."Deferral Code";
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnBeforeCustLedgEntryInsert', '', true, true)]
+    local procedure OnBeforeCustLedgEntryInsert(var CustLedgerEntry: Record "Cust. Ledger Entry"; GenJournalLine: Record "Gen. Journal Line"; GLRegister: Record "G/L Register")
+    var
+        GlAccount: Record "G/L Account";
+        GlAccount1: Record "G/L Account";
+    begin
+
+        CustLedgerEntry."Advance Code" := GenJournalLine."Advance Code";
+        CustLedgerEntry."Cashier ID" := GenJournalLine."Cashier ID";
+        CustLedgerEntry."Payment Type" := GenJournalLine."Payment Type";
+        CustLedgerEntry."Credit Memo Type" := GenJournalLine."Credit Memo Type";
+        CustLedgerEntry."Transaction Type" := GenJournalLine."Transaction Type";
+        CustLedgerEntry."SalesPerson Code" := GenJournalLine."Salespers./Purch. Code";
+        CustLedgerEntry."Entry Date" := Today;
+        CustLedgerEntry."Payment Voucher" := GenJournalLine."Payment Voucher";
+        CustLedgerEntry."Payment Voucher No." := GenJournalLine."Payment Voucher No.";
+        CustLedgerEntry."Banking Date" := Today;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnBeforeVendLedgEntryInsert', '', true, true)]
+    local procedure OnBeforeVendLedgEntryInsert(var VendorLedgerEntry: Record "Vendor Ledger Entry"; GenJournalLine: Record "Gen. Journal Line"; GLRegister: Record "G/L Register")
+    begin
+
+        VendorLedgerEntry."Payment Type" := GenJournalLine."Payment Type";
+        VendorLedgerEntry."Cashier ID" := GenJournalLine."Cashier ID";
+        VendorLedgerEntry."Entry Date" := Today;
+        VendorLedgerEntry."Payment Voucher" := GenJournalLine."Payment Voucher";
+        VendorLedgerEntry."Payment Voucher No." := GenJournalLine."Payment Voucher No.";
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnPostBankAccOnBeforeBankAccLedgEntryInsert', '', true, true)]
+    local procedure OnPostBankAccOnBeforeBankAccLedgEntryInsert(var BankAccountLedgerEntry: Record "Bank Account Ledger Entry"; var GenJournalLine: Record "Gen. Journal Line"; BankAccount: Record "Bank Account")
+    begin
+        BankAccountLedgerEntry."Advance Code" := GenJournalLine."Advance Code";
+        BankAccountLedgerEntry."Payment Type" := GenJournalLine."Payment Type";
+        BankAccountLedgerEntry."Cashier ID" := GenJournalLine."Cashier ID";
+        BankAccountLedgerEntry."Credit Memo Type" := GenJournalLine."Credit Memo Type";
+        BankAccountLedgerEntry."Entry Date" := Today;
+        BankAccountLedgerEntry."Payment Voucher" := GenJournalLine."Payment Voucher";
+        BankAccountLedgerEntry."Payment Voucher No." := GenJournalLine."Payment Voucher No.";
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnAfterInitGLEntry', '', true, true)]
+    local procedure OnAfterInitGLEntry(var GLEntry: Record "G/L Entry"; GenJournalLine: Record "Gen. Journal Line")
+    begin
+        GLEntry."Advance Code" := GenJournalLine."Advance Code";
+        GLEntry."Cashier ID" := GenJournalLine."Cashier ID";
+        GLEntry."Payment Type" := GenJournalLine."Payment Type";
+        GLEntry."Credit Memo Type" := GenJournalLine."Credit Memo Type";
+        GLEntry."Transaction Type" := GenJournalLine."Transaction Type";
+        GLEntry."SalesPerson Code" := GenJournalLine."Salespers./Purch. Code";
+        GLEntry."Entry Date" := Today;
+        GLEntry."Payment Voucher" := GenJournalLine."Payment Voucher";
+        GLEntry."Payment Voucher No." := GenJournalLine."Payment Voucher No.";
+        GLEntry."Appl.-to Commitment Entry" := GenJournalLine."Appl.-to Commitment Entry";
+        GLEntry."Banking Date" := Today;
+        GLEntry."Deferral Code" := GenJournalLine."Deferral Code";
+    end;
+
+
+    //Post in bank account ledger.
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnAfterInitBankAccLedgEntry', '', false, false)]
+    local procedure OnAfterInitBankAccLedgEntry(var BankAccountLedgerEntry: Record "Bank Account Ledger Entry"; GenJournalLine: Record "Gen. Journal Line")
+    begin
+        BankAccountLedgerEntry."Payment Voucher No." := GenJournalLine."Payment Voucher No.";
+        BankAccountLedgerEntry."Payment Type" := GenJournalLine."Payment Type";
+        BankAccountLedgerEntry."Payment Voucher" := GenJournalLine."Payment Voucher";
+        BankAccountLedgerEntry."Advance Code" := GenJournalLine."Advance Code";
+        BankAccountLedgerEntry."Entry Date" := Today();
+    end;
+
+    //post in vendor ledger entry.
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnAfterInitVendLedgEntry', '', false, false)]
+    local procedure OnAfterInitVendLedgEntry(var VendorLedgerEntry: Record "Vendor Ledger Entry"; GenJournalLine: Record "Gen. Journal Line")
+    begin
+        VendorLedgerEntry."Payment Type" := GenJournalLine."Payment Type";
+        VendorLedgerEntry."Payment Voucher" := GenJournalLine."Payment Voucher";
+        VendorLedgerEntry."Cashier ID" := GenJournalLine."Cashier ID";
+        VendorLedgerEntry."Payment Voucher No." := GenJournalLine."Payment Voucher No.";
+        VendorLedgerEntry."Entry Date" := Today();
+    end;
+
+    //post in customer Ledger Entry
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnAfterInitCustLedgEntry', '', false, false)]
+    local procedure OnAfterInitCustLedgEntry(var CustLedgerEntry: Record "Cust. Ledger Entry"; GenJournalLine: Record "Gen. Journal Line")
+    begin
+        CustLedgerEntry."Cashier ID" := GenJournalLine."Cashier ID";
+        CustLedgerEntry."Advance Code" := GenJournalLine."Advance Code";
+        CustLedgerEntry."Payment Type" := GenJournalLine."Payment Type";
+        CustLedgerEntry."Credit Memo Type" := GenJournalLine."Credit Memo Type";
+        CustLedgerEntry."Transaction Type" := GenJournalLine."Transaction Type";
+        CustLedgerEntry."Entry Date" := Today();
+        CustLedgerEntry."Payment Voucher" := GenJournalLine."Payment Voucher";
+        CustLedgerEntry."Payment Voucher No." := GenJournalLine."Payment Voucher No.";
+        CustLedgerEntry."Banking Date" := Today();
+    end;
 }

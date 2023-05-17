@@ -7,8 +7,6 @@ tableextension 50012 "User Setup Payt Req Ext" extends "User Setup"
     fields
     {
         // Add changes to table fields here
-
-
         field(50003; "SBU Head"; Boolean)
         {
         }
@@ -52,6 +50,10 @@ tableextension 50012 "User Setup Payt Req Ext" extends "User Setup"
         field(50039; "Budget Controller"; Boolean)
         {
             Description = 'Specifices users who can enter purchase requisition/payment requisition lines so as to perform budget checks';
+        }
+        field(50040; "Glue to Batch"; Boolean)
+        {
+            DataClassification = ToBeClassified;
         }
     }
 

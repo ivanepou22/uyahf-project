@@ -16,47 +16,47 @@ tableextension 50003 "Gen. Journal Line ExtRQ" extends "Gen. Journal Line"
         field(50021; "Bank File Generated"; Boolean) { }
         field(50022; "Bank File Generated On"; Date) { }
         field(50026; "Bank File Gen. by"; Code[20]) { }
-        // field(50031; "Cashier ID"; Code[50])
-        // {
-        //     Description = 'To Capture Cashier Data entry Code';
-        //     DataClassification = EndUserIdentifiableInformation;
-        //     NotBlank = true;
-        //     TableRelation = User."User Name";
-        //     ValidateTableRelation = false;
+        field(50031; "Cashier ID"; Code[50])
+        {
+            Description = 'To Capture Cashier Data entry Code';
+            DataClassification = EndUserIdentifiableInformation;
+            NotBlank = true;
+            TableRelation = User."User Name";
+            ValidateTableRelation = false;
 
-        //     trigger OnValidate();
-        //     var
-        //         LUserSetupREC: Record "User Setup";
-        //         UserMgt: Codeunit "User Management";
-        //         GenJnlBatch: Record "Gen. Journal Batch";
-        //         UserSelection: Codeunit "User Selection";
-        //     begin
-        //         //UserMgt.ValidateUserID("Cashier ID"); IE previous implementation
-        //         UserSelection.ValidateUserName("Cashier ID"); //IE new implementation
+            trigger OnValidate();
+            var
+                LUserSetupREC: Record "User Setup";
+                UserMgt: Codeunit "User Management";
+                GenJnlBatch: Record "Gen. Journal Batch";
+                UserSelection: Codeunit "User Selection";
+            begin
+                //UserMgt.ValidateUserID("Cashier ID"); IE previous implementation
+                UserSelection.ValidateUserName("Cashier ID"); //IE new implementation
 
-        //         GenJnlBatch.RESET;
-        //         GenJnlBatch.SETRANGE("Journal Template Name", "Journal Template Name");
-        //         GenJnlBatch.SETRANGE(Name, "Journal Batch Name");
-        //         IF GenJnlBatch.FIND('-') THEN BEGIN
-        //             IF GenJnlBatch."Cashier ID" <> '' THEN BEGIN
-        //                 IF GenJnlBatch."Cashier ID" <> USERID THEN BEGIN
-        //                     IF LUserSetupREC.GET(USERID) THEN
-        //                         IF LUserSetupREC."Glue to Batch" = TRUE THEN
-        //                             ERROR('You must be logged in as %1', GenJnlBatch."Cashier ID")
-        //                 END
-        //                 ELSE
-        //                     "Cashier ID" := GenJnlBatch."Cashier ID";
-        //                 //END;
-        //             END
-        //             ELSE BEGIN
-        //                 IF LUserSetupREC.GET(USERID) THEN
-        //                     IF LUserSetupREC."Glue to Batch" = TRUE THEN
-        //                         ERROR('You must use only your assigned Journal batch!\' +
-        //                               'Close the Journal and open again.');
-        //             END;
-        //         END;
-        //     end;
-        // }
+                GenJnlBatch.RESET;
+                GenJnlBatch.SETRANGE("Journal Template Name", "Journal Template Name");
+                GenJnlBatch.SETRANGE(Name, "Journal Batch Name");
+                IF GenJnlBatch.FIND('-') THEN BEGIN
+                    IF GenJnlBatch."Cashier ID" <> '' THEN BEGIN
+                        IF GenJnlBatch."Cashier ID" <> USERID THEN BEGIN
+                            IF LUserSetupREC.GET(USERID) THEN
+                                IF LUserSetupREC."Glue to Batch" = TRUE THEN
+                                    ERROR('You must be logged in as %1', GenJnlBatch."Cashier ID")
+                        END
+                        ELSE
+                            "Cashier ID" := GenJnlBatch."Cashier ID";
+                        //END;
+                    END
+                    ELSE BEGIN
+                        IF LUserSetupREC.GET(USERID) THEN
+                            IF LUserSetupREC."Glue to Batch" = TRUE THEN
+                                ERROR('You must use only your assigned Journal batch!\' +
+                                      'Close the Journal and open again.');
+                    END;
+                END;
+            end;
+        }
         field(50032; "Payment Type"; Option)
         {
             OptionCaption = '" ,Cheque,EFT,Credit Card,Banking Slip,Cash,Other,Voucher"';

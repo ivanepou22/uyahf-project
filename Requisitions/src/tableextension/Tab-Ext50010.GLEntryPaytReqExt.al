@@ -89,6 +89,10 @@ tableextension 50010 "G/L Entry Payt Req Ext" extends "G/L Entry"
         field(50076; "Comm. Class"; Code[10])
         {
         }
+        field(50077; "Cashier ID"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     var
