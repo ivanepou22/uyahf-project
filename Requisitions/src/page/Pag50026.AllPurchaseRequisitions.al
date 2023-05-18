@@ -136,6 +136,20 @@ page 50026 "All Purchase Requisitions"
                         END;
                     end;
                 }
+                action("Co&mments")
+                {
+                    ApplicationArea = Comments;
+                    Caption = 'Co&mments';
+                    Image = ViewComments;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
+                    RunObject = Page "Purch. Comment Sheet";
+                    RunPageLink = "Document Type" = CONST("Purchase Requisition"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
+                    ToolTip = 'View or add comments for the record.';
+                }
                 action("Print PP Form 20")
                 {
                     ApplicationArea = Basic, Suite;

@@ -154,6 +154,20 @@ page 50025 "Purchase Requisition List"
                         RptPurchaseReqn.RUNMODAL;
                     end;
                 }
+                action("Co&mments")
+                {
+                    ApplicationArea = Comments;
+                    Caption = 'Co&mments';
+                    Image = ViewComments;
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
+                    RunObject = Page "Purch. Comment Sheet";
+                    RunPageLink = "Document Type" = CONST("Purchase Requisition"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
+                    ToolTip = 'View or add comments for the record.';
+                }
             }
         }
     }

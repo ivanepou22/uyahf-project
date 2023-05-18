@@ -33,16 +33,19 @@ page 50027 "Purchase Requisition"
                 {
                     ApplicationArea = All;
                     Editable = EditPage;
+                    Importance = Promoted;
                 }
                 field("Request-By Name"; Rec."Request-By Name")
                 {
                     ApplicationArea = All;
+                    Importance = Promoted;
                     Editable = EditPage;
                 }
                 field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;
                     Editable = EditPage;
+                    Importance = Promoted;
 
                     trigger OnValidate();
                     begin
@@ -175,7 +178,7 @@ page 50027 "Purchase Requisition"
                 {
                     ApplicationArea = All;
                     Editable = false;
-
+                    Importance = Promoted;
                 }
                 field("Valid to Date"; Rec."Valid to Date")
                 {
@@ -332,11 +335,17 @@ page 50027 "Purchase Requisition"
                 }
                 action("Co&mments")
                 {
-                    ApplicationArea = Basic, Suite;
+                    ApplicationArea = Comments;
                     Caption = 'Co&mments';
                     Image = ViewComments;
-                    // RunObject = page "NFL Approval Comments";
-                    // RunPageLink = "Document No." = field("No."), "Document Type" = field("Document Type"), "Table ID" = const(50069);
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
+                    RunObject = Page "Purch. Comment Sheet";
+                    RunPageLink = "Document Type" = CONST("Purchase Requisition"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
+                    ToolTip = 'View or add comments for the record.';
                 }
                 action(Dimensions)
                 {
