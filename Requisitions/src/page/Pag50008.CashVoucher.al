@@ -67,10 +67,12 @@ page 50008 "Cash Voucher"
                 field("Hub Code"; Rec."Hub Code")
                 {
                     ApplicationArea = All;
+                    Visible = false;
                 }
                 field(Status; Rec.Status)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Document Type"; Rec."Document Type")
                 {

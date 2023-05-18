@@ -174,6 +174,7 @@ page 50027 "Purchase Requisition"
                 field(Status; Rec.Status)
                 {
                     ApplicationArea = All;
+                    Editable = false;
 
                 }
                 field("Valid to Date"; Rec."Valid to Date")

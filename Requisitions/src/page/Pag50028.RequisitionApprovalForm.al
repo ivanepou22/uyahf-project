@@ -140,6 +140,7 @@ page 50028 "Requisition Approval Form"
                 field(Status; Rec.Status)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Valid to Date"; Rec."Valid to Date")
                 {

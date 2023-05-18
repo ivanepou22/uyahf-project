@@ -2541,6 +2541,10 @@ table 50005 "NFL Requisition Header"
                 // Message(Format(Rec.Status));
             end;
         }
+        field(50115; "Requisition Type"; Option)
+        {
+            OptionMembers = " ",Admin,Programs;
+        }
     }
 
     keys

@@ -328,6 +328,10 @@ table 50001 "Payment Voucher Header"
         {
             Editable = false;
         }
+        field(50115; "Voucher Type"; Option)
+        {
+            OptionMembers = " ",Admin,Programs;
+        }
     }
 
     keys
