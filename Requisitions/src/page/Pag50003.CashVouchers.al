@@ -80,7 +80,23 @@ page 50003 "Cash Vouchers"
 
     actions
     {
-
+        area(Navigation)
+        {
+            action("Co&mments")
+            {
+                ApplicationArea = Comments;
+                Caption = 'Co&mments';
+                Image = ViewComments;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                RunObject = Page "Purch. Comment Sheet";
+                RunPageLink = "Document Type" = CONST("Cash Voucher"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
+                ToolTip = 'View or add comments for the record.';
+            }
+        }
     }
 
     trigger OnNewRecord(BelowxRec: Boolean);

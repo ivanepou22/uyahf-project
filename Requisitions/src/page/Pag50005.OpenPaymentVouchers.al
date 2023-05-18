@@ -98,6 +98,20 @@ page 50005 "Open Payment Vouchers"
                     Rec.ShowPaymentVoucherDocument(Rec."No.", Rec."Document Type");
                 end;
             }
+            action("Co&mments")
+            {
+                ApplicationArea = Comments;
+                Caption = 'Co&mments';
+                Image = ViewComments;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                RunObject = Page "Purch. Comment Sheet";
+                RunPageLink = "Document Type" = CONST("Cash Voucher"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
+                ToolTip = 'View or add comments for the record.';
+            }
         }
     }
 

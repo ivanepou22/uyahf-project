@@ -328,15 +328,19 @@ page 50008 "Cash Voucher"
                     RunObject = Page "All NV Approval Entries";
                     RunPageLink = "Document No." = FIELD("No.");
                 }
-                action(Comments)
+                action("Co&mments")
                 {
-                    ApplicationArea = All;
-                    Image = Comment;
+                    ApplicationArea = Comments;
+                    Caption = 'Co&mments';
+                    Image = ViewComments;
                     Promoted = true;
                     PromotedCategory = Process;
                     PromotedIsBig = true;
-                    // RunObject = page "NFL Approval Comments";
-                    // RunPageLink = "Document No." = field("No."), "Document Type" = field("Document Type"), "Table ID" = const(50075); TODO:Review these comments
+                    RunObject = Page "Purch. Comment Sheet";
+                    RunPageLink = "Document Type" = CONST("Cash Voucher"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
+                    ToolTip = 'View or add comments for the record.';
                 }
 
                 action(Dimensions)
