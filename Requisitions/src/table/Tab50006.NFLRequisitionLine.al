@@ -110,8 +110,6 @@ table 50006 "NFL Requisition Line"
             ELSE
             IF (Type = CONST(Item)) Item
             ELSE
-            IF (Type = CONST(3)) Resource
-            ELSE
             IF (Type = CONST("Fixed Asset")) "Fixed Asset"
             ELSE
             IF (Type = CONST("Charge (Item)")) "Item Charge";
