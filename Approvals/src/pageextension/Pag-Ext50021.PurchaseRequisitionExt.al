@@ -105,21 +105,28 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                     trigger OnAction()
                     var
                         RequisitionHeader: Record "NFL Requisition Header";
-                    // ApprovalComments: Record "NFL Approval Comment Line";TODO:Review
+                        ApprovalComments: Record "Approval Comment Line";
+                        ApprovalComments2: Record "Approval Comment Line";
+                        approvalComment: Page "Approval Comments";
                     begin
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
-                            // ApprovalComments.Reset();
-                            // ApprovalComments.SetRange(ApprovalComments."Document No.", Rec."No.");
-                            // ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type");
-                            // ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
-                            // if ApprovalComments.FindFirst() then begin
-                            ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
-                            customFunction.RejectApprovalRequest(Rec);
-                            Rec.ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen();
-                            // end else begin
-                            //     Error('You can not reject a document with out a comment.');
-                            // end;
+                            ApprovalComments.Reset();
+                            ApprovalComments.SetRange(ApprovalComments."Document No.", Rec."No.");
+                            ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type");
+                            ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
+                            if ApprovalComments.FindFirst() then begin
+                                ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
+                                customFunction.RejectApprovalRequest(Rec);
+                                Rec.ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen();
+                            end else begin
+                                ApprovalComments2.Reset();
+                                ApprovalComments2.SetRange(ApprovalComments2."Table ID", Database::"NFL Requisition Header");
+                                ApprovalComments2.SetRange(ApprovalComments2."Document No.", Rec."No.");
+                                ApprovalComments2.SetRange(ApprovalComments2."Document Type", Rec."Document Type");
+                                approvalComment.SetTableView(ApprovalComments2);
+                                approvalComment.Run();
+                            end;
                         end;
                     end;
                 }
