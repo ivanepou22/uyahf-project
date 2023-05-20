@@ -48,6 +48,18 @@ page 50028 "Requisition Approval Form"
                         CurrPage.UPDATE;
                     end;
                 }
+                field("Requisition Type"; Rec."Requisition Type")
+                {
+                    ApplicationArea = All;
+                    Editable = EditPage;
+                    ToolTip = 'Specifies the value of the Requisition Type field.';
+                }
+                field("Raised By"; Rec."Raised By")
+                {
+                    ApplicationArea = All;
+                    Editable = EditPage;
+                    ToolTip = 'Specifies the value of the Created By field.';
+                }
                 field("Wrks/Srvcs/Sup"; Rec."Wrks/Srvcs/Sup")
                 {
                     ApplicationArea = All;

@@ -52,6 +52,16 @@ page 50008 "Cash Voucher"
                 {
                     ApplicationArea = All;
                 }
+                field("Voucher Type"; Rec."Voucher Type")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Voucher Type field.';
+                }
+                field("Raised By"; Rec."Raised By")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Created By field.';
+                }
                 field("Budget Code"; Rec."Budget Code")
                 {
                     ApplicationArea = All;

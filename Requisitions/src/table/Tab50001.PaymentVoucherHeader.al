@@ -77,7 +77,7 @@ table 50001 "Payment Voucher Header"
         }
         field(10; Comment; Boolean)
         {
-            CalcFormula = Exist("G/L Entry" WHERE("Document No." = FIELD("No.")));
+            CalcFormula = Exist("Purch. Comment Line" WHERE("No." = FIELD("No.")));
             Editable = false;
             FieldClass = FlowField;
         }
@@ -331,6 +331,11 @@ table 50001 "Payment Voucher Header"
         field(50115; "Voucher Type"; Option)
         {
             OptionMembers = " ",Admin,Programs;
+        }
+        field(50116; "Raised By"; Code[50])
+        {
+            Caption = 'Created By';
+            TableRelation = "User Setup"."User ID";
         }
     }
 

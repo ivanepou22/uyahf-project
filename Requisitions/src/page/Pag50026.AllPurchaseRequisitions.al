@@ -47,6 +47,17 @@ page 50026 "All Purchase Requisitions"
                 field("Currency Code"; Rec."Currency Code")
                 {
                     ApplicationArea = All;
+                    Visible = false;
+                }
+                field("Raised By"; Rec."Raised By")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Created By field.';
+                }
+                field("Requisition Type"; Rec."Requisition Type")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Requisition Type field.';
                 }
                 field(Amount; Rec.Amount)
                 {

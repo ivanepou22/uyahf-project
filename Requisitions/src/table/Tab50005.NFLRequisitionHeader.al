@@ -910,7 +910,7 @@ table 50005 "NFL Requisition Header"
         {
             AutoFormatExpression = "Currency Code";
             AutoFormatType = 1;
-            CalcFormula = Sum("Purchase Line".Amount WHERE("Document Type" = FIELD("Document Type"),
+            CalcFormula = Sum("NFL Requisition Line".Amount WHERE("Document Type" = FIELD("Document Type"),
                                                             "Document No." = FIELD("No.")));
             Caption = 'Amount';
             Editable = false;
@@ -2544,6 +2544,11 @@ table 50005 "NFL Requisition Header"
         field(50115; "Requisition Type"; Option)
         {
             OptionMembers = " ",Admin,Programs;
+        }
+        field(50116; "Raised By"; Code[50])
+        {
+            Caption = 'Created By';
+            TableRelation = "User Setup"."User ID";
         }
     }
 
