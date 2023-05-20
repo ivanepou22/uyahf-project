@@ -550,46 +550,12 @@ page 50040 "Voucher Form"
                     trigger OnAction()
                     var
                         Txt002: Label 'Are you sure you want to Delegate this document ?';
-                        userSetup: Record "User Setup";
-                        ApprovalEntries: Record "Approval Entry";
                         CustomFunctions: Codeunit "Custom Functions Cash";
                     begin
                         if Confirm(Txt002, true) then begin
-                            ApprovalsMgmt.DelegateRecordApprovalRequest(Rec.RecordId);
+                            CustomFunctions.DelegatePaymentVoucherApprovalRequest(Rec);
                         end;
                     end;
-                }
-
-                action(Escalate)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Escalate';
-                    Image = Delegate;
-                    Promoted = true;
-                    PromotedCategory = Category5;
-                    PromotedOnly = true;
-                    ToolTip = 'Escalate the approval Request to an Escalate approver.';
-                    Visible = false;
-                    trigger OnAction()
-                    var
-                        Txt002: Label 'Are you sure you want to Escalate this document ?';
-                        PaymentLineTotal: Decimal;
-                        UserSetup: Record "User Setup";
-                        // ApprovalDoc: Codeunit "NFL Approvals Management";
-                        CustomFunctions: Codeunit "Custom Functions Cash";
-                    begin
-                        Rec.CalcFields("Payment Voucher Lines Total");
-                        PaymentLineTotal := Rec."Payment Voucher Lines Total";
-                        if PaymentLineTotal <= 0 then begin
-                            Error('Voucher Lines are Empty, You can not Escalate this document');
-                        end;
-
-                        if Confirm(Txt002, true) then begin
-                            //Send Email implemented
-                            CustomFunctions.EscalateApprovalRequest(Rec);
-                        end;
-                    end;
-
                 }
 
                 action(ApprovalComments)

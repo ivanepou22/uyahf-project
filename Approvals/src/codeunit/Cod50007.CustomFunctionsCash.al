@@ -199,36 +199,34 @@ codeunit 50007 "Custom Functions Cash"
     procedure DelegatePaymentVoucherApprovalRequest(VoucherHeader: Record "Payment Voucher Header")
     var
         ApprovalEntry: Record "Approval Entry";
-        // DelegateEscalate: Record "Delegate Escalate Management";TODO:
-        text001: Label 'Are you sure you want to delegate to';
-        MessageSent: Text[100];
+        UserSetup: Record "User Setup";
+        Txt00003: Label 'Are you sure you want to delegate to:';
+        MessageToSend: Text[100];
     begin
-        // ApprovalEntry.Reset();
-        // ApprovalEntry.SetRange(ApprovalEntry."Document No.", VoucherHeader."No."); TODO:
-        // ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Open);
-        // if ApprovalEntry.FindFirst() then begin
-        //     DelegateEscalate.Reset();
-        //     DelegateEscalate.SetRange(DelegateEscalate."User ID", ApprovalEntry."Approver ID");
-        //     DelegateEscalate.SetRange(DelegateEscalate."Document Type", VoucherHeader."Document Type");
-        //     DelegateEscalate.SetRange(DelegateEscalate."Shortcut Dimension 1 Code", VoucherHeader."Shortcut Dimension 1 Code");
-        //     if DelegateEscalate.FindFirst() then begin
-        //         if DelegateEscalate."Delegate ID" <> '' then begin
-        //             MessageSent := text001 + ' ' + DelegateEscalate."Delegate ID";
-        //             if Confirm(MessageSent, true) then begin
-        //                 ApprovalEntry."Approver ID" := DelegateEscalate."Delegate ID";
-        //                 ApprovalEntry."Last Modified By User ID" := UserId;
-        //                 ApprovalEntry.Modify();
-        //                 Message('Voucher has been Delegated to %1 Successfully', DelegateEscalate."Delegate ID");
-        //             end;
-        //         end else begin
-        //             Error('Delegate ID can not be empty. Contact your Systems Administrator');
-        //         end;
-        //     end else begin
-        //         Error('You are not setup please consult your System Administrator');
-        //     end;
-        // end else begin
-        //     Error('You are not allowed to Delegate please contact your system Administrator');
-        // end;
+        ApprovalEntry.Reset();
+        ApprovalEntry.SetRange(ApprovalEntry."Document No.", VoucherHeader."No.");
+        ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Open);
+        if ApprovalEntry.FindFirst() then begin
+            UserSetup.Reset();
+            UserSetup.SetRange(UserSetup."User ID", ApprovalEntry."Approver ID");
+            if UserSetup.FindFirst() then begin
+                if UserSetup.Substitute <> '' then begin
+                    MessageToSend := Txt00003 + ' ' + UserSetup.Substitute;
+                    if Confirm(MessageToSend, true) then begin
+                        ApprovalEntry."Approver ID" := UserSetup.Substitute;
+                        ApprovalEntry."Last Modified By User ID" := UserId;
+                        ApprovalEntry.Modify();
+                        Message('Voucher has been Delegated to %1 Successfully', UserSetup.Substitute);
+                    end;
+                end else begin
+                    Error('Substitute can not be empty. Contact your Systems Administrator');
+                end;
+            end else begin
+                Error('You are not setup please consult your System Administrator');
+            end;
+        end else begin
+            Error('You are not allowed to Delegate please contact your system Administrator');
+        end;
     end;
 
 

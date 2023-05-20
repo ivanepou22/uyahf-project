@@ -132,11 +132,10 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                     trigger OnAction()
                     var
                         Txt002: Label 'Are you sure you want to Delegate this document ?';
-                        userSetup: Record "User Setup";
-                        ApprovalEntries: Record "Approval Entry";
+                        CustomPurchFunction: Codeunit "Custom Functions Requisition";
                     begin
                         if Confirm(Txt002, true) then begin
-                            ApprovalsMgmt.DelegateRecordApprovalRequest(Rec.RecordId);
+                            CustomPurchFunction.DelegatePurchaseApprovalRequest(Rec);
                         end;
                     end;
                 }

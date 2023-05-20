@@ -142,12 +142,10 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                     trigger OnAction()
                     var
                         Txt002: Label 'Are you sure you want to Delegate this document ?';
-                        userSetup: Record "User Setup";
-                        ApprovalEntries: Record "Approval Entry";
-                        ApprovalsMgmt: Codeunit "Approvals Mgmt.";
+                        CustomPurchFunction: Codeunit "Custom Functions Requisition";
                     begin
                         if Confirm(Txt002, true) then begin
-                            ApprovalsMgmt.DelegateRecordApprovalRequest(Rec.RecordId);
+                            CustomPurchFunction.DelegatePurchaseApprovalRequest(Rec);
                         end;
                     end;
                 }

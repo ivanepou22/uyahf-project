@@ -187,11 +187,10 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                     trigger OnAction()
                     var
                         Txt002: Label 'Are you sure you want to Delegate this document ?';
-                        userSetup: Record "User Setup";
-                        ApprovalEntries: Record "Approval Entry";
+                        CustomFunction: Codeunit "Custom Functions Cash";
                     begin
                         if Confirm(Txt002, true) then begin
-                            ApprovalsMgmt.DelegateRecordApprovalRequest(Rec.RecordId);
+                            CustomFunction.DelegatePaymentVoucherApprovalRequest(Rec);
                         end;
                     end;
                 }
