@@ -95,25 +95,24 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                     trigger OnAction()
                     var
                         RequisitionHeader: Record "NFL Requisition Header";
-                        ApprovalComments: Record "Approval Comment Line";
-                        ApprovalComments2: Record "Approval Comment Line";
-                        approvalComment: Page "Approval Comments";
+                        ApprovalComments: Record "sales Comment Line";
+                        ApprovalComments2: Record "sales Comment Line";
+                        approvalComment: Page "Sales Comment Sheet";
                     begin
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
                             ApprovalComments.Reset();
-                            ApprovalComments.SetRange(ApprovalComments."Document No.", Rec."No.");
-                            ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type");
-                            ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
+                            ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
+                            ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Purchase Requisition");
                             if ApprovalComments.FindFirst() then begin
                                 ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 customFunction.RejectApprovalRequest(Rec);
                                 Rec.ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen();
                             end else begin
                                 ApprovalComments2.Reset();
-                                ApprovalComments2.SetRange(ApprovalComments2."Table ID", Database::"NFL Requisition Header");
-                                ApprovalComments2.SetRange(ApprovalComments2."Document No.", Rec."No.");
-                                ApprovalComments2.SetRange(ApprovalComments2."Document Type", Rec."Document Type");
+                                ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Purchase Requisition");
+                                ApprovalComments2.SetRange(ApprovalComments2."No.", Rec."No.");
+                                ApprovalComments2.SetRange("Document Line No.", 0);
                                 approvalComment.SetTableView(ApprovalComments2);
                                 approvalComment.Run();
                             end;
@@ -151,7 +150,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                     PromotedCategory = Category5;
                     PromotedOnly = true;
                     ToolTip = 'Escalate the approval Request to an Escalate approver.';
-                    Visible = OpenApprovalEntriesExistForCurrUser;
+                    Visible = false;
                     trigger OnAction()
                     var
                         Txt002: Label 'Are you sure you want to Escalate this document ?';
@@ -170,16 +169,19 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                         end;
                     end;
                 }
-                action("Approval Comments")
+                action(ApprovalComments)
                 {
                     ApplicationArea = All;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    PromotedIsBig = true;
                     Caption = 'Approval Comments';
                     Image = Comment;
-                    // RunObject = page "NFL Approval Comments";TODO:
-                    // RunPageLink = "Document No." = field("No."), "Document Type" = field("Document Type"), "Table ID" = const(50069);
+                    Promoted = true;
+                    PromotedCategory = Category6;
+                    PromotedOnly = true;
+                    ToolTip = 'Add a comment about the approval request';
+                    RunObject = page "Sales Comment Sheet";
+                    RunPageLink = "Document Type" = CONST("Purchase Requisition"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
                 }
             }
 

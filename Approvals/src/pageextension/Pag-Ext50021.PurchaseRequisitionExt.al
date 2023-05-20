@@ -107,22 +107,22 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                         RequisitionHeader: Record "NFL Requisition Header";
                         ApprovalComments: Record "Sales Comment Line";
                         ApprovalComments2: Record "Sales Comment Line";
-                        approvalComment: Page "Approval Comments";
+                        approvalComment: Page "Sales Comment Sheet";
                     begin
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
                             ApprovalComments.Reset();
                             ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
-                            ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type"::"Purchase Requisition");
+                            ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Purchase Requisition");
                             if ApprovalComments.FindFirst() then begin
                                 ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 customFunction.RejectApprovalRequest(Rec);
                                 Rec.ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen();
                             end else begin
                                 ApprovalComments2.Reset();
-                                // ApprovalComments2.SetRange(ApprovalComments2."Table ID", Database::"NFL Requisition Header");
+                                ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Purchase Requisition");
                                 ApprovalComments2.SetRange(ApprovalComments2."No.", Rec."No.");
-                                // ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::);
+                                ApprovalComments2.SetRange("Document Line No.", 0);
                                 approvalComment.SetTableView(ApprovalComments2);
                                 approvalComment.Run();
                             end;
@@ -148,36 +148,6 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                     begin
                         if Confirm(Txt002, true) then begin
                             ApprovalsMgmt.DelegateRecordApprovalRequest(Rec.RecordId);
-                        end;
-                    end;
-                }
-
-                action(Escalate)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Escalate';
-                    Image = Delegate;
-                    Promoted = true;
-                    PromotedCategory = Category5;
-                    PromotedOnly = true;
-                    ToolTip = 'Escalate the approval Request to an Escalate approver.';
-                    Visible = OpenApprovalEntriesExistForCurrUser;
-                    trigger OnAction()
-                    var
-                        Txt002: Label 'Are you sure you want to Escalate this document ?';
-                        RequisitionLineTotal: Decimal;
-                        UserSetup: Record "User Setup";
-                    // ApprovalDoc: Codeunit "NFL Approvals Management";
-                    begin
-                        Rec.CalcFields("Requisition Lines Total");
-                        RequisitionLineTotal := Rec."Requisition Lines Total";
-                        if RequisitionLineTotal <= 0 then
-                            Error('Requisition Lines are Empty, You cannot Escalate this Document');
-
-                        if Confirm(Txt002, true) then begin
-
-                            //Send Email implemented
-                            customFunction.EscalateApprovalRequest(Rec);
                         end;
                     end;
                 }
@@ -256,6 +226,20 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                     begin
                         Codes.UpdateApprovalEntryInfo();
                     end;
+                }
+                action(ApprovalComments)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Approval Comments';
+                    Image = Comment;
+                    Promoted = true;
+                    PromotedCategory = Category6;
+                    PromotedOnly = true;
+                    ToolTip = 'Add a comment about the approval request';
+                    RunObject = page "Sales Comment Sheet";
+                    RunPageLink = "Document Type" = CONST("Purchase Requisition"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
                 }
                 action("Cancel Approval Re&quest")
                 {

@@ -510,31 +510,30 @@ page 50040 "Voucher Form"
                     Visible = OpenApprovalEntriesExistForCurrUser;
                     trigger OnAction()
                     var
+                        PaymentVoucherHeader: Record "Payment Voucher Header";
+                        ApprovalComments: Record "sales Comment Line";
+                        ApprovalComments2: Record "sales Comment Line";
+                        approvalComment: Page "Sales Comment Sheet";
                         CustomFunctions: Codeunit "Custom Functions Cash";
-                    // ApprovalComments: Record "NFL Approval Comment Line";TODO:
-                    // approvalComment: Page "NFL Approval Comments";
-                    // ApprovalComments2: Record "NFL Approval Comment Line";
                     begin
+
                         if Confirm('Are you sure you want to Reject this Voucher ?', true) then begin
                             //Checking for comments before rejecting
-
-                            // ApprovalComments.Reset();TODO:
-                            // ApprovalComments.SetRange(ApprovalComments."Document No.", Rec."No.");
-                            // ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type");
-                            // ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
-                            // if ApprovalComments.FindFirst() then begin
-                            ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
-                            CustomFunctions.RejectApprovalRequest(Rec);
-                            Rec.ReversePaymentVoucherCommitmentEntries();
-                            // end else begin
-                            //     ApprovalComments2.Reset();
-                            //     ApprovalComments2.SetRange(ApprovalComments2."Document No.", Rec."No.");
-                            //     ApprovalComments2.SetRange(ApprovalComments2."Document Type", Rec."Document Type");
-                            //     ApprovalComments2.SetRange(ApprovalComments2."Table ID", Database::"Payment Voucher Header");
-                            //     approvalComment.SetTableView(ApprovalComments2);
-                            //     approvalComment.Run();
-                            //     Error('You can not reject a document with out a comment.');
-                            // end;
+                            ApprovalComments.Reset();
+                            ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
+                            ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Cash Voucher");
+                            if ApprovalComments.FindFirst() then begin
+                                ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
+                                CustomFunctions.RejectApprovalRequest(Rec);
+                                Rec.ReversePaymentVoucherCommitmentEntries();
+                            end else begin
+                                ApprovalComments2.Reset();
+                                ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Cash Voucher");
+                                ApprovalComments2.SetRange(ApprovalComments2."No.", Rec."No.");
+                                ApprovalComments2.SetRange("Document Line No.", 0);
+                                approvalComment.SetTableView(ApprovalComments2);
+                                approvalComment.Run();
+                            end;
                         end;
                     end;
                 }
@@ -570,7 +569,7 @@ page 50040 "Voucher Form"
                     PromotedCategory = Category5;
                     PromotedOnly = true;
                     ToolTip = 'Escalate the approval Request to an Escalate approver.';
-                    Visible = OpenApprovalEntriesExistForCurrUser;
+                    Visible = false;
                     trigger OnAction()
                     var
                         Txt002: Label 'Are you sure you want to Escalate this document ?';
@@ -590,6 +589,22 @@ page 50040 "Voucher Form"
                             CustomFunctions.EscalateApprovalRequest(Rec);
                         end;
                     end;
+
+                }
+
+                action(ApprovalComments)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Approval Comments';
+                    Image = Comment;
+                    Promoted = true;
+                    PromotedCategory = Category5;
+                    PromotedOnly = true;
+                    ToolTip = 'Add a comment about the approval request';
+                    RunObject = page "Sales Comment Sheet";
+                    RunPageLink = "Document Type" = CONST("Cash Voucher"),
+                                  "No." = FIELD("No."),
+                                  "Document Line No." = CONST(0);
                 }
             }
         }
