@@ -105,25 +105,24 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                     trigger OnAction()
                     var
                         RequisitionHeader: Record "NFL Requisition Header";
-                        ApprovalComments: Record "Approval Comment Line";
-                        ApprovalComments2: Record "Approval Comment Line";
+                        ApprovalComments: Record "Sales Comment Line";
+                        ApprovalComments2: Record "Sales Comment Line";
                         approvalComment: Page "Approval Comments";
                     begin
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
                             ApprovalComments.Reset();
-                            ApprovalComments.SetRange(ApprovalComments."Document No.", Rec."No.");
-                            ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type");
-                            ApprovalComments.SetRange(ApprovalComments."User ID", UserId);
+                            ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
+                            ApprovalComments.SetRange(ApprovalComments."Document Type", Rec."Document Type"::"Purchase Requisition");
                             if ApprovalComments.FindFirst() then begin
                                 ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 customFunction.RejectApprovalRequest(Rec);
                                 Rec.ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen();
                             end else begin
                                 ApprovalComments2.Reset();
-                                ApprovalComments2.SetRange(ApprovalComments2."Table ID", Database::"NFL Requisition Header");
-                                ApprovalComments2.SetRange(ApprovalComments2."Document No.", Rec."No.");
-                                ApprovalComments2.SetRange(ApprovalComments2."Document Type", Rec."Document Type");
+                                // ApprovalComments2.SetRange(ApprovalComments2."Table ID", Database::"NFL Requisition Header");
+                                ApprovalComments2.SetRange(ApprovalComments2."No.", Rec."No.");
+                                // ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::);
                                 approvalComment.SetTableView(ApprovalComments2);
                                 approvalComment.Run();
                             end;
