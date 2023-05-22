@@ -62,8 +62,6 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                             ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Open);
                             if ApprovalEntry.FindFirst() then begin
                                 ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
-                                if Rec."Approvals Entry" = 0 then
-                                    Rec.SendRequisitionApprovedEmail();
                             end
                             else begin
                                 UserSetup.Reset();
@@ -77,7 +75,8 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                             end;
                             //Send email implemented
                             customFunction.OpenApprovalEntries(Rec);
-                            Rec.CheckForBudgetControllerApproval(Rec)
+                            Rec.CheckForBudgetControllerApproval(Rec);
+                            Rec.SendRequisitionApprovedEmail(Rec);
                         end;
                     end;
                 }
@@ -136,6 +135,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                     begin
                         if Confirm(Txt002, true) then begin
                             CustomPurchFunction.DelegatePurchaseApprovalRequest(Rec);
+                            Rec.SendRequisitionApprovedEmail(Rec);
                         end;
                     end;
                 }

@@ -85,7 +85,6 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
                 Rec.Status := Rec.Status::Released;
                 Rec."Release date" := Today();
                 Rec.Modify();
-                SendRequisitionApprovedEmail();
             end;
             Message(NvText);
         end;
@@ -169,33 +168,80 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
     procedure SendingCancelApprovalEmail(RequisitionHeader: Record "NFL Requisition Header")
     var
         ApprovalEntry: Record "Approval Entry";
-    // NFLApprovalMgt: Codeunit "NFL Approvals Mgt Notification";
+        UserSetup: Record "User Setup";
     begin
-        ApprovalEntry.Reset();
-        ApprovalEntry.SetRange(ApprovalEntry."Document No.", RequisitionHeader."No.");
-        ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Canceled);
-        ApprovalEntry.SetFilter(ApprovalEntry."Approver ID", '<>%1', UserId);
-        if ApprovalEntry.FindFirst() then
-            repeat
-            // NFLApprovalMgt.SendNFLRequisitionCancellationMail(RequisitionHeader, ApprovalEntry);
-            until ApprovalEntry.Next() = 0;
+
     end;
 
     /// <summary>
     /// SendRequisitionApprovedEmail.
     /// </summary>
-    procedure SendRequisitionApprovedEmail()
+    procedure SendRequisitionApprovedEmail(RequisitionHeader: Record "NFL Requisition Header")
     var
         ApprovalEntry: Record "Approval Entry";
-    // NFLApprovalMgt: Codeunit "NFL Approvals Mgt Notification";
     begin
         ApprovalEntry.Reset();
-        ApprovalEntry.SetRange(ApprovalEntry."Document No.", Rec."No.");
-        ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Approved);
-        ApprovalEntry.SetFilter(ApprovalEntry."Approver ID", '<>%1', UserId);
-        if ApprovalEntry.FindFirst() then
-            repeat
-            // NFLApprovalMgt.SendNFLRequisitionApprovedMail(Rec, ApprovalEntry);
-            until ApprovalEntry.Next() = 0;
+        ApprovalEntry.SetRange("Document No.", RequisitionHeader."No.");
+        ApprovalEntry.SetRange(Status, ApprovalEntry.Status::Open);
+        if ApprovalEntry.FindFirst() then begin
+            SendEmailToVoucherOwner(RequisitionHeader, ApprovalEntry);
+            SendEmailToVoucherApprover(RequisitionHeader, ApprovalEntry);
+        end;
+    end;
+
+    procedure SendEmailToVoucherOwner(RequisitionHeader: Record "NFL Requisition Header"; ApprovalEntry: Record "Approval Entry")
+    var
+        EmailBody: Text[1000];
+        MSTRecepientsList: List of [Text];
+        MSTCCRecepientsList: List of [Text];
+        MSTBCCRecepientsList: List of [Text];
+        FileMgt: Codeunit "File Management";
+        EmailObj: Codeunit Email;
+        EmailMsg: Codeunit "Email Message";
+        RequisitionStatus: Text[50];
+        UserSetup: Record "User Setup";
+        DocumentNo: Code[20];
+        EmailSubject: Text[250];
+    begin
+        if UserSetup.Get(ApprovalEntry."Sender ID") then begin
+            EmailBody := 'Dear ' + UserSetup."E-Mail" + ', Purchase Requisition No. ' + ApprovalEntry."Document No." + ' is with ' + ApprovalEntry."Approver ID";
+            MSTRecepientsList.Add(UserSetup."E-Mail");
+            DocumentNo := ApprovalEntry."Document No.";
+            EmailSubject := 'Purchase Requisition Approval in Progress ' + DocumentNo;
+            EmailMsg.Create(MSTRecepientsList, EmailSubject,
+            EmailBody,
+            false, MSTCCRecepientsList, MSTBCCRecepientsList);
+            EmailObj.Send(EmailMsg, Enum::"Email Scenario"::Default);
+        end;
+    end;
+
+    procedure SendEmailToVoucherApprover(RequisitionHeader: Record "NFL Requisition Header"; ApprovalEntry: Record "Approval Entry")
+    var
+        ApprovalEmailSubject: Text[150];
+        EmailBody: Text[1000];
+        MSTRecepientsList: List of [Text];
+        MSTCCRecepientsList: List of [Text];
+        MSTBCCRecepientsList: List of [Text];
+        AttachmentTempBlob: Codeunit "Temp Blob";
+        AttachmentInStream: InStream;
+        FileMgt: Codeunit "File Management";
+        EmailObj: Codeunit Email;
+        EmailMsg: Codeunit "Email Message";
+        RequisitionStatus: Text[50];
+        UserSetup: Record "User Setup";
+        DocumentNo: Code[20];
+        EmailSubject: Text[250];
+    begin
+        if UserSetup.Get(ApprovalEntry."Approver ID") then begin
+            EmailBody := 'Dear ' + UserSetup."E-Mail" + ', Purchase Requisition No. ' + ApprovalEntry."Document No." + ' is on your desk for approval ' + GetUrl(CLIENTTYPE::Web, CompanyName, ObjectType::Page, Page::"Requests to Approve");
+            // EmailBody := STRSUBSTNO(EmailBody, GetUrl(CLIENTTYPE::Web, CompanyName, ObjectType::Page, Page::"Requests to Approve"));
+            MSTRecepientsList.Add(UserSetup."E-Mail");
+            DocumentNo := ApprovalEntry."Document No.";
+            EmailSubject := 'Purchase Requisition ' + DocumentNo + ' Requires Your attension';
+            EmailMsg.Create(MSTRecepientsList, EmailSubject,
+            EmailBody,
+            false, MSTCCRecepientsList, MSTBCCRecepientsList);
+            EmailObj.Send(EmailMsg, Enum::"Email Scenario"::Default);
+        end;
     end;
 }

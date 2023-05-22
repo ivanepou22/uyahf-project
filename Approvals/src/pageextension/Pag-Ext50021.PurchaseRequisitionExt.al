@@ -71,8 +71,6 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                             ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Open);
                             if ApprovalEntry.FindFirst() then begin
                                 ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
-                                if Rec."Approvals Entry" = 0 then
-                                    Rec.SendRequisitionApprovedEmail();
                             end
                             else begin
                                 UserSetup.Reset();
@@ -86,7 +84,8 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                             end;
                             //Send email implemented
                             customFunction.OpenApprovalEntries(Rec);
-                            Rec.CheckForBudgetControllerApproval(Rec)
+                            Rec.CheckForBudgetControllerApproval(Rec);
+                            Rec.SendRequisitionApprovedEmail(Rec);
                         end;
 
                     end;
@@ -146,6 +145,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                     begin
                         if Confirm(Txt002, true) then begin
                             CustomPurchFunction.DelegatePurchaseApprovalRequest(Rec);
+                            Rec.SendRequisitionApprovedEmail(Rec);
                         end;
                     end;
                 }
@@ -202,10 +202,9 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                         if Confirm('Are you sure you want to send this Approval Request ?', true) then begin
                             if ApprovalsMgmtCut.CheckClaimApprovalsWorkflowEnable(Rec) then begin
                                 ApprovalsMgmtCut.OnSendClaimForApproval(Rec);
-                                //Send email implemented
-                                Rec.SendRequestApprovalEmail(Rec);
                                 customCodeunit.modifyApprovalEntry(Rec);
                             end;
+                            Rec.SendRequisitionApprovedEmail(Rec)
                         end;
                     end;
                 }
