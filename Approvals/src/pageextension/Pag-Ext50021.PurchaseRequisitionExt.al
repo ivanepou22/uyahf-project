@@ -85,6 +85,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                             //Send email implemented
                             customFunction.OpenApprovalEntries(Rec);
                             Rec.CheckForBudgetControllerApproval(Rec);
+                            Rec.CheckDocumentRelease(Rec);
                             Rec.SendRequisitionApprovedEmail(Rec);
                         end;
 
@@ -117,6 +118,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                                 ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 customFunction.RejectApprovalRequest(Rec);
                                 Rec.ReversePurchaseRequisitionCommitmentEntryOnRejectOrReopen();
+                                Rec.SendRejectEmail(Rec);
                             end else begin
                                 ApprovalComments2.Reset();
                                 ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Purchase Requisition");
@@ -221,7 +223,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                     var
                         Codes: Codeunit "Custom Functions Requisition";
                     begin
-                        Codes.UpdateApprovalEntryInfo();
+                        Message(Format(GetUrl(CLIENTTYPE::Web, CompanyName, ObjectType::Page, Page::"Requests to Approve")));
                     end;
                 }
                 action(ApprovalComments)

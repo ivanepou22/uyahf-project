@@ -127,20 +127,19 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
     end;
 
     //check he document release
-    // procedure CheckDocumentRelease(var PurchaseRequisition: Record "NFL Requisition Header")
-    // var
-    //     ApprovalEntries: Record "Approval Entry";
-    //     PurchaseSetup: Record "Purchases & Payables Setup";
-    // begin
-    //     ApprovalEntries.Reset();
-    //     ApprovalEntries.SetRange("Document No.", PurchaseRequisition."No.");
-    //     if ApprovalEntries.Find('-') then begin
-    //         if not ((ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created)) then begin
-    //             if PurchaseSetup."Create Purch. comm. on Approv." then
-    //                 Rec.CreatePurchaseRequisitionCommitmentEntries();
-    //         end;
-    //     end;
-    // end;
+    procedure CheckDocumentRelease(var PurchaseRequisition: Record "NFL Requisition Header")
+    var
+        ApprovalEntries: Record "Approval Entry";
+        PurchaseSetup: Record "Purchases & Payables Setup";
+    begin
+        ApprovalEntries.Reset();
+        ApprovalEntries.SetRange("Document No.", PurchaseRequisition."No.");
+        if ApprovalEntries.Find('-') then begin
+            if not ((ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created)) then begin
+                Rec.SendReleaseEmail(PurchaseRequisition);
+            end;
+        end;
+    end;
 
     procedure CheckForBudgetControllerApproval(var PurchaseRequisition: Record "NFL Requisition Header")
     var
@@ -233,11 +232,70 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
         EmailSubject: Text[250];
     begin
         if UserSetup.Get(ApprovalEntry."Approver ID") then begin
-            EmailBody := 'Dear ' + UserSetup."E-Mail" + ', Purchase Requisition No. ' + ApprovalEntry."Document No." + ' is on your desk for approval ' + GetUrl(CLIENTTYPE::Web, CompanyName, ObjectType::Page, Page::"Requests to Approve");
-            // EmailBody := STRSUBSTNO(EmailBody, GetUrl(CLIENTTYPE::Web, CompanyName, ObjectType::Page, Page::"Requests to Approve"));
+            EmailBody := 'Dear ' + UserSetup."E-Mail" + ', Purchase Requisition No. ' + ApprovalEntry."Document No." + ' is on your desk for approval ' + 'http://localhost:8080/BC220/?company=UYAHF&page=654';
             MSTRecepientsList.Add(UserSetup."E-Mail");
             DocumentNo := ApprovalEntry."Document No.";
             EmailSubject := 'Purchase Requisition ' + DocumentNo + ' Requires Your attension';
+            EmailMsg.Create(MSTRecepientsList, EmailSubject,
+            EmailBody,
+            false, MSTCCRecepientsList, MSTBCCRecepientsList);
+            EmailObj.Send(EmailMsg, Enum::"Email Scenario"::Default);
+        end;
+    end;
+
+    procedure SendReleaseEmail(RequisitionHeader: Record "NFL Requisition Header")
+    var
+        EmailBody: Text[1000];
+        MSTRecepientsList: List of [Text];
+        MSTCCRecepientsList: List of [Text];
+        MSTBCCRecepientsList: List of [Text];
+        FileMgt: Codeunit "File Management";
+        EmailObj: Codeunit Email;
+        EmailMsg: Codeunit "Email Message";
+        RequisitionStatus: Text[50];
+        UserSetup: Record "User Setup";
+        DocumentNo: Code[20];
+        EmailSubject: Text[250];
+    begin
+        if UserSetup.Get(RequisitionHeader."Raised By") then begin
+            EmailBody := 'Dear ' + UserSetup."E-Mail" + ', Purchase Requisition No. ' + RequisitionHeader."No." + ' has been Approved/Released.';
+            MSTRecepientsList.Add(UserSetup."E-Mail");
+            DocumentNo := RequisitionHeader."No.";
+            EmailSubject := 'Purchase Requisition ' + DocumentNo + ' has been approved.';
+            EmailMsg.Create(MSTRecepientsList, EmailSubject,
+            EmailBody,
+            false, MSTCCRecepientsList, MSTBCCRecepientsList);
+            EmailObj.Send(EmailMsg, Enum::"Email Scenario"::Default);
+        end;
+    end;
+
+    procedure SendRejectEmail(RequisitionHeader: Record "NFL Requisition Header")
+    var
+        EmailBody: Text[1000];
+        MSTRecepientsList: List of [Text];
+        MSTCCRecepientsList: List of [Text];
+        MSTBCCRecepientsList: List of [Text];
+        FileMgt: Codeunit "File Management";
+        EmailObj: Codeunit Email;
+        EmailMsg: Codeunit "Email Message";
+        RequisitionStatus: Text[50];
+        UserSetup: Record "User Setup";
+        DocumentNo: Code[20];
+        EmailSubject: Text[250];
+        RejectComment: Text[1000];
+        SalesCommentLine: Record "Sales Comment Line";
+    begin
+        if UserSetup.Get(RequisitionHeader."Raised By") then begin
+            SalesCommentLine.Reset();
+            SalesCommentLine.SetRange("No.", RequisitionHeader."No.");
+            SalesCommentLine.SetRange("Document Type", SalesCommentLine."Document Type"::"Purchase Requisition");
+            if SalesCommentLine.FindLast() then
+                RejectComment := SalesCommentLine.Comment;
+
+            EmailBody := 'Dear ' + UserSetup."E-Mail" + ', Purchase Requisition No. ' + RequisitionHeader."No." + ' has been Rejected by ' + UserId + ' because "' + RejectComment + '"';
+            MSTRecepientsList.Add(UserSetup."E-Mail");
+            DocumentNo := RequisitionHeader."No.";
+            EmailSubject := 'Purchase Requisition ' + DocumentNo + ' has been Rejected.';
             EmailMsg.Create(MSTRecepientsList, EmailSubject,
             EmailBody,
             false, MSTCCRecepientsList, MSTBCCRecepientsList);
