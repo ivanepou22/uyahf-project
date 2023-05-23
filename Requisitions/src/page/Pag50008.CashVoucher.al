@@ -436,7 +436,7 @@ page 50008 "Cash Voucher"
                         Rec.TESTFIELD("Transferred to Journals", TRUE);
                         IF NOT CONFIRM('Do you really want to archieve the selected document?', FALSE) THEN
                             EXIT;
-                        // PaymentVoucherHeader.ArchiveRequisition(Rec);
+                        PaymentVoucherHeader.ArchiveVoucher(Rec);
                     end;
                 }
             }
