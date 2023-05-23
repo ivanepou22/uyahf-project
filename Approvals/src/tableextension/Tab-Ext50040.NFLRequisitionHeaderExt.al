@@ -131,14 +131,24 @@ tableextension 50040 "NFL Requisition HeaderExt" extends "NFL Requisition Header
     var
         ApprovalEntries: Record "Approval Entry";
         PurchaseSetup: Record "Purchases & Payables Setup";
+        NotReleased: Boolean;
+        countNumber: Integer;
     begin
+        NotReleased := false;
+        countNumber := 0;
+
         ApprovalEntries.Reset();
         ApprovalEntries.SetRange("Document No.", PurchaseRequisition."No.");
-        if ApprovalEntries.Find('-') then begin
-            if not ((ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created)) then begin
-                Rec.SendReleaseEmail(PurchaseRequisition);
-            end;
+        if ApprovalEntries.FindFirst() then begin
+            repeat
+                if (ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created) then
+                    NotReleased := true;
+                countNumber += 1;
+            until ApprovalEntries.Next() = 0;
         end;
+
+        if (countNumber > 0) and (NotReleased = false) then
+            Rec.SendReleaseEmail(PurchaseRequisition);
     end;
 
     procedure CheckForBudgetControllerApproval(var PurchaseRequisition: Record "NFL Requisition Header")
