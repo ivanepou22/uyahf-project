@@ -130,7 +130,6 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
                 Rec."Release Date" := Today();
                 Rec.Status := Rec.Status::Released;
                 Rec.Modify();
-                // SendRequisitionApprovedEmail();
                 ApprovalManagement.CreatePaymentVoucherCommitment(Rec);
             end;
             Message(NvText);
