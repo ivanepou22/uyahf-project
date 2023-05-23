@@ -210,22 +210,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                         end;
                     end;
                 }
-                action("Update now")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Update Now';
-                    Promoted = true;
-                    PromotedCategory = Category6;
-                    PromotedIsBig = true;
-                    Visible = false;
-                    Image = UpdateXML;
-                    trigger OnAction()
-                    var
-                        Codes: Codeunit "Custom Functions Requisition";
-                    begin
-                        Message(Format(GetUrl(CLIENTTYPE::Web, CompanyName, ObjectType::Page, Page::"Requests to Approve")));
-                    end;
-                }
+
                 action(ApprovalComments)
                 {
                     ApplicationArea = All;
@@ -306,17 +291,6 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                             customFunction.ReopenApprovalEntries(Rec);
                         end;
                     end;
-                }
-                action("Approval Comments")
-                {
-                    ApplicationArea = All;
-                    Promoted = true;
-                    PromotedCategory = Category6;
-                    PromotedIsBig = true;
-                    Caption = 'Approval Comments';
-                    Image = Comment;
-                    // RunObject = page "NFL Approval Comments"; TODO:
-                    // RunPageLink = "Document No." = field("No."), "Document Type" = field("Document Type"), "Table ID" = const(50069);
                 }
             }
         }

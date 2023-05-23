@@ -406,7 +406,7 @@ page 50040 "Voucher Form"
                         Rec.TESTFIELD("Transferred to Journals", TRUE);
                         IF NOT CONFIRM('Do you really want to archieve the selected document?', FALSE) THEN
                             EXIT;
-                        PaymentVoucherHeader.ArchiveRequisition(Rec);
+                        PaymentVoucherHeader.ArchivePaymentVoucher(Rec);
                     end;
                 }
 
@@ -475,8 +475,6 @@ page 50040 "Voucher Form"
                             ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Open);
                             if ApprovalEntry.FindFirst() then begin
                                 ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
-                                if Rec."Approvals Entry" = 0 then
-                                    Rec.SendRequisitionApprovedEmail();
                             end
                             else begin
                                 UserSetup.Reset();
@@ -489,11 +487,12 @@ page 50040 "Voucher Form"
                                 ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
                                 Rec.ReleaseTheApprovedDoc();
                             end;
-                            //Send email implemented
                             CustomFunctions.OpenApprovalEntries(Rec);
                             CustomFunctions.DoubleCheckApprovalEntries(Rec);
                             CustomFunctions.CompleteDocumentApproval(Rec);
                             Rec.CheckForBudgetControllerApproval(Rec);
+                            Rec.CheckDocumentRelease(Rec);
+                            Rec.SendVoucherApprovedEmail(Rec);
                         end;
                     end;
                 }
@@ -526,6 +525,7 @@ page 50040 "Voucher Form"
                                 ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 CustomFunctions.RejectApprovalRequest(Rec);
                                 Rec.ReversePaymentVoucherCommitmentEntries();
+                                Rec.SendRejectEmail(Rec);
                             end else begin
                                 ApprovalComments2.Reset();
                                 ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Cash Voucher");
@@ -554,6 +554,7 @@ page 50040 "Voucher Form"
                     begin
                         if Confirm(Txt002, true) then begin
                             CustomFunctions.DelegatePaymentVoucherApprovalRequest(Rec);
+                            Rec.SendVoucherApprovedEmail(Rec);
                         end;
                     end;
                 }

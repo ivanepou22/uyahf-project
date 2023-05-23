@@ -113,8 +113,6 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                             ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Open);
                             if ApprovalEntry.FindFirst() then begin
                                 ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
-                                if Rec."Approvals Entry" = 0 then
-                                    Rec.SendRequisitionApprovedEmail();
                             end
                             else begin
                                 UserSetup.Reset();
@@ -127,11 +125,12 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                                 ApprovalsMgmt.ApproveRecordApprovalRequest(Rec.RecordId);
                                 Rec.ReleaseTheApprovedDoc();
                             end;
-                            //Send email implemented
                             CustomFunctions.OpenApprovalEntries(Rec);
                             CustomFunctions.DoubleCheckApprovalEntries(Rec);
                             CustomFunctions.CompleteDocumentApproval(Rec);
                             Rec.CheckForBudgetControllerApproval(Rec);
+                            Rec.CheckDocumentRelease(Rec);
+                            Rec.SendVoucherApprovedEmail(Rec);
                         end;
                     end;
                 }
@@ -163,6 +162,7 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                                 ApprovalsMgmt.RejectRecordApprovalRequest(Rec.RecordId);
                                 CustomFunctions.RejectApprovalRequest(Rec);
                                 Rec.ReversePaymentVoucherCommitmentEntries();
+                                Rec.SendRejectEmail(Rec);
                             end else begin
                                 ApprovalComments2.Reset();
                                 ApprovalComments2.SetRange(ApprovalComments2."Document Type", ApprovalComments2."Document Type"::"Cash Voucher");
@@ -191,36 +191,7 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                     begin
                         if Confirm(Txt002, true) then begin
                             CustomFunction.DelegatePaymentVoucherApprovalRequest(Rec);
-                        end;
-                    end;
-                }
-
-                action(Escalate)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Escalate';
-                    Image = Delegate;
-                    Promoted = true;
-                    PromotedCategory = Category5;
-                    PromotedOnly = true;
-                    ToolTip = 'Escalate the approval Request to an Escalate approver.';
-                    Visible = false;
-                    trigger OnAction()
-                    var
-                        Txt002: Label 'Are you sure you want to Escalate this document ?';
-                        PaymentLineTotal: Decimal;
-                        UserSetup: Record "User Setup";
-                    // ApprovalDoc: Codeunit "NFL Approvals Management";
-                    begin
-                        Rec.CalcFields("Payment Voucher Lines Total");
-                        PaymentLineTotal := Rec."Payment Voucher Lines Total";
-                        if PaymentLineTotal <= 0 then begin
-                            Error('Voucher Lines are Empty, You can not Escalate this document');
-                        end;
-
-                        if Confirm(Txt002, true) then begin
-                            //Send Email implemented
-                            CustomFunctions.EscalateApprovalRequest(Rec);
+                            Rec.SendVoucherApprovedEmail(Rec);
                         end;
                     end;
                 }
@@ -274,27 +245,11 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                         if Confirm('Do you really want to send the request for approval?', true) then begin
                             if ApprovalsMgmtCut.CheckClaimApprovalsWorkflowEnable(Rec) then begin
                                 ApprovalsMgmtCut.OnSendClaimForApproval(Rec);
-                                //Send email implemented
                                 Rec.SendRequestApprovalEmail(Rec);
                                 CustomCodeunit.modifyApprovalEntry(Rec);
                             end;
+                            Rec.SendVoucherApprovedEmail(Rec);
                         end;
-                    end;
-                }
-                action("Update Now")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Update Now';
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    PromotedIsBig = true;
-                    Visible = false;
-                    Image = UpdateShipment;
-                    trigger OnAction()
-                    var
-                        CustomCodeunit: Codeunit "Custom Functions Cash";
-                    begin
-                        CustomCodeunit.UpdateApprovalEntryInfo();
                     end;
                 }
 

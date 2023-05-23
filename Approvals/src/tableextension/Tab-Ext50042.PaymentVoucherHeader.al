@@ -130,7 +130,7 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
                 Rec."Release Date" := Today();
                 Rec.Status := Rec.Status::Released;
                 Rec.Modify();
-                SendRequisitionApprovedEmail();
+                // SendRequisitionApprovedEmail();
                 ApprovalManagement.CreatePaymentVoucherCommitment(Rec);
             end;
             Message(NvText);
@@ -199,20 +199,20 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
     /// <summary>
     /// SendRequisitionApprovedEmail.
     /// </summary>
-    procedure SendRequisitionApprovedEmail()
-    var
-        ApprovalEntry: Record "Approval Entry";
-        NFLApprovalMgt: Codeunit "Custom Functions Cash";
-    begin
-        ApprovalEntry.Reset();
-        ApprovalEntry.SetRange(ApprovalEntry."Document No.", Rec."No.");
-        ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Approved);
-        ApprovalEntry.SetFilter(ApprovalEntry."Approver ID", '<>%1', UserId);
-        if ApprovalEntry.FindFirst() then
-            repeat
-                NFLApprovalMgt.SendPaymentVoucherApprovedMail(Rec, ApprovalEntry);
-            until ApprovalEntry.Next() = 0;
-    end;
+    // procedure SendRequisitionApprovedEmail()
+    // var
+    //     ApprovalEntry: Record "Approval Entry";
+    //     NFLApprovalMgt: Codeunit "Custom Functions Cash";
+    // begin
+    //     ApprovalEntry.Reset();
+    //     ApprovalEntry.SetRange(ApprovalEntry."Document No.", Rec."No.");
+    //     ApprovalEntry.SetRange(ApprovalEntry.Status, ApprovalEntry.Status::Approved);
+    //     ApprovalEntry.SetFilter(ApprovalEntry."Approver ID", '<>%1', UserId);
+    //     if ApprovalEntry.FindFirst() then
+    //         repeat
+    //             NFLApprovalMgt.SendPaymentVoucherApprovedMail(Rec, ApprovalEntry);
+    //         until ApprovalEntry.Next() = 0;
+    // end;
 
     /// <summary>
     /// ReversePaymentVoucherCommitmentEntrie.
@@ -416,22 +416,6 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
         end;
     end;
 
-    // procedure CheckVoucherRelease(var PaymentVoucher: Record "Payment Voucher Header")
-    // var
-    //     ApprovalEntries: Record "Approval Entry";
-    //     PurchaseSetup: Record "Purchases & Payables Setup";
-    //     customFunctionsCash: Codeunit "Custom Functions Cash";
-    // begin
-    //     ApprovalEntries.Reset();
-    //     ApprovalEntries.SetRange("Document No.", PaymentVoucher."No.");
-    //     if ApprovalEntries.Find('-') then begin
-    //         if not ((ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created)) then begin
-    //             if PurchaseSetup."Create Vouch. comm. on Approv." then
-    //                 customFunctionsCash.CreatePaymentVoucherCommitment(Rec);
-    //         end;
-    //     end;
-    // end;
-
     procedure CheckForBudgetControllerApproval(var PaymentVoucher: Record "Payment Voucher Header")
     var
         ApprovalEntries: Record "Approval Entry";
@@ -452,10 +436,166 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
         end;
     end;
 
-    procedure ArchiveRequisition(var PaymentVoucherHeader: Record "Payment Voucher Header")
+    procedure ArchivePaymentVoucher(var PaymentVoucherHeader: Record "Payment Voucher Header")
     var
         myInt: Integer;
     begin
 
+    end;
+
+    //check he document release
+    procedure CheckDocumentRelease(var PaymentVoucherHeader: Record "Payment Voucher Header")
+    var
+        ApprovalEntries: Record "Approval Entry";
+        PurchaseSetup: Record "Purchases & Payables Setup";
+        NotReleased: Boolean;
+        countNumber: Integer;
+    begin
+        NotReleased := false;
+        countNumber := 0;
+
+        ApprovalEntries.Reset();
+        ApprovalEntries.SetRange("Document No.", PaymentVoucherHeader."No.");
+        if ApprovalEntries.FindFirst() then begin
+            repeat
+                if (ApprovalEntries.Status = ApprovalEntries.Status::Open) or (ApprovalEntries.Status = ApprovalEntries.Status::Created) then
+                    NotReleased := true;
+                countNumber += 1;
+            until ApprovalEntries.Next() = 0;
+        end;
+
+        if (countNumber > 0) and (NotReleased = false) then
+            Rec.SendReleaseEmail(PaymentVoucherHeader);
+    end;
+
+    /// <summary>
+    /// SendRequisitionApprovedEmail.
+    /// </summary>
+    procedure SendVoucherApprovedEmail(PaymentVoucherHeader: Record "Payment Voucher Header")
+    var
+        ApprovalEntry: Record "Approval Entry";
+    begin
+        ApprovalEntry.Reset();
+        ApprovalEntry.SetRange("Document No.", PaymentVoucherHeader."No.");
+        ApprovalEntry.SetRange(Status, ApprovalEntry.Status::Open);
+        if ApprovalEntry.FindFirst() then begin
+            SendEmailToVoucherOwner(PaymentVoucherHeader, ApprovalEntry);
+            SendEmailToVoucherApprover(PaymentVoucherHeader, ApprovalEntry);
+        end;
+    end;
+
+    procedure SendEmailToVoucherOwner(PaymentVoucherHeader: Record "Payment Voucher Header"; ApprovalEntry: Record "Approval Entry")
+    var
+        EmailBody: Text[1000];
+        MSTRecepientsList: List of [Text];
+        MSTCCRecepientsList: List of [Text];
+        MSTBCCRecepientsList: List of [Text];
+        FileMgt: Codeunit "File Management";
+        EmailObj: Codeunit Email;
+        EmailMsg: Codeunit "Email Message";
+        RequisitionStatus: Text[50];
+        UserSetup: Record "User Setup";
+        DocumentNo: Code[20];
+        EmailSubject: Text[250];
+    begin
+        if UserSetup.Get(ApprovalEntry."Sender ID") then begin
+            EmailBody := 'Dear ' + UserSetup."E-Mail" + ', Payment Voucher No. ' + ApprovalEntry."Document No." + ' is with ' + ApprovalEntry."Approver ID";
+            MSTRecepientsList.Add(UserSetup."E-Mail");
+            DocumentNo := ApprovalEntry."Document No.";
+            EmailSubject := 'Payment Voucher Approval in Progress ' + DocumentNo;
+            EmailMsg.Create(MSTRecepientsList, EmailSubject,
+            EmailBody,
+            false, MSTCCRecepientsList, MSTBCCRecepientsList);
+            EmailObj.Send(EmailMsg, Enum::"Email Scenario"::Default);
+        end;
+    end;
+
+    procedure SendEmailToVoucherApprover(PaymentVoucherHeader: Record "Payment Voucher Header"; ApprovalEntry: Record "Approval Entry")
+    var
+        ApprovalEmailSubject: Text[150];
+        EmailBody: Text[1000];
+        MSTRecepientsList: List of [Text];
+        MSTCCRecepientsList: List of [Text];
+        MSTBCCRecepientsList: List of [Text];
+        AttachmentTempBlob: Codeunit "Temp Blob";
+        AttachmentInStream: InStream;
+        FileMgt: Codeunit "File Management";
+        EmailObj: Codeunit Email;
+        EmailMsg: Codeunit "Email Message";
+        RequisitionStatus: Text[50];
+        UserSetup: Record "User Setup";
+        DocumentNo: Code[20];
+        EmailSubject: Text[250];
+    begin
+        if UserSetup.Get(ApprovalEntry."Approver ID") then begin
+            EmailBody := 'Dear ' + UserSetup."E-Mail" + ', Payment Voucher No. ' + ApprovalEntry."Document No." + ' is on your desk for approval ' + 'http://localhost:8080/BC220/?company=UYAHF&page=654';
+            MSTRecepientsList.Add(UserSetup."E-Mail");
+            DocumentNo := ApprovalEntry."Document No.";
+            EmailSubject := 'Payment Voucher ' + DocumentNo + ' Requires Your attension';
+            EmailMsg.Create(MSTRecepientsList, EmailSubject,
+            EmailBody,
+            false, MSTCCRecepientsList, MSTBCCRecepientsList);
+            EmailObj.Send(EmailMsg, Enum::"Email Scenario"::Default);
+        end;
+    end;
+
+    procedure SendReleaseEmail(PaymentVoucherHeader: Record "Payment Voucher Header")
+    var
+        EmailBody: Text[1000];
+        MSTRecepientsList: List of [Text];
+        MSTCCRecepientsList: List of [Text];
+        MSTBCCRecepientsList: List of [Text];
+        FileMgt: Codeunit "File Management";
+        EmailObj: Codeunit Email;
+        EmailMsg: Codeunit "Email Message";
+        RequisitionStatus: Text[50];
+        UserSetup: Record "User Setup";
+        DocumentNo: Code[20];
+        EmailSubject: Text[250];
+    begin
+        if UserSetup.Get(PaymentVoucherHeader."Raised By") then begin
+            EmailBody := 'Dear ' + UserSetup."E-Mail" + ', Payment Voucher No. ' + PaymentVoucherHeader."No." + ' has been Approved.';
+            MSTRecepientsList.Add(UserSetup."E-Mail");
+            DocumentNo := PaymentVoucherHeader."No.";
+            EmailSubject := 'Payment Voucher ' + DocumentNo + ' has been approved.';
+            EmailMsg.Create(MSTRecepientsList, EmailSubject,
+            EmailBody,
+            false, MSTCCRecepientsList, MSTBCCRecepientsList);
+            EmailObj.Send(EmailMsg, Enum::"Email Scenario"::Default);
+        end;
+    end;
+
+    procedure SendRejectEmail(PaymentVoucherHeader: Record "Payment Voucher Header")
+    var
+        EmailBody: Text[1000];
+        MSTRecepientsList: List of [Text];
+        MSTCCRecepientsList: List of [Text];
+        MSTBCCRecepientsList: List of [Text];
+        FileMgt: Codeunit "File Management";
+        EmailObj: Codeunit Email;
+        EmailMsg: Codeunit "Email Message";
+        RequisitionStatus: Text[50];
+        UserSetup: Record "User Setup";
+        DocumentNo: Code[20];
+        EmailSubject: Text[250];
+        RejectComment: Text[1000];
+        SalesCommentLine: Record "Sales Comment Line";
+    begin
+        if UserSetup.Get(PaymentVoucherHeader."Raised By") then begin
+            SalesCommentLine.Reset();
+            SalesCommentLine.SetRange("No.", PaymentVoucherHeader."No.");
+            SalesCommentLine.SetRange("Document Type", SalesCommentLine."Document Type"::"Purchase Requisition");
+            if SalesCommentLine.FindLast() then
+                RejectComment := SalesCommentLine.Comment;
+
+            EmailBody := 'Dear ' + UserSetup."E-Mail" + ', Payment Voucher No. ' + PaymentVoucherHeader."No." + ' has been Rejected by ' + UserId + ' because "' + RejectComment + '"';
+            MSTRecepientsList.Add(UserSetup."E-Mail");
+            DocumentNo := PaymentVoucherHeader."No.";
+            EmailSubject := 'Payment Voucher ' + DocumentNo + ' has been Rejected.';
+            EmailMsg.Create(MSTRecepientsList, EmailSubject,
+            EmailBody,
+            false, MSTCCRecepientsList, MSTBCCRecepientsList);
+            EmailObj.Send(EmailMsg, Enum::"Email Scenario"::Default);
+        end;
     end;
 }
