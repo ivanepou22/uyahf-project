@@ -23,6 +23,7 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
             field(Freelance; Rec.Freelance)
             {
                 ApplicationArea = All;
+                Visible = false;
             }
             field("Current Approver"; Rec."Current Approver")
             {

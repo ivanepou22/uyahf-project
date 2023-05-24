@@ -583,7 +583,7 @@ tableextension 50042 "Payment Voucher Header" extends "Payment Voucher Header"
         if UserSetup.Get(PaymentVoucherHeader."Raised By") then begin
             SalesCommentLine.Reset();
             SalesCommentLine.SetRange("No.", PaymentVoucherHeader."No.");
-            SalesCommentLine.SetRange("Document Type", SalesCommentLine."Document Type"::"Purchase Requisition");
+            SalesCommentLine.SetRange("Document Type", SalesCommentLine."Document Type"::"Cash Voucher");
             if SalesCommentLine.FindLast() then
                 RejectComment := SalesCommentLine.Comment;
 
