@@ -103,6 +103,8 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                             Rec.CheckAmountCoded()
                         end;
 
+                        Rec.TestField("Raised By");
+
                         Rec.CheckPaymentVoucherLinesTotal();
                         Rec.CheckForLinesApproval();
                         Rec.CheckDoubleEntry();
@@ -155,6 +157,7 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                     begin
 
                         if Confirm('Are you sure you want to Reject this Voucher ?', true) then begin
+                            Rec.TestField("Raised By");
                             //Checking for comments before rejecting
                             ApprovalComments.Reset();
                             ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
@@ -191,6 +194,7 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                         CustomFunction: Codeunit "Custom Functions Cash";
                     begin
                         if Confirm(Txt002, true) then begin
+                            Rec.TestField("Raised By");
                             CustomFunction.DelegatePaymentVoucherApprovalRequest(Rec);
                             Rec.SendVoucherApprovedEmail(Rec);
                         end;
@@ -222,7 +226,7 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                         PaymentLineTotal: Decimal;
                         Text0001: Label 'Payment Details must have atleast one line with amount';
                     begin
-
+                        Rec.TestField("Raised By");
                         Rec.TESTFIELD("Posting Date");
                         Rec.TESTFIELD("Shortcut Dimension 1 Code");
                         Rec.TESTFIELD("Budget Code");
@@ -271,6 +275,7 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                         ApprovalEntry: Record "Approval Entry";
                         CustCodeUnit: Codeunit "Custom Functions Cash";
                     begin
+                        Rec.TestField("Raised By");
                         Rec.TestField(Rec.Status, Rec.Status::"Pending Approval");
                         if Rec."Transferred to Journals" = TRUE then
                             ERROR('The Payment Voucher has already been transfered to the Journals');
@@ -316,6 +321,7 @@ pageextension 50024 "Cash Voucher Ext" extends "Cash Voucher"
                         PaymentVoucher: Record "Payment Voucher Header";
                         userSetup: Record "User Setup";
                     begin
+                        Rec.TestField("Raised By");
                         if Confirm('Are You Want to Open This Document ?', true) then begin
                             //send email implemented
                             PaymentVoucher.PerformManualReopen(Rec);

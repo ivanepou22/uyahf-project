@@ -53,6 +53,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                         if Rec."Requisition Lines Total" <= 0 then begin
                             Error(Txt002);
                         end;
+                        Rec.TestField("Raised By");
 
                         if Confirm(Txt001, true) then begin
                             ClaimCount := 0;
@@ -101,6 +102,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                     begin
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
+                            Rec.TestField("Raised By");
                             ApprovalComments.Reset();
                             ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
                             ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Purchase Requisition");
@@ -136,6 +138,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                         CustomPurchFunction: Codeunit "Custom Functions Requisition";
                     begin
                         if Confirm(Txt002, true) then begin
+                            Rec.TestField("Raised By");
                             CustomPurchFunction.DelegatePurchaseApprovalRequest(Rec);
                             Rec.SendRequisitionApprovedEmail(Rec);
                         end;
@@ -159,6 +162,7 @@ pageextension 50022 "Requisition Approval Form Ext" extends "Requisition Approva
                         UserSetup: Record "User Setup";
                     // ApprovalDoc: Codeunit "NFL Approvals Management";
                     begin
+                        Rec.TestField("Raised By");
                         Rec.CalcFields("Requisition Lines Total");
                         RequisitionLineTotal := Rec."Requisition Lines Total";
                         if RequisitionLineTotal <= 0 then
