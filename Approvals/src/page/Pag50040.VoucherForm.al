@@ -458,6 +458,7 @@ page 50040 "Voucher Form"
                         CustomFunctions: Codeunit "Custom Functions Cash";
                     begin
                         Rec.TestField("Raised By");
+                        Rec.TestField("Voucher Type");
                         UserSetup2.Reset();
                         UserSetup2.SetRange(UserSetup2."User ID", UserId);
                         UserSetup2.SetRange(UserSetup2."Budget Controller", true);
@@ -520,6 +521,7 @@ page 50040 "Voucher Form"
                         if Confirm('Are you sure you want to Reject this Voucher ?', true) then begin
                             //Checking for comments before rejecting
                             Rec.TestField("Raised By");
+                            Rec.TestField("Voucher Type");
                             ApprovalComments.Reset();
                             ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
                             ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Cash Voucher");
@@ -556,6 +558,7 @@ page 50040 "Voucher Form"
                     begin
                         if Confirm(Txt002, true) then begin
                             Rec.TestField("Raised By");
+                            Rec.TestField("Voucher Type");
                             CustomFunctions.DelegatePaymentVoucherApprovalRequest(Rec);
                             Rec.SendVoucherApprovedEmail(Rec);
                         end;

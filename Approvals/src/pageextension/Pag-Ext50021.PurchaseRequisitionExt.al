@@ -59,6 +59,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                             Error('Document Status must be set to Pending Approval');
 
                         Rec.TestField("Raised By");
+                        Rec.TestField("Requisition Type");
                         if Rec."Requisition Lines Total" <= 0 then begin
                             Error(Txt002);
                         end;
@@ -112,6 +113,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                         if Confirm('Are you sure you want to Reject this Requisition ?', true) then begin
                             //Checking for comments before rejecting
                             Rec.TestField("Raised By");
+                            Rec.TestField("Requisition Type");
                             ApprovalComments.Reset();
                             ApprovalComments.SetRange(ApprovalComments."No.", Rec."No.");
                             ApprovalComments.SetRange(ApprovalComments."Document Type", ApprovalComments."Document Type"::"Purchase Requisition");
@@ -148,6 +150,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                     begin
                         if Confirm(Txt002, true) then begin
                             Rec.TestField("Raised By");
+                            Rec.TestField("Requisition Type");
                             CustomPurchFunction.DelegatePurchaseApprovalRequest(Rec);
                             Rec.SendRequisitionApprovedEmail(Rec);
                         end;
@@ -197,6 +200,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                         Rec.TESTFIELD("Budget Code");
                         Rec.TestField(Status, Rec.Status::Open);
                         Rec.TestField("Raised By");
+                        Rec.TestField("Requisition Type");
 
                         IF Rec."Prepared by" <> USERID THEN
                             ERROR('The selected request can only be sent for approval by the initiator %1', Rec."Prepared by");
@@ -246,6 +250,7 @@ pageextension 50021 "Purchase Requisition Ext" extends "Purchase Requisition"
                         ApprovalEntry: Record "Approval Entry";
                     begin
                         Rec.TestField("Raised By");
+                        Rec.TestField("Requisition Type");
                         Rec.TestField(Status, Rec.Status::"Pending Approval");
                         if Rec."Converted to Order" = TRUE then
                             ERROR('The purchase requisition has already been converted to an order');
