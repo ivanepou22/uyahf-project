@@ -1,7 +1,7 @@
 /// <summary>
-/// Report Transfer Voucher Approval (ID 50179).
+/// Report Transfer Voucher Approval (ID 50021).
 /// </summary>
-report 50205 "Transfer Purch. Vouch Approval"
+report 50021 "Transfer Purch. Vouch Approval"
 {
     UsageCategory = Administration;
     ApplicationArea = All;
