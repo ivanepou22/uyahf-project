@@ -26,6 +26,8 @@ report 50022 "ActivityBVA"
             column(CompanyEmail; CompanyInfo."E-Mail") { }
             column(CompanyHomePage; CompanyInfo."Home Page") { }
             column(CompanyInfoPhone; CompanyInfo."Phone No.") { }
+            column(TotalBudget; TotalBudget) { }
+
             trigger OnPreDataItem()
             var
                 myInt: Integer;
@@ -38,23 +40,37 @@ report 50022 "ActivityBVA"
             var
                 GLEntry: Record "G/L Entry";
                 BudgetEntry: Record "G/L Budget Entry";
+                BudgetEntry1: Record "G/L Budget Entry";
             begin
                 ActualAmount := 0;
                 BudgetAmount := 0;
                 VarianceAmount := 0;
                 VarianceRate := 0;
                 BurnRate := 0;
+                TotalBudget := 0;
 
                 GLEntry.Reset();
                 GLEntry.SetRange("Shortcut Dimension 3 Code", "Dimension Value".Code);
+                GLEntry.SetFilter("Posting Date", '%1..%2', StartDate, Enddate);
                 GLEntry.SetFilter("G/L Account No.", '%1..%2', '4500', '5999');
                 if GLEntry.FindFirst() then
                     repeat
                         ActualAmount += GLEntry.Amount;
                     until GLEntry.Next() = 0;
 
+                //TotalBudget
+                BudgetEntry1.Reset();
+                BudgetEntry1.SetFilter("G/L Account No.", '%1..%2', '4500', '5999');
+                BudgetEntry1.SetRange("Budget Dimension 1 Code", "Dimension Value".Code);
+                if BudgetEntry1.FindFirst() then begin
+                    repeat
+                        TotalBudget += BudgetEntry1.Amount;
+                    until BudgetEntry1.Next() = 0;
+                end;
+
                 BudgetEntry.Reset();
                 BudgetEntry.SetFilter("G/L Account No.", '%1..%2', '4500', '5999');
+                BudgetEntry.SetFilter(Date, '%1..%2', StartDate, Enddate);
                 BudgetEntry.SetRange("Budget Dimension 1 Code", "Dimension Value".Code);
                 if BudgetEntry.FindFirst() then begin
                     repeat
@@ -63,7 +79,8 @@ report 50022 "ActivityBVA"
                 end;
 
                 VarianceAmount := BudgetAmount - ActualAmount;
-                VarianceRate := (VarianceAmount / BudgetAmount) * 100;
+                if VarianceAmount <> 0 then
+                    VarianceRate := (VarianceAmount / BudgetAmount) * 100;
                 if ActualAmount <> 0 then
                     BurnRate := (ActualAmount / BudgetAmount) * 100;
             end;
@@ -78,11 +95,14 @@ report 50022 "ActivityBVA"
             {
                 group(GroupName)
                 {
-                    // field(Name; SourceExpression)
-                    // {
-                    //     ApplicationArea = All;
-
-                    // }
+                    field("Start Date"; StartDate)
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("End Date"; Enddate)
+                    {
+                        ApplicationArea = All;
+                    }
                 }
             }
         }
@@ -115,6 +135,15 @@ report 50022 "ActivityBVA"
     begin
         CompanyInfo.Get();
         CompanyInfo.CalcFields(Picture);
+
+        if StartDate = 0D then
+            Error('Starting date can not be empty');
+
+        if Enddate = 0D then
+            Error('End Date can not be empty');
+
+        if Enddate < StartDate then
+            Error('End date can not be less than Start Date');
     end;
 
     var
@@ -124,4 +153,7 @@ report 50022 "ActivityBVA"
         VarianceRate: Decimal;
         BurnRate: Decimal;
         CompanyInfo: Record "Company Information";
+        StartDate: Date;
+        Enddate: Date;
+        TotalBudget: Decimal;
 }
