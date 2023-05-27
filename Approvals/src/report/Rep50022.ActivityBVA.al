@@ -27,7 +27,9 @@ report 50022 "ActivityBVA"
             column(CompanyHomePage; CompanyInfo."Home Page") { }
             column(CompanyInfoPhone; CompanyInfo."Phone No.") { }
             column(TotalBudget; TotalBudget) { }
-
+            column(ReportFilters; ReportFilters) { }
+            column(StartDate; StartDate) { }
+            column(Enddate; Enddate) { }
             trigger OnPreDataItem()
             var
                 myInt: Integer;
@@ -61,6 +63,7 @@ report 50022 "ActivityBVA"
                 //TotalBudget
                 BudgetEntry1.Reset();
                 BudgetEntry1.SetFilter("G/L Account No.", '%1..%2', '4500', '5999');
+                BudgetEntry1.SetRange("Budget Name", GenLedgerSetup."Approved Budget");
                 BudgetEntry1.SetRange("Budget Dimension 1 Code", "Dimension Value".Code);
                 if BudgetEntry1.FindFirst() then begin
                     repeat
@@ -71,6 +74,7 @@ report 50022 "ActivityBVA"
                 BudgetEntry.Reset();
                 BudgetEntry.SetFilter("G/L Account No.", '%1..%2', '4500', '5999');
                 BudgetEntry.SetFilter(Date, '%1..%2', StartDate, Enddate);
+                BudgetEntry.SetRange("Budget Name", GenLedgerSetup."Approved Budget");
                 BudgetEntry.SetRange("Budget Dimension 1 Code", "Dimension Value".Code);
                 if BudgetEntry.FindFirst() then begin
                     repeat
@@ -79,9 +83,9 @@ report 50022 "ActivityBVA"
                 end;
 
                 VarianceAmount := BudgetAmount - ActualAmount;
-                if VarianceAmount <> 0 then
+                if (VarianceAmount <> 0) and (BudgetAmount <> 0) then
                     VarianceRate := (VarianceAmount / BudgetAmount) * 100;
-                if ActualAmount <> 0 then
+                if (ActualAmount <> 0) and (BudgetAmount <> 0) then
                     BurnRate := (ActualAmount / BudgetAmount) * 100;
             end;
         }
@@ -136,6 +140,11 @@ report 50022 "ActivityBVA"
         CompanyInfo.Get();
         CompanyInfo.CalcFields(Picture);
 
+        GenLedgerSetup.Get();
+        GenLedgerSetup.TestField("Approved Budget");
+
+        ReportFilters := "Dimension Value".GetFilters;
+
         if StartDate = 0D then
             Error('Starting date can not be empty');
 
@@ -156,4 +165,6 @@ report 50022 "ActivityBVA"
         StartDate: Date;
         Enddate: Date;
         TotalBudget: Decimal;
+        ReportFilters: Text[500];
+        GenLedgerSetup: Record "General Ledger Setup";
 }
