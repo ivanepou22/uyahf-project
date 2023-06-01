@@ -19,10 +19,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>5.44515in</Width>
+                  <Width>5.39582in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.1639in</Width>
+                  <Width>2.11457in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -47,7 +47,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -73,7 +73,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>Amount</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -81,7 +81,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox3</rd:DefaultName>
@@ -312,10 +314,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>4.26959in</Top>
-            <Left>0.38972in</Left>
+            <Top>3.42236in</Top>
+            <Left>0.4883in</Left>
             <Height>0.66666in</Height>
-            <Width>7.60905in</Width>
+            <Width>7.51039in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -326,15 +328,15 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.71773in</Width>
+                  <Width>2.66843in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.89132in</Width>
+                  <Width>4.84202in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.19792in</Height>
+                  <Height>0.21875in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -562,10 +564,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>5.17584in</Top>
-            <Left>0.38972in</Left>
-            <Height>0.66667in</Height>
-            <Width>7.60905in</Width>
+            <Top>4.78695in</Top>
+            <Left>0.48836in</Left>
+            <Height>0.6875in</Height>
+            <Width>7.51045in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -577,10 +579,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.07204in</Width>
+                  <Width>3.73861in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.12204in</Width>
+                  <Width>3.77177in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -605,7 +607,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -641,7 +643,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -682,7 +684,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -719,7 +721,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -760,7 +762,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -814,7 +816,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -855,7 +857,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -891,7 +893,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -929,9 +931,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.01389in</Top>
-            <Left>1.63799in</Left>
+            <Left>0.48834in</Left>
             <Height>1in</Height>
-            <Width>4.19408in</Width>
+            <Width>7.51038in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -943,25 +945,25 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.60493in</Width>
+                  <Width>0.95851in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.60878in</Width>
+                  <Width>0.96236in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.63142in</Width>
+                  <Width>0.985in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.68203in</Width>
+                  <Width>1.03561in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.79488in</Width>
+                  <Width>1.14846in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.79533in</Width>
+                  <Width>1.14891in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.91795in</Width>
+                  <Width>1.27153in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1041,7 +1043,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1096,7 +1098,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1151,7 +1153,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1206,7 +1208,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1261,7 +1263,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1426,7 +1428,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ShortcutDimension1Code_PaymentVoucherLine</rd:DefaultName>
@@ -1478,7 +1482,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ShortcutDimension2Code_PaymentVoucherLine</rd:DefaultName>
@@ -1516,24 +1522,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AdvanceCode_PaymentVoucherLine">
+                        <Textbox Name="DimCode3">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!AdvanceCode_PaymentVoucherLine.Value</Value>
+                                  <Value>=Fields!DimCode3.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AdvanceCode_PaymentVoucherLine</rd:DefaultName>
+                          <rd:DefaultName>DimCode3</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1583,7 +1591,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Amount_PaymentVoucherLineFormat</rd:DefaultName>
@@ -1615,7 +1625,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox25</rd:DefaultName>
@@ -1667,7 +1679,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>BudgetComment_PaymentVoucherLine1</rd:DefaultName>
@@ -1733,9 +1747,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>1.17721in</Top>
-            <Left>2.96342in</Left>
+            <Left>0.48834in</Left>
             <Height>0.55556in</Height>
-            <Width>5.03532in</Width>
+            <Width>7.51038in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -1747,25 +1761,25 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.60195in</Width>
+                  <Width>0.95553in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.6058in</Width>
+                  <Width>0.95938in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.62844in</Width>
+                  <Width>0.98202in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.67905in</Width>
+                  <Width>1.03263in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7919in</Width>
+                  <Width>1.14548in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.79235in</Width>
+                  <Width>1.14593in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.93581in</Width>
+                  <Width>1.28939in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1953,7 +1967,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox27</rd:DefaultName>
@@ -2166,24 +2182,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AdvanceCode_PaymentVoucherLine1">
+                        <Textbox Name="DimCode4">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!AdvanceCode_PaymentVoucherLine.Value</Value>
+                                  <Value>=Fields!DimCode3.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AdvanceCode_PaymentVoucherLine1</rd:DefaultName>
+                          <rd:DefaultName>DimCode3</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -2285,7 +2303,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Amount_PaymentVoucherLine</rd:DefaultName>
@@ -2317,7 +2337,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>BudgetComment_PaymentVoucherLine</rd:DefaultName>
@@ -2366,9 +2388,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>1.73277in</Top>
-            <Left>2.96342in</Left>
+            <Left>0.48833in</Left>
             <Height>0.2257in</Height>
-            <Width>5.03532in</Width>
+            <Width>7.51036in</Width>
             <ZIndex>4</ZIndex>
             <Visibility>
               <Hidden>=iif(Fields!hide.Value = 0, False, true)</Hidden>
@@ -2383,10 +2405,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>5.44886in</Width>
+                  <Width>5.39955in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.16015in</Width>
+                  <Width>2.11084in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -2814,10 +2836,10 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>3.20014in</Top>
-            <Left>0.38972in</Left>
+            <Top>2.38069in</Top>
+            <Left>0.4883in</Left>
             <Height>0.8125in</Height>
-            <Width>7.60901in</Width>
+            <Width>7.51039in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -2829,30 +2851,30 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.60195in</Width>
+                  <Width>0.95553in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.6058in</Width>
+                  <Width>0.95938in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.62844in</Width>
+                  <Width>0.98202in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.67905in</Width>
+                  <Width>1.03263in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7919in</Width>
+                  <Width>1.14548in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.79235in</Width>
+                  <Width>1.14593in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.93581in</Width>
+                  <Width>1.28939in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.20833in</Height>
+                  <Height>0.23611in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3012,24 +3034,26 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AdvanceCode_PaymentVoucherLine2">
+                        <Textbox Name="DimCode5">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!AdvanceCode_PaymentVoucherLine.Value</Value>
+                                  <Value>=Fields!DimCode3.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AdvanceCode_PaymentVoucherLine</rd:DefaultName>
+                          <rd:DefaultName>DimCode3</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -3112,7 +3136,9 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox25</rd:DefaultName>
@@ -3226,10 +3252,10 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>1.95847in</Top>
-            <Left>2.96342in</Left>
-            <Height>0.20833in</Height>
-            <Width>5.03532in</Width>
+            <Top>1.97236in</Top>
+            <Left>0.48833in</Left>
+            <Height>0.23611in</Height>
+            <Width>7.51036in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -3241,15 +3267,18 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.16015in</Width>
+                  <Width>2.34315in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.16015in</Width>
+                  <Width>3.30377in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.86343in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.2552in</Height>
+                  <Height>0.23437in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3291,7 +3320,7 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Escalated by</Value>
+                                  <Value>Signature</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -3313,10 +3342,43 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Approval Date</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.2552in</Height>
+                  <Height>0.28992in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3341,6 +3403,7 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3358,7 +3421,7 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Escalated_Id.Value</Value>
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -3372,6 +3435,42 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Approval_Date">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Approval_Date.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>dd-MMM-yy</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Approval_Date</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3386,6 +3485,7 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
               </TablixMembers>
@@ -3404,10 +3504,10 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>1.06945in</Top>
-            <Left>0.38972in</Left>
-            <Height>0.5104in</Height>
-            <Width>2.3203in</Width>
+            <Top>5.65973in</Top>
+            <Left>0.48837in</Left>
+            <Height>0.52429in</Height>
+            <Width>7.51035in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -3507,8 +3607,8 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                 <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>2.60084in</Top>
-            <Left>3.43293in</Left>
+            <Top>4.26751in</Top>
+            <Left>0.48837in</Left>
             <Height>0.22917in</Height>
             <Width>4.56581in</Width>
             <ZIndex>8</ZIndex>
@@ -3519,13 +3619,13 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>6.055in</Height>
+        <Height>6.22861in</Height>
         <Style />
       </Body>
-      <Width>8.03001in</Width>
+      <Width>7.99881in</Width>
       <Page>
         <PageHeader>
-          <Height>1.61666in</Height>
+          <Height>1.98472in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3535,9 +3635,9 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
               <MIMEType>image/png</MIMEType>
               <Sizing>FitProportional</Sizing>
               <Top>0.12375in</Top>
-              <Left>0.48833in</Left>
-              <Height>0.5625in</Height>
-              <Width>3.54861in</Width>
+              <Left>0.48837in</Left>
+              <Height>1.00694in</Height>
+              <Width>3.54274in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3551,19 +3651,21 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=First(Fields!Address1.Value, "DataSet_Result")</Value>
+                      <Value>=First(Fields!Address.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.12375in</Top>
-              <Left>5.2175in</Left>
+              <Top>0.31125in</Top>
+              <Left>5.21744in</Left>
               <Height>0.1875in</Height>
               <Width>2.78124in</Width>
               <ZIndex>1</ZIndex>
@@ -3591,12 +3693,14 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.31125in</Top>
-              <Left>5.21752in</Left>
+              <Top>0.49875in</Top>
+              <Left>5.21746in</Left>
               <Height>0.1875in</Height>
               <Width>2.78123in</Width>
               <ZIndex>2</ZIndex>
@@ -3624,12 +3728,14 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.49875in</Top>
-              <Left>5.2175in</Left>
+              <Top>0.68625in</Top>
+              <Left>5.21744in</Left>
               <Height>0.1875in</Height>
               <Width>2.78124in</Width>
               <ZIndex>3</ZIndex>
@@ -3653,9 +3759,9 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                       <Value>=First(Fields!DocumentType_PaymentVoucherHeader.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>9pt</FontSize>
+                        <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
-                        <TextDecoration>Underline</TextDecoration>
+                        <TextDecoration>None</TextDecoration>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3665,44 +3771,11 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>1.21403in</Top>
-              <Left>0.48834in</Left>
+              <Top>1.57514in</Top>
+              <Left>0.48828in</Left>
               <Height>0.27083in</Height>
               <Width>7.51041in</Width>
               <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox7">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!Fax.Value, "DataSet_Result")</Value>
-                      <Style>
-                        <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.68625in</Top>
-              <Left>5.2175in</Left>
-              <Height>0.1875in</Height>
-              <Width>2.78125in</Width>
-              <ZIndex>5</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3735,11 +3808,81 @@ Code.SpellNumber(abs(Sum(Fields!Amount_PaymentVoucherLine1.Value)), Last(Fields!
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.75569in</Top>
+              <Top>1.20013in</Top>
               <Left>0.48833in</Left>
               <Height>0.21875in</Height>
               <Width>3.54278in</Width>
+              <ZIndex>5</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox19">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!Company_Home.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>1.07514in</Top>
+              <Left>5.21743in</Left>
+              <Height>0.21528in</Height>
+              <Width>2.78125in</Width>
               <ZIndex>6</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox21">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!Company_Email.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.88764in</Top>
+              <Left>5.2173in</Left>
+              <Height>0.1875in</Height>
+              <Width>2.78125in</Width>
+              <ZIndex>7</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3962,11 +4105,20 @@ End Function
         <Field Name="PhoneNo">
           <DataField>PhoneNo</DataField>
         </Field>
+        <Field Name="Company_Email">
+          <DataField>Company_Email</DataField>
+        </Field>
+        <Field Name="Company_Home">
+          <DataField>Company_Home</DataField>
+        </Field>
         <Field Name="Recipient">
           <DataField>Recipient</DataField>
         </Field>
         <Field Name="RecipientSign">
           <DataField>RecipientSign</DataField>
+        </Field>
+        <Field Name="Created_By">
+          <DataField>Created_By</DataField>
         </Field>
         <Field Name="AccCode">
           <DataField>AccCode</DataField>
@@ -4282,6 +4434,9 @@ End Function
         </Field>
         <Field Name="Escalated_Id">
           <DataField>Escalated_Id</DataField>
+        </Field>
+        <Field Name="Approval_Date">
+          <DataField>Approval_Date</DataField>
         </Field>
         <Field Name="ApproversName">
           <DataField>ApproversName</DataField>

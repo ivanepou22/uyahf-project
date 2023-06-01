@@ -51,10 +51,19 @@ report 50002 "Cheque Payment Voucher"
             column(PhoneNo; CompanyInformation."Phone No.")
             {
             }
+            column(Company_Email; CompanyInformation."E-Mail")
+            {
+            }
+            column(Company_Home; CompanyInformation."Home Page")
+            {
+            }
             column(Recipient; Recipient)
             {
             }
             column(RecipientSign; RecipientSign)
+            {
+            }
+            column(Created_By; "Payment Voucher Header"."Raised By")
             {
             }
             column(AccCode; AccCode)
@@ -459,15 +468,10 @@ report 50002 "Cheque Payment Voucher"
                 DataItemLinkReference = "Payment Voucher Header";
                 DataItemLink = "Document No." = FIELD("No.");
                 DataItemTableView = where(status = filter(Approved));
-                column(Approver_Id; "Approver ID")
-                {
-                }
-                column(Escalated_Id; "Escalated By")
-                {
-                }
-                column(ApproversName; ApproversName)
-                {
-                }
+                column(Approver_Id; "Approver ID") { }
+                column(Escalated_Id; "Escalated By") { }
+                column(Approval_Date; "Approval Entry"."Last Date-Time Modified") { }
+                column(ApproversName; ApproversName) { }
                 trigger OnAfterGetRecord()
                 var
                     User: Record User;
@@ -485,7 +489,7 @@ report 50002 "Cheque Payment Voucher"
 
                 Prepared_By_Name := '';
                 UserName.Reset();
-                UserName.SetRange(UserName."User Name", "Payment Voucher Header"."Prepared by");
+                UserName.SetRange(UserName."User Name", "Payment Voucher Header"."Raised By");
                 if UserName.FindFirst() then
                     Prepared_By_Name := UserName."Full Name";
 
